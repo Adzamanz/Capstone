@@ -1,0 +1,23 @@
+
+
+feature 1: Feeds
+-an admin may create a feed using the "Create Feed" button on the dashboard
+-a user may read posts from a feed provided the feed allows users of their role to do so
+-an admin may update a feed using the "edit feed" button on the feed's tab
+-an admin may delete a feed using the "Delete Feed" button on the feed's tab
+feature 2: Posts
+ -a user may create a post in a feed using the "Create post" button provided the feed allows a user of their role to do so
+ -a user may read a post in a feed provided the feed allows a user of their role to do so
+ -a user may update a post in a feed using the "edit post" button provided they created the post
+ -a user may delete a post in a feed using the :Delete Post" provided they created the post or are an admin
+feature 3: Replies
+-a user may create a reply for a Post using the "reply" button on a post provided both the post and the feed allow  it
+-a user may read a reply for a Post provided both the post and the feed allow  it
+-a user may edit a reply for a Post using the "Edit Reply" button provided they created the post
+-a user may delete a reply using the "Delete Reply" button provided they either creatde the reply or are an admin
+feature 4: Tags
+= tags are buttons a post creator can add to a post to give readers the ability to "tag" themselves.
+= Mousing over a tag button will open a dropdown listing everyone who has hit this tag.
+= All posts have a "Like" tag by default
+-a user may create a tag by clicking on a tag they havent activated.
+-a user may delete a tag by clicking on the tag theyve already activated
