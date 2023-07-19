@@ -1,5 +1,4 @@
-
-
+FEATURE LIST
 feature 1: Feeds
 -an admin may create a feed using the "Create Feed" button on the dashboard
 -a user may read posts from a feed provided the feed allows users of their role to do so
@@ -15,7 +14,10 @@ feature 3: Replies
 -a user may read a reply for a Post provided both the post and the feed allow  it
 -a user may edit a reply for a Post using the "Edit Reply" button provided they created the post
 -a user may delete a reply using the "Delete Reply" button provided they either creatde the reply or are an admin
-feature 4: Tags
+feature 4: Transactions
+-a user may create a transaction by either clicking the donate button on the home Page or clicking the donate button on
+-a user may view their transactions on the "Account Transactions" page
+feature 5: Tags
 = tags are buttons a post creator can add to a post to give readers the ability to "tag" themselves.
 = Mousing over a tag button will open a dropdown listing everyone who has hit this tag.
 = All posts have a "Like" tag by default
