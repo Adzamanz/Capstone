@@ -28,4 +28,10 @@ AS A LOGGED IN USER
         - i can view replies for a post by clicking on the downward arrow next to the "reply" button at the bottom of a post OR in a user's "accout replies" page
         - i can update a reply by clicking on the "edit reply" button at the top of a reply i've created
         - i can delete a reply by clicking on the "Delete reply" button at the top of a reply i've created
-        
+    #TRANSACTIONS
+        - i can create a transaction by clicking on the "Donate" button on the navBar OR by navigating to a post with donation support and clicking on the "donate" button there
+        - i can view my transactions in my "account transactions" page
+            = only i and the creator of the donation post can see the transaction
+    #TAGS
+    - i can create a tag by clicking on one of the tag buttons on a post i havent activated
+    - i can create a tag by clicking on one of the tag buttons on a post i have already activated
