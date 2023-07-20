@@ -1,0 +1,31 @@
+AS A NOT LOGGED IN USER
+AS A LOGGED IN USER
+    #FEEDS
+        - I can create a feed by clicking the "create feed" button at the top of the dashboard
+            = the create feed page has a "type" and description box
+                +   the type box dictates if the feed allows other users to post inside private/public
+                +   the description box is self-explanatory and provides context for users who are viewing the feed
+        - I can Edit a feed ive created by using the "edit feed" button at the top of the feed's page
+            =the edit feed page allows me to edit the type and description of my feed
+        - I can view a feed by navigating to it's page by clicking on the associated tab at the top of the dashboard if its an "Official" feed, OR clicking on the associated tab using the "search feeds" box OR clicking on the associated tab in the feed creator's profile page.
+        - i can delete a feed provided i am the one who created the feed
+    #POSTS
+        - i can create a post by clicking the "create post" button at the top of a feed
+            = i can see the create post page has "date","type","title","body", and "replies" boxes.
+                +   i can use the date box to associate a date with the post independant of its created and updates dates.
+                +   i can use the type box to indicate whether or not a post is a donation post
+                +   i can use the title text box to write my posts title
+                +   i can use the body text box to write the content of my post
+                +   i can use the replies button to designate if i want people to be able to reply to a post
+        - i can view posts in a feed, or in a user's profile "user's Posts" page.
+        - i can edit posts i've created by clicking the "edit Post" button at the top of the post
+            = i can edit "date","type","title","body", and "replies" boxes
+                +   if i turn off the replies for a post, it does NOT delete the replies, but rather makes them invisible, and removes the ability for users to create more.
+                +   if i change the type of post, it does NOT delete associated data, just changes the visibility and/or interactibility of that data.
+        -  can delete posts i've created by clicking the "delete post" button at the top of the post, which opens a modal displaying the message "ARE YOU SURE YOU WANT TO DELETE THIS POST?" with yes and no buttons. clicking yesh deletes the post, clicking no closes the modal.
+    #REPLIES
+        - i can create a reply by clicking the "Reply" button at the bottom of a post that allows replies
+        - i can view replies for a post by clicking on the downward arrow next to the "reply" button at the bottom of a post OR in a user's "accout replies" page
+        - i can update a reply by clicking on the "edit reply" button at the top of a reply i've created
+        - i can delete a reply by clicking on the "Delete reply" button at the top of a reply i've created
+        

@@ -1,9 +1,9 @@
 FEATURE LIST
 feature 1: Feeds
--an admin may create a feed using the "Create Feed" button on the dashboard
+-a user may create a feed using the "Create Feed" button on the dashboard
 -a user may read posts from a feed provided the feed allows users of their role to do so
--an admin may update a feed using the "edit feed" button on the feed's tab
--an admin may delete a feed using the "Delete Feed" button on the feed's tab
+-a user may update a feed using the "edit feed" button on the feed's tab provided thy created the feed
+-a user may delete a feed using the "Delete Feed" button on the feed's tab provided they created the feed
 feature 2: Posts
  -a user may create a post in a feed using the "Create post" button provided the feed allows a user of their role to do so
  -a user may read a post in a feed provided the feed allows a user of their role to do so
