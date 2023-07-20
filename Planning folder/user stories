@@ -35,7 +35,13 @@ AS A LOGGED IN USER
                 + a payment is a transaction pledge made and payed for
         - i can update a transaction if it's a pledge and i havent fulfilled the transaction yet.
         - i can view my transactions in my "account transactions" page
-            = only i and the creator of the donation post can see the transaction
+            = only i and the creator of the donation post (if i clicked on that donate button) can see the transaction
     #TAGS
     - i can create a tag by clicking on one of the tag buttons on a post i havent activated
-    - i can create a tag by clicking on one of the tag buttons on a post i have already activated
+        = hovering over a tag will display information depending on the type of tag
+    - i can delete a tag by clicking on one of the tag buttons on a post i have already activated
+    #POSTTAGS
+    - i can create a PostTag by clicking on the "add tag" button on the post creation and edit page
+    - i can edit a posttag by clicking on the "edit tag" button on the post creation/edit page
+    - i can see what posttags are on a post at the bottom of a post
+    - i can delete a posttag in the create/edit post page by clicking on the x in red next to a posttag
