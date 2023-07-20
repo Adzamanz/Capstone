@@ -42,6 +42,9 @@ AS A LOGGED IN USER
     - i can delete a tag by clicking on one of the tag buttons on a post i have already activated
     #POSTTAGS
     - i can create a PostTag by clicking on the "add tag" button on the post creation and edit page
+        = there are many types of PostTags
+            + the "like" posttag functions like a like button
+            + the "vote" posttag functions like a radio button on a form and only one may be activated per person per post
     - i can edit a posttag by clicking on the "edit tag" button on the post creation/edit page
     - i can see what posttags are on a post at the bottom of a post
     - i can delete a posttag in the create/edit post page by clicking on the x in red next to a posttag
