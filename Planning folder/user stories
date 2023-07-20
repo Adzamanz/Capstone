@@ -30,6 +30,10 @@ AS A LOGGED IN USER
         - i can delete a reply by clicking on the "Delete reply" button at the top of a reply i've created
     #TRANSACTIONS
         - i can create a transaction by clicking on the "Donate" button on the navBar OR by navigating to a post with donation support and clicking on the "donate" button there
+            = there are two main categories of transactions, "Pledge" and "Payment"
+                + a pledge is a transaction made to create a placeholder for a payment
+                + a payment is a transaction pledge made and payed for
+        - i can update a transaction if it's a pledge and i havent fulfilled the transaction yet.
         - i can view my transactions in my "account transactions" page
             = only i and the creator of the donation post can see the transaction
     #TAGS
