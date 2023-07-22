@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models.feed import Feed, db
-from app.forms.feed_form import FeedForm
+from app.models import Feed, db
+from app.forms import FeedForm
 
 feed_routes = Blueprint('feeds', __name__)
 
@@ -13,13 +13,13 @@ def feeds():
 
 @feed_routes.route('/<int:id>')
 @login_required
-def feed(id):
+def user(id):
     feed = Feed.query.get(id)
     return feed.to_dict()
 
 @feed_routes.route('/current')
 @login_required
-def user_feeds():
+def feeds():
     user_id = current_user.id
     feeds = Feed.query.filter(Feed.userId == user_id).all()
     return {'feeds': [feed.to_dict() for feed in feeds]}

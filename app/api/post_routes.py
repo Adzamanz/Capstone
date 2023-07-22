@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models.post import Post, db
-from app.forms.post_form import PostForm
+from app.models import Post, db
+from app.forms import PostForm
 from datetime import datetime
 
 post_routes = Blueprint('posts', __name__)
@@ -72,7 +72,7 @@ def edit_post(id):
 def delete_post(id):
     post = Post.query.get(id)
     if not post:
-        return jsonify(error = 'Feed not found'), 404
+        return jsonify(error = 'Post not found'), 404
     db.session.delete(post)
     db.session.commit()
 
