@@ -27,3 +27,5 @@ class Post(db.Model):
     replies = relationship("Reply", back_populates="post", cascade="all, delete-orphan")
     posttags = relationship("PostTag", back_populates="post", cascade="all, delete-orphan")
     tags = relationship("Tag", back_populates="post", cascade="all, delete-orphan")
+
+    

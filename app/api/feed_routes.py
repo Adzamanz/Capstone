@@ -13,13 +13,13 @@ def feeds():
 
 @feed_routes.route('/<int:id>')
 @login_required
-def user(id):
+def feed(id):
     feed = Feed.query.get(id)
     return feed.to_dict()
 
 @feed_routes.route('/current')
 @login_required
-def feeds():
+def user_feeds():
     user_id = current_user.id
     feeds = Feed.query.filter(Feed.userId == user_id).all()
     return {'feeds': [feed.to_dict() for feed in feeds]}
