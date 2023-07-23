@@ -11,6 +11,8 @@ from .api.feed_routes import feed_routes
 from .api.post_routes import post_routes
 from .api.reply_routes import reply_routes
 from .api.transaction_routes import transaction_routes
+from .api.post_tag_routes import post_tag_routes
+from .api.tag_routes import tag_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -36,6 +38,8 @@ app.register_blueprint(feed_routes, url_prefix='/api/feeds')
 app.register_blueprint(post_routes, url_prefix='/api/posts')
 app.register_blueprint(reply_routes, url_prefix='/api/replies')
 app.register_blueprint(transaction_routes, url_prefix='/api/transactions')
+app.register_blueprint(post_tag_routes, url_prefix='api/post_tags')
+app.register_blueprint(tag_routes, url_prefix='api/tags')
 db.init_app(app)
 Migrate(app, db)
 

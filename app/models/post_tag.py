@@ -11,7 +11,7 @@ class PostTag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     postId = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("posts.id")), nullable=False)
     type = db.Column(db.String, nullable=False)
-    description = db.Column(db.String, nullable=False)
+    description = db.Column(db.String(50), nullable=False)
 
     tags = relationship("Tag", back_populates="postTag", cascade="all, delete-orphan")
     post = relationship("Post", back_populates="post")

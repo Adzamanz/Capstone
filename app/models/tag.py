@@ -13,7 +13,7 @@ class Tag(db.Model):
     userId = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     postId = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("posts.id")), nullable=False)
     tagId = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("posttags.id"), nullable=False))
-    description = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(50), nullable=False)
 
     post = relationship("Post", back_populates="tags")
     user = relationship("User", back_populates="tags")
