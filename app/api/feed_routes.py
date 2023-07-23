@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from app.models import Feed, db
 from app.forms import FeedForm
 
-feed_routes = Blueprint('feeds', __name__)
+feed_routes = Blueprint('/feeds', __name__)
 
 @feed_routes.route('/')
 @login_required
@@ -19,7 +19,7 @@ def user(id):
 
 @feed_routes.route('/current')
 @login_required
-def feeds():
+def user_feeds():
     user_id = current_user.id
     feeds = Feed.query.filter(Feed.userId == user_id).all()
     return {'feeds': [feed.to_dict() for feed in feeds]}
