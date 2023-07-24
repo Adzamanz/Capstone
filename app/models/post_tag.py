@@ -14,4 +14,4 @@ class PostTag(db.Model):
     description = db.Column(db.String(50), nullable=False)
 
     tags = relationship("Tag", back_populates="postTag", cascade="all, delete-orphan")
-    post = relationship("Post", back_populates="post")
+    post = relationship("Post", back_populates="posttags")

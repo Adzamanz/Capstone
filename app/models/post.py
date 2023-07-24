@@ -16,7 +16,7 @@ class Post(db.Model):
     type = db.Column(db.String(10), nullable=False)
     title = db.Column(db.String(50), nullable=False)
     body = db.Column(db.String(3000), nullable=False)
-    replies = db.Column(db.Boolean, nullable=False)
+    reply = db.Column(db.Boolean, nullable=False)
     createdAt = db.Column(db.DateTime, nullable=False, default=datetime.now().date())
     updatedAt = db.Column(db.DateTime, nullable=False, default=datetime.now().date())
 
@@ -27,5 +27,3 @@ class Post(db.Model):
     replies = relationship("Reply", back_populates="post", cascade="all, delete-orphan")
     posttags = relationship("PostTag", back_populates="post", cascade="all, delete-orphan")
     tags = relationship("Tag", back_populates="post", cascade="all, delete-orphan")
-
-    

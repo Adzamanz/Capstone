@@ -19,7 +19,6 @@ class User(db.Model, UserMixin):
     posts = relationship("Post", back_populates="user", cascade="all, delete-orphan")
     replies = relationship("Reply", back_populates="user", cascade="all, delete-orphan")
     transactions = relationship("Transaction", back_populates="user")
-    postTags = relationship("PostTag", back_populates="user", cascade="all, delete-orphan")
     tags = relationship("Tag", back_populates="user", cascade="all, delete-orphan")
 
     @property

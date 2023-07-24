@@ -11,7 +11,7 @@ class Feed(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     description = db.Column(db.String(300), nullable=False)
-    type = db.Column(db.Boolean, nullable=False)
+    public = db.Column(db.Boolean, nullable=False)
 
     user = relationship("User", back_populates="feeds")
     posts = relationship("Post", back_populates="feed")
