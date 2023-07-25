@@ -21,7 +21,7 @@ export const deleteFeed = (feed) => {
     };
 };
 export const getAllFeeds = () => async (dispatch) => {
-    const response = await fetch(`/api/feeds/current`);
+    const response = await fetch(`/api/feeds/`);
     if(response.ok) {
         const details = await response.json();
         await dispatch(getFeeds(details));

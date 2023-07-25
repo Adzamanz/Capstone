@@ -10,7 +10,7 @@ reply_routes = Blueprint('replies', __name__)
 @login_required
 def replies():
     replies = Reply.query.all()
-    return {'replies': [reply.to_dict() for reply in replies]}
+    return jsonify([reply.to_dict() for reply in replies])
 
 @reply_routes.route('/<int:id>')
 @login_required
@@ -23,7 +23,7 @@ def reply(id):
 def user_replies():
     user_id = current_user.id
     replies = Reply.query.filter(Reply.userId == user_id).all()
-    return {replies: [reply.to_dict() for reply in replies]}
+    return jsonify([reply.to_dict() for reply in replies])
 
 @reply_routes.route('/new', methods=['POST'])
 @login_required

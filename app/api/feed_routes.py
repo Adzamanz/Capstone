@@ -9,7 +9,7 @@ feed_routes = Blueprint('/feeds', __name__)
 @login_required
 def feeds():
     feeds = Feed.query.all()
-    return {'feeds': [feed.to_dict() for feed in feeds]}
+    return jsonify([feed.to_dict() for feed in feeds])
 
 @feed_routes.route('/<int:id>')
 @login_required
@@ -22,7 +22,7 @@ def user(id):
 def user_feeds():
     user_id = current_user.id
     feeds = Feed.query.filter(Feed.userId == user_id).all()
-    return {'feeds': [feed.to_dict() for feed in feeds]}
+    return jsonify([feed.to_dict() for feed in feeds])
 
 @feed_routes.route('/new', methods=['POST'])
 @login_required

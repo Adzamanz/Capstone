@@ -11,7 +11,7 @@ post_routes = Blueprint('posts', __name__)
 @login_required
 def posts():
     posts = Post.query.all()
-    return {'posts': [post.to_dict() for post in posts]}
+    return jsonify([post.to_dict() for post in posts])
 
 @post_routes.route('/<int:id>')
 @login_required
@@ -24,7 +24,7 @@ def post(id):
 def user_posts():
     user_id = current_user.id
     posts = Post.query.filter(Post.userId == user_id).all()
-    return {posts: [post.to_dict() for post in posts]}
+    return jsonify([post.to_dict() for post in posts])
 
 @post_routes.route('/new', methods=['POST'])
 @login_required

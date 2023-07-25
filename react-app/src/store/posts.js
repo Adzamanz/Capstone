@@ -21,7 +21,7 @@ export const deletePost = (post) => {
     };
 };
 export const getAllPosts = () => async (dispatch) => {
-    const response = await fetch(`/api/posts/current`);
+    const response = await fetch(`/api/posts/`);
     if(response.ok) {
         const details = await response.json();
         await dispatch(getPosts(details));

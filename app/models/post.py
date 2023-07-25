@@ -27,3 +27,29 @@ class Post(db.Model):
     replies = relationship("Reply", back_populates="post", cascade="all, delete-orphan")
     posttags = relationship("PostTag", back_populates="post", cascade="all, delete-orphan")
     tags = relationship("Tag", back_populates="post", cascade="all, delete-orphan")
+
+    def to_dict(self):
+        replies1 = [
+            {
+                'id': reply.id,
+                'userId': reply.userId,
+                'postId': reply.postId,
+                'body': reply.body,
+                'createdAt': reply.createdAt,
+                'updatedAt': reply.updatedAt
+            }
+            for reply in self.replies
+        ]
+        return {
+            'id': self.id,
+            'feedId': self.feedId,
+            'userId': self.userId,
+            'date': self.date,
+            'type': self.type,
+            'title': self.title,
+            'body': self.body,
+            'reply': self.reply,
+            'createdAt': self.createdAt,
+            'updatedAt': self.updatedAt,
+            'replies': replies1
+        }

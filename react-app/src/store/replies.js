@@ -21,7 +21,7 @@ export const deleteReply = (reply) => {
     };
 };
 export const getAllReplies = () => async (dispatch) => {
-    const response = await fetch(`/api/replies/current`);
+    const response = await fetch(`/api/replies/`);
     if(response.ok) {
         const details = await response.json();
         await dispatch(getReplies(details));

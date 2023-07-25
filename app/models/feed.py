@@ -17,7 +17,7 @@ class Feed(db.Model):
     posts = relationship("Post", back_populates="feed")
 
     def to_dict(self):
-        posts = [
+        posts1 = [
             {
                 'id': post.id,
                 'feedId': post.feedId,
@@ -25,9 +25,9 @@ class Feed(db.Model):
                 'date': post.date,
                 'title': post.title,
                 'body': post.body,
-                'replies': post.replies,
+                'reply': post.reply,
                 'createdAt': post.createdAt,
-                'updatedAt': post.UpdatedAt,
+                'updatedAt': post.updatedAt,
             }
             for post in self.posts
         ]
@@ -35,6 +35,6 @@ class Feed(db.Model):
         return {
             'id': self.id,
             'userId': self.userId,
-            'description': self.desctription,
-            'posts': self.posts,
+            'description': self.description,
+            'posts': posts1,
         }

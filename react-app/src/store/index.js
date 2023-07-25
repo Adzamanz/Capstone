@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
-import feed from './feeds'
+import feeds from './feeds'
 import posts from './posts'
 import replies from './replies'
 import transactions from './transactions'
@@ -10,7 +10,7 @@ import tags from './tags'
 
 const rootReducer = combineReducers({
   session,
-  feed,
+  feeds,
   posts,
   replies,
   transactions,
