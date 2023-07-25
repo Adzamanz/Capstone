@@ -5,3 +5,17 @@
 .hidden {
   display: none;
 }
+.navbar {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(103, 103, 103);
+  color: grey;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  height: 40px;
+  z-index: 1;
+}

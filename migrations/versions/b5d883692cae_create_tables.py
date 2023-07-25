@@ -1,12 +1,16 @@
 """create tables
 
 Revision ID: b5d883692cae
-Revises: 
+Revises:
 Create Date: 2023-07-24 16:29:05.367085
 
 """
 from alembic import op
 import sqlalchemy as sa
+
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
