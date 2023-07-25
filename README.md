@@ -127,7 +127,7 @@ Add the following keys and values:
 
 - DATABASE_URL (copy value from Internal Database URL field)
 
-_Note: Add any other keys and values that may be present in your local __.env__
+_Feed: Add any other keys and values that may be present in your local __.env__
 file. As you work to further develop your project, you may need to add more
 environment variables to your local __.env__ file. Make sure you add these
 environment variables to the Render GUI as well for the next deployment._

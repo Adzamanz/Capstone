@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import Landing from "./components/Landing";
+import { getAllFeeds } from "./store/feeds";
+import { getAllPosts } from "./store/posts";
+import { getAllReplies } from "./store/replies";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const sessionUser = useSelector((state) => state.session.user);
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
+    dispatch(getAllFeeds())
+    dispatch(getAllPosts())
+    dispatch(getAllReplies())
   }, [dispatch]);
 
   return (
@@ -18,6 +26,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="">
+            <Landing />
+          </Route>
           <Route path="/login" >
             <LoginFormPage />
           </Route>
