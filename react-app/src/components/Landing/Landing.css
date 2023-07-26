@@ -1,0 +1,10 @@
+.main_mid{
+    background-color: pink;
+}
+.official_tabs{
+    display: flex;
+    flex-direction: row;
+}
+.tab{
+    border: solid 1px teal;
+}

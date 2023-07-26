@@ -15,10 +15,10 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
   useEffect(() => {
-    dispatch(authenticate()).then(() => setIsLoaded(true));
     dispatch(getAllFeeds())
     dispatch(getAllPosts())
     dispatch(getAllReplies())
+    dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   return (
@@ -26,7 +26,7 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route exact path="">
+          <Route exact path="/">
             <Landing />
           </Route>
           <Route path="/login" >
