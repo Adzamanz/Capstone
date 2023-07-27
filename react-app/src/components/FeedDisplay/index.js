@@ -1,35 +1,33 @@
-import React,{ useEffect } from 'react';
-import { useDispatch, useSelector, } from 'react-redux';
+import React from 'react';
+import { useSelector, } from 'react-redux';
 import { groupBy } from '../Utility';
+import './FeedDisplay.css'
+import PostDisplay from '../PostDisplay';
+import OpenModalButton from '../OpenModalButton';
+import PostForm from '../PostForm';
 
 export default function FeedDisplay (props) {
     let {id} = props;
     let feeds = useSelector(state => state.feeds)
     let posts = useSelector(state => state.posts)
     let replies = useSelector(state => state.replies)
+    let user = useSelector(state => state.session.user)
     let postsOrg = groupBy(Object.values(posts), ['feedId'])
     let repliesOrg = groupBy(Object.values(replies), ['postId'])
     console.log(id)
     let displayFeed = feeds[id]
     console.log(postsOrg)
     return (
-        <div>
+        <div className='feed_box'>
             <div className='feed_title'>
                 {displayFeed?.description}
+            <div><OpenModalButton buttonText={"create post"} modalComponent={<PostForm feedId={id}/>} pass={id}/></div>
             </div>
-            <div>
+            <div className='feed_body'>
                 {postsOrg[id]?.map(ele => {
                     return (
-                        <div>
-                            <div>
-                                {ele.title}
-                            </div>
-                            <div>
-                                {ele.body}
-                            </div>
-                        </div>
+                       <PostDisplay postId={ele.id}/>
                     )
-
                 })}
             </div>
         </div>

@@ -1,0 +1,25 @@
+.feed_box{
+    display: flex;
+    border: solid 2px black;
+    flex-direction: column;
+    width: 1000px;
+    justify-content: center;
+    align-items: center;
+}
+.feed_title{
+    background-color: rgb(44, 44, 44);
+    border-bottom: solid 2px black;
+    padding: 5px;
+}
+.post_main{
+    border: solid 2px black;
+    max-width: 400px;
+    height: min-content;
+    padding: 5px;
+}
+.post_title{
+    background-color: rgb(49, 49, 49);
+}
+.post_body{
+    background-color: grey;
+}

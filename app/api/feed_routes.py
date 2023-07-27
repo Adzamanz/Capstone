@@ -33,11 +33,11 @@ def add_feed():
     new_feed = Feed(
         userId=user_id,
         description=form.description.data,
-        type=form.type.data
+        public=form.public.data
     )
     db.session.add(new_feed)
     db.session.commit()
-    return jsonify(new_feed)
+    return jsonify(new_feed.to_dict())
 
 @feed_routes.route('/<int:id>/edit', methods=['PUT'])
 @login_required

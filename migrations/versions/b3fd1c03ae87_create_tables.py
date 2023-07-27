@@ -1,20 +1,16 @@
 """create tables
 
-Revision ID: b5d883692cae
-Revises:
-Create Date: 2023-07-24 16:29:05.367085
+Revision ID: b3fd1c03ae87
+Revises: 
+Create Date: 2023-07-26 17:15:21.302769
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
-
 
 # revision identifiers, used by Alembic.
-revision = 'b5d883692cae'
+revision = 'b3fd1c03ae87'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -100,8 +96,6 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
 
 def downgrade():

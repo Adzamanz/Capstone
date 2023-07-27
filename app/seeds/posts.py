@@ -10,7 +10,7 @@ def seed_posts():
         reply=True
     )
     class1 = Post(
-        feedId=2, userId=2, date=date(2023,7,25), type='public', title="class this week",
+        feedId=3, userId=2, date=date(2023,7,25), type='public', title="class this week",
         body=""" Class this week will be taught by Rabbi Rav.
         Food for this week is sushi, start time, as usual, is 7pm.""",
         reply=True,

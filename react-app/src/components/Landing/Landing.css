@@ -1,10 +1,22 @@
 .main_mid{
-    background-color: pink;
+    background-color: rgb(86, 86, 86);
+    grid-column: 2;
 }
 .official_tabs{
     display: flex;
     flex-direction: row;
 }
 .tab{
-    border: solid 1px teal;
+    border: solid 1px rgb(43, 43, 43);
+    width: 1fr;
+}
+.mains{
+    display: grid;
+    background-color: rgb(86, 86, 86);
+    grid-template-columns: 1fr 2fr 1fr;
+
+}
+.feed_list{
+    border: solid 2px rgb(204, 204, 204);
+    grid-column: 3;
 }

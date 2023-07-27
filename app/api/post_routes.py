@@ -39,13 +39,13 @@ def add_post():
         type=form.type.data,
         title=form.title.data,
         body=form.body.data,
-        replies=form.replies.data,
+        reply=form.replies.data,
         createdAt=datetime.now(),
         updatedAt=datetime.now(),
     )
     db.session.add(new_post)
     db.session.commit()
-    return jsonify(new_post)
+    return jsonify(new_post.to_dict())
 
 @post_routes.route('/<int:id>/edit', methods=['PUT'])
 @login_required

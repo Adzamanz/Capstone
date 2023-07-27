@@ -2,6 +2,8 @@ import React,{ useEffect, useState } from 'react';
 import { useDispatch, useSelector, } from 'react-redux';
 import FeedDisplay from '../FeedDisplay'
 import { groupBy } from '../Utility';
+import OpenModalButton from '../OpenModalButton';
+import FeedForm from '../FeedForm'
 import './Landing.css'
 
 export default function Landing () {
@@ -42,8 +44,15 @@ export default function Landing () {
     })
     console.log(generalFeeds)
     return (
-        <div>
+        <div className='mains'>
             <div className='main_mid'>
+
+                <div className='main_display'>
+                    <FeedDisplay id={selected} />
+                </div>
+            </div>
+
+            <div className='feed_list'>
                 <div className='official_tabs'>
                     <div className='tab' onClick={() => setCategory(0)}>
                         Announcements
@@ -51,12 +60,8 @@ export default function Landing () {
                     <div className='tab' onClick={() => setCategory(1)}>
                         General
                     </div>
+                    {category ? <OpenModalButton buttonText="create feed" modalComponent={<FeedForm/>}/> : <div/> }
                 </div>
-                <div c>
-                    <FeedDisplay id={selected} />
-                </div>
-            </div>
-            <div className='feed_list'>
                 {category ? generalFeedList : officalFeedList}
             </div>
         </div>

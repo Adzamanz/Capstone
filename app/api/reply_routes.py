@@ -35,11 +35,11 @@ def add_reply():
         postId=form.postId.data,
         body=form.body.data,
         createdAt=datetime.now(),
-        updatedAr=datetime.now()
+        updatedAt=datetime.now()
     )
     db.session.add(new_reply)
     db.session.commit()
-    return jsonify(new_reply)
+    return jsonify(new_reply.to_dict())
 
 @reply_routes.route('/<int:id>/edit', methods=['PUT'])
 @login_required

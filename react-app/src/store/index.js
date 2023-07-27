@@ -7,6 +7,7 @@ import replies from './replies'
 import transactions from './transactions'
 import postTags from './postTags'
 import tags from './tags'
+import users from './users'
 
 const rootReducer = combineReducers({
   session,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   transactions,
   postTags,
   tags,
+  users,
 });
 
 

@@ -4,4 +4,4 @@ from wtforms.validators import Length, DataRequired
 
 class FeedForm(FlaskForm):
     description = StringField('description', validators=[Length(max=300),DataRequired()])
-    type = BooleanField('type', validators=[DataRequired()])
+    public = BooleanField('type', validators=[DataRequired()])
