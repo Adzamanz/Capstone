@@ -20,15 +20,18 @@ export default function PostForm(props){
     const [reply, setReply] = useState(thisPost?.reply || false)
     const [post, setPost] = useState({feedId,title,body,type,reply})
 
-    useEffect(async ()=>{
-        date ? await setPost({feedId,title,body,type,date,reply}) : await setPost({feedId,title,body,type,reply});
+    useEffect(()=>{
+        date ? setPost({feedId,title,body,type,date,reply}) : setPost({feedId,title,body,type,reply});
+        console.log(post)
     },[type,reply,body,title,date])
 
     const submition = async () => {
         let data;
 
+        console.log(thisPost)
         console.log(post)
         postData ? data = await dispatch(updatePostThunk(post,thisPost.id)) : data = await dispatch(createPostThunk(post));
+        console.log(thisPost)
         if(data){
             closeModal()
         }
