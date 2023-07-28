@@ -58,12 +58,12 @@ def edit_post(id):
         post.type=form.type.data
         post.title=form.title.data
         post.body=form.body.data
-        post.replies=form.replies.data
+        post.reply=form.replies.data
         post.updatedAt=datetime.now()
 
         db.session.commit()
 
-        return jsonify(post)
+        return jsonify(post.to_dict())
     else:
         return {'Error': "No Post Found"}
 

@@ -1,43 +1,51 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createPostThunk } from "../../store/posts";
+import { createPostThunk, updatePostThunk } from "../../store/posts";
 
 import { useModal } from "../../context/Modal";
 
 export default function PostForm(props){
     const {feedId} = props
+    const postData = props.post
+
     const dispatch = useDispatch()
-    const [date, setDate] = useState()
-    const [type, setType] = useState("none")
-    const [title, setTitle] = useState("")
-    const [body, setBody] = useState("")
-    const [reply, setReply] = useState(false)
+    const { closeModal } = useModal();
+
+    const thisPost = useSelector(state => state.posts[postData])
+
+    const [date, setDate] = useState(thisPost?.date)
+    const [type, setType] = useState(thisPost?.type)
+    const [title, setTitle] = useState(thisPost?.title)
+    const [body, setBody] = useState(thisPost?.body)
+    const [reply, setReply] = useState(thisPost?.reply || false)
     const [post, setPost] = useState({feedId,title,body,type,reply})
 
-    const [submitted, setSubmitted] = useState(false);
-    const { closeModal } = useModal();
-    useEffect(()=>{
-        date ? setPost({feedId,title,body,type,date,reply}): setPost({feedId,title,body,type,reply});
-    },[feedId,title,body,type,date,reply])
+    useEffect(async ()=>{
+        date ? await setPost({feedId,title,body,type,date,reply}) : await setPost({feedId,title,body,type,reply});
+    },[type,reply,body,title,date])
+
+    const submition = async () => {
+        let data;
+
+        console.log(post)
+        postData ? data = await dispatch(updatePostThunk(post,thisPost.id)) : data = await dispatch(createPostThunk(post));
+        if(data){
+            closeModal()
+        }
+        else{
+            console.log(data)
+        }
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(post)
         if(feedId && title && body && type){
-            // setSubmitted(true)
-            const data = await dispatch(createPostThunk(post));
-            console.log(data)
-            if(data){
-                closeModal()
-            }
-            else{
-                // setSubmitted(false)
-                console.log(data)
-            }
+            submition()
         }
     }
     return (
         <div>
-            <h1>Create Post</h1>
+            <h1>Post</h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>
@@ -73,7 +81,7 @@ export default function PostForm(props){
                             value={type}
                             onChange={(e)=>setType(e.target.value)}
                         >
-                        <option key={'None'} value={'none'} selected={true}>None</option>
+                        <option key={'None'} value={'none'} defaultValue={true}>None</option>
                         <option key={'Event'} value={'event'}>Event</option>
                         </select>
                     </label>
@@ -81,8 +89,12 @@ export default function PostForm(props){
                         Public
                         <input
                             type="checkbox"
-                            value={reply}
-                            onChange={(e)=>setReply(!reply)}
+                            onChange={(e)=>{
+                                // console.log(reply)
+                                setReply(!reply)
+                                // console.log(reply)
+                            }}
+                            checked={reply}
                         />
                     </label>
                     <button type="submit">Submit</button>
