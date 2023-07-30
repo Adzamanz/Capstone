@@ -1,40 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, } from 'react-redux';
 import { groupBy } from '../Utility';
 import './FeedDisplay.css'
 import PostDisplay from '../PostDisplay';
 import OpenModalButton from '../OpenModalButton';
 import PostForm from '../PostForm';
+import { DeleteItemModal } from '../DeleteItemModal';
+import { deleteFeedThunk } from '../../store/feeds';
 
 export default function FeedDisplay (props) {
     let {id} = props;
     let feed = useSelector(state => state.feeds[id])
     let posts = useSelector(state => state.posts)
-    let replies = useSelector(state => state.replies)
     let user = useSelector(state => state.session.user)
-    let postsOrg = groupBy(Object.values(posts), ['feedId'])
-    let repliesOrg = groupBy(Object.values(replies), ['postId'])
+    const [postsOrg,setPostsOrg] = useState(groupBy(Object.values(posts), ['feedId']))
+    const [postFeed, setPostFeed] = useState()
+    useEffect(()=>{
+        setPostsOrg(groupBy(Object.values(posts), ['feedId']))
+
+    },[feed,posts])
     console.log(postsOrg)
+    useEffect(()=>{
+        setPostFeed(postsOrg[id]?.map(ele => {
+            return (
+                <PostDisplay postId={ele.id}/>
+            )
+        }))
+    },[postsOrg])
+    console.log(postsOrg,postFeed)
     return (
         <div className='feed_box'>
             <div className='feed_title'>
                 {feed?.description}
-                {(feed?.userId == user?.id)}
-            {(feed?.public || feed?.userId == user?.id)
-             &&
-             <div>
-                <OpenModalButton
-                 buttonText={"create post"}
-                 modalComponent={<PostForm feedId={id}/>}
-                 />
-            </div>}
+                {(feed?.public || feed?.userId == user?.id)
+                &&
+                <div className='post_buttons'>
+                    <OpenModalButton
+                    buttonText={"create post"}
+                    modalComponent={<PostForm feedId={id}/>}
+                    />
+                    <OpenModalButton
+                        buttonText={"delete feed"}
+                        modalComponent={<DeleteItemModal action={deleteFeedThunk} target={feed} landing={'/'}/>}
+                    />
+                </div>}
             </div>
             <div className='feed_body'>
-                {postsOrg[id]?.map(ele => {
-                    return (
-                       <PostDisplay postId={ele.id}/>
-                    )
-                })}
+                {postFeed}
             </div>
         </div>
     )

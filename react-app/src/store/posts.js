@@ -66,6 +66,7 @@ export const createPostThunk = (post) => async (dispatch) => {
     }
   };
   export const updatePostThunk = (post, id) => async (dispatch) => {
+    console.log(post)
     const response = await fetch(`/api/posts/${id}/edit`, {
       method: 'PUT',
       headers: {

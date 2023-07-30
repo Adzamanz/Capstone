@@ -1,0 +1,14 @@
+.reply_user{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(71, 71, 71);
+    padding: 3px;
+}
+.reply_main{
+    border: solid 1px black;
+
+    font-size: 15px;
+}
+.reply_body{
+    padding: 1px;
+}

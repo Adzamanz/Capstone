@@ -39,7 +39,7 @@ def add_post():
         type=form.type.data,
         title=form.title.data,
         body=form.body.data,
-        reply=form.replies.data,
+        reply=form.reply.data,
         createdAt=datetime.now(),
         updatedAt=datetime.now(),
     )
@@ -58,7 +58,7 @@ def edit_post(id):
         post.type=form.type.data
         post.title=form.title.data
         post.body=form.body.data
-        post.reply=form.replies.data
+        post.reply=form.reply.data
         post.updatedAt=datetime.now()
 
         db.session.commit()

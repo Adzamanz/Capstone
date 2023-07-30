@@ -1,17 +1,22 @@
 import React, {useState} from 'react';
-import { useDispatch } from 'react-redux';
-import { createReplyThunk } from '../../store/replies';
+import { useDispatch, useSelector } from 'react-redux';
+import { createReplyThunk, updateReplyThunk } from '../../store/replies';
 import { useModal } from '../../context/Modal';
+
 export default function ReplyForm (props) {
     const { closeModal } = useModal();
     const {postId} = props;
-    const dispatch = useDispatch()
-    const [body, setBody] = useState("")
+    const replyId = props.reply?.id;
+
+    const dispatch = useDispatch();
+    const thisReply = useSelector(state => state.replies[replyId])
+    const [body, setBody] = useState(thisReply?.body)
     const [errors, setErrors] = useState({})
     const handleSubmit = async (e) => {
         e.preventDefault();
         if(body){
-            await dispatch(createReplyThunk({postId,body}));
+            let newReply = {...thisReply,body}
+            replyId ? dispatch(updateReplyThunk(newReply, replyId)) : await dispatch(createReplyThunk({postId,body}));
             closeModal();
         }
         else{

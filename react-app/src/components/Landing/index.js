@@ -13,7 +13,6 @@ export default function Landing () {
     let feedsOrg = groupBy(Object.values(feeds), ['userId'])
     let general = {...feedsOrg};
     delete general[1];
-    console.log(feedsOrg[1])
     const [officialFeeds, setOfficialFeeds] = useState(feedsOrg[1])
     const [generalFeeds, setGeneralFeeds] = useState(general)
     // let officialFeeds = feedsOrg[1];
@@ -25,7 +24,6 @@ export default function Landing () {
         setOfficialFeeds(ofic)
         setGeneralFeeds(gen)
     }, [feeds,category,selected])
-    console.log(generalFeeds)
     let generalFeedList = Object.values(generalFeeds)?.map(ele => {
         return ele.map(e => {
             return (
@@ -42,7 +40,6 @@ export default function Landing () {
             </div>
         )
     })
-    console.log(generalFeeds)
     return (
         <div className='mains'>
             <div className='main_mid'>

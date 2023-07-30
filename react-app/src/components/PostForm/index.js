@@ -14,38 +14,33 @@ export default function PostForm(props){
     const thisPost = useSelector(state => state.posts[postData])
 
     const [date, setDate] = useState(thisPost?.date)
-    const [type, setType] = useState(thisPost?.type)
+    const [type, setType] = useState(thisPost?.type||"none")
     const [title, setTitle] = useState(thisPost?.title)
     const [body, setBody] = useState(thisPost?.body)
     const [reply, setReply] = useState(thisPost?.reply || false)
+
     const [post, setPost] = useState({feedId,title,body,type,reply})
 
     useEffect(()=>{
-        console.log(post)
         date ? setPost({feedId,title,body,type,date,reply}) : setPost({feedId,title,body,type,reply});
-        console.log(post)
     },[type,reply,body,title,date])
 
     const submition = () => {
         let data;
 
-        console.log(thisPost)
-        console.log(post)
-
         postData ? data = dispatch(updatePostThunk(post,thisPost.id)) : data = dispatch(createPostThunk(post));
-
-        console.log(thisPost)
-        
+        console.log(data)
         if(data){
             closeModal()
         }
         else{
-            console.log(data)
+            console.log(data.json())
         }
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(feedId, title, body, type)
         if(feedId && title && body && type){
             submition()
         }
@@ -97,9 +92,7 @@ export default function PostForm(props){
                         <input
                             type="checkbox"
                             onChange={(e)=>{
-                                // console.log(reply)
                                 setReply(!reply)
-                                // console.log(reply)
                             }}
                             checked={reply}
                         />

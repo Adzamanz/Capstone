@@ -8,4 +8,4 @@ class PostForm(FlaskForm):
     type = StringField('type', validators=[Length(max=10),DataRequired()])
     title = StringField('title', validators=[Length(max=50),DataRequired()])
     body = StringField('body', validators=[Length(max=3000),DataRequired()])
-    replies = BooleanField('replies', validators=[DataRequired()])
+    reply = BooleanField('reply', validators=[DataRequired()])

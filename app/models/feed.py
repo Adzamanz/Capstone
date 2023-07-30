@@ -14,7 +14,7 @@ class Feed(db.Model):
     public = db.Column(db.Boolean, nullable=False)
 
     user = relationship("User", back_populates="feeds")
-    posts = relationship("Post", back_populates="feed")
+    posts = relationship("Post", back_populates="feed",cascade="all, delete-orphan")
 
     def to_dict(self):
         posts1 = [

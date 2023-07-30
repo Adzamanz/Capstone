@@ -51,7 +51,7 @@ def edit_reply(id):
         reply.body = form.body.data
         reply.updatedAt = datetime.now()
         db.session.commit()
-        return jsonify(reply)
+        return jsonify(reply.to_dict())
     else:
         return {'Error': "No Reply Found"}
 
