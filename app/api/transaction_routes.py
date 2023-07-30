@@ -48,12 +48,15 @@ def add_transaction():
         value=form.value.data,
         fee=form.fee.data,
         description=form.description.data,
-        entryDate=datetime.now(),
+        entry_date=datetime.now(),
         type='pledge'
     )
+    if new_transaction.type != 'pledge':
+        new_transaction.transactionDate = datetime.now()
+
     db.session.add(new_transaction)
     db.session.commit()
-    return jsonify(new_transaction)
+    return jsonify(new_transaction.to_dict())
 @transaction_routes.route('/<int:id>/edit')
 @login_required
 def edit_transaction(id):

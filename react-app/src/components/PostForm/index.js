@@ -69,14 +69,6 @@ export default function PostForm(props){
                         />
                     </label>
                     <label>
-                        Date
-                        <input
-                            type="date"
-                            value={date}
-                            onChange={(e)=>setDate(e.target.value)}
-                        />
-                    </label>
-                    <label>
                         Type
                         <select
                             name="type"
@@ -85,8 +77,18 @@ export default function PostForm(props){
                         >
                         <option key={'None'} value={'none'} defaultValue={true}>None</option>
                         <option key={'Event'} value={'event'}>Event</option>
+                        <option key={'Donate'} value={'donate'}>Donate</option>
+                        <option key={'Event/Donate'} value={'event/donate'}>Event/Donate</option>
                         </select>
                     </label>
+                    {(type == 'event' || type == 'event/donate') && <label>
+                        Date
+                        <input
+                            type="date"
+                            value={date}
+                            onChange={(e)=>setDate(e.target.value)}
+                        />
+                    </label>}
                     <label>
                         Public
                         <input

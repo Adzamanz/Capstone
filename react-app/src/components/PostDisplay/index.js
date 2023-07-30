@@ -9,6 +9,7 @@ import './PostDisplay.css'
 import repliesReducer from '../../store/replies';
 import { DeleteItemModal } from '../DeleteItemModal';
 import { deletePostThunk } from '../../store/posts';
+import TransactionForm from '../TransactionForm';
 export default function PostDisplay(props){
     let {postId} = props
     let posts = useSelector(state => state.posts);
@@ -47,6 +48,14 @@ export default function PostDisplay(props){
                 </div>
                 <div className='post_body'>
                     {currentPost?.body}
+                    {(currentPost.type == 'donate' || currentPost.type == 'event/donate') &&
+                    <div>
+                        <OpenModalButton
+                        buttonText={"Donate"}
+                        modalComponent={<TransactionForm postId={postId}/>}
+                        />
+                    </div>
+                    }
                 </div>
             </div>
             <div className='reply_feed' onClick={(e) => setDisplayReplies(!displayReplies)}>

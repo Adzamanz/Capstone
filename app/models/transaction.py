@@ -22,3 +22,16 @@ class Transaction(db.Model):
 
     user = relationship("User", back_populates="transactions")
     post = relationship("Post", back_populates="transactions")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'userId': self.userId,
+            'postId': self.postId,
+            'value': self.value,
+            'fee': self.fee,
+            'description': self.description,
+            'entry_date': self.entry_date,
+            'transaction_date': self.transaction_date,
+            'type': self.type
+        }

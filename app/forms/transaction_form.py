@@ -7,4 +7,4 @@ class TransactionForm(FlaskForm):
     value = FloatField('value', validators=[DataRequired(),NumberRange(min=0)])
     fee = FloatField('fee')
     description = StringField('description', validators=[Length(max=100),DataRequired()])
-    type = StringField('type', valdiators=[Length(max=10),DataRequired()])
+    type = StringField('type', validators=[Length(max=10),DataRequired()])
