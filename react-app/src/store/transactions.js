@@ -24,6 +24,7 @@ export const getAllTransactions = () => async (dispatch) => {
     const response = await fetch(`/api/transactions/current`);
     if(response.ok) {
         const details = await response.json();
+
         await dispatch(getTransactions(details));
         return details;
     }
@@ -85,7 +86,7 @@ export const createTransactionThunk = (transaction) => async (dispatch) => {
     switch(action.type){
         case GET_TRANSACTIONS:
             newState = {...state};
-            action.payload.forEach(transaction => {
+            action.payload.transactions.forEach(transaction => {
                 newState[transaction.id] = transaction;
             })
             return newState;

@@ -3,12 +3,14 @@ import { useDispatch, useSelector, } from 'react-redux';
 import FeedDisplay from '../FeedDisplay'
 import { groupBy } from '../Utility';
 import OpenModalButton from '../OpenModalButton';
+import DonationList from '../DonationList';
 import FeedForm from '../FeedForm'
 import './Landing.css'
 
 export default function Landing () {
     const [category, setCategory] = useState(0)
     const [selected, setSelected] = useState(1)
+    const [display, setDisplay] = useState("message_board")
     let feeds = useSelector(state => state.feeds)
     let feedsOrg = groupBy(Object.values(feeds), ['userId'])
     let general = {...feedsOrg};
@@ -42,10 +44,14 @@ export default function Landing () {
     })
     return (
         <div className='mains'>
+            <div className='menu'>
+                <div onClick={() => setDisplay("message_board")}>Message Board</div>
+                <div onClick={() => setDisplay("my_donations")}>My Donations</div>
+            </div>
             <div className='main_mid'>
-
                 <div className='main_display'>
-                    <FeedDisplay id={selected} />
+                    {display == "message_board" && <FeedDisplay id={selected} />}
+                    {display == "my_donations" && <DonationList/>}
                 </div>
             </div>
 
