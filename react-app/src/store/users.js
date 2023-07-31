@@ -22,7 +22,7 @@ export default function usersReducer(state = {}, action) {
         case GET_USERS:
             newState = {...state};
             action.payload.forEach(user => {
-                newState[user.id] = user;
+                newState[user?.id] = user;
             })
             return newState;
         default:

@@ -7,7 +7,7 @@ from datetime import datetime
 reply_routes = Blueprint('replies', __name__)
 
 @reply_routes.route('/')
-@login_required
+# @login_required
 def replies():
     replies = Reply.query.all()
     return jsonify([reply.to_dict() for reply in replies])

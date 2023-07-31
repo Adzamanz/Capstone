@@ -25,9 +25,9 @@ export default function PostDisplay(props){
             <div className='post_content'>
                 <div className='post_title'>
                     {currentPost?.title}
-                    {(currentPost.userId == user.id)
+                    {(currentPost.userId == user?.id)
                     &&
-                    <div>
+                    <div className='button_box'>
                         <OpenModalButton
                         buttonText={"edit post"}
                         modalComponent={<PostForm feedId={currentPost.feedId} post={currentPost.id}/>}
@@ -37,7 +37,7 @@ export default function PostDisplay(props){
                         modalComponent={<DeleteItemModal action={deletePostThunk} target={currentPost} landing={'/'}/>}
                     />
                     </div>}
-                    {currentPost.reply
+                    {user && currentPost.reply
                     &&
                     <div>
                         <OpenModalButton

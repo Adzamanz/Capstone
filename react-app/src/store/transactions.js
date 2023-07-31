@@ -1,7 +1,13 @@
 const GET_TRANSACTIONS = 'transactions/GET_TRANSACTIONS'
 const ADD_TRANSACTION = 'transactions/ADD_TRANSACTION'
 const DELETE_TRANSACTION = 'transactions/DELETE_TRANSACTION'
+const CLEAR_TRANSACTIONS = 'transactions/CLEAR_TRANSACTIONS'
 
+export const clearTransactions = () => {
+    return {
+        type: CLEAR_TRANSACTIONS
+    }
+}
 export const getTransactions = (transactions) => {
     return {
         type: GET_TRANSACTIONS,
@@ -20,6 +26,15 @@ export const deleteTransaction = (transaction) => {
       payload: transaction,
     };
 };
+export const getEveryTransaction = () => async (dispatch) => {
+  const response = await fetch(`/api/transactions/`);
+  if(response.ok) {
+      const details = await response.json();
+
+      await dispatch(getTransactions(details));
+      return details;
+  }
+}
 export const getAllTransactions = () => async (dispatch) => {
     const response = await fetch(`/api/transactions/current`);
     if(response.ok) {
@@ -98,7 +113,9 @@ export const createTransactionThunk = (transaction) => async (dispatch) => {
             newState = {...state};
             delete newState[action.payload.id];
             return newState
-
+        case CLEAR_TRANSACTIONS:
+          newState = {}
+          return newState
         default:
             return state;
     }

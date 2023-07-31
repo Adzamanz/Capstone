@@ -6,17 +6,22 @@ import ReplyForm from '../ReplyForm';
 import './ReplyDisplay.css'
 import { deleteReplyThunk } from '../../store/replies';
 import { DeleteItemModal } from '../DeleteItemModal';
+import { getAllUsers } from '../../store/users';
 
 export default function ReplyDisplay(props){
     let {postId} = props;
+    const dispatch = useDispatch()
     let replies = useSelector(state => state.replies);
     let users = useSelector(state => state.users);
-    const userId = useSelector(state => state.session.user.id);
+    const userId = useSelector(state => state.session.user?.id);
     const [postReplies,setPostReplies] = useState(groupBy(Object.values(replies), ['postId'])[postId]);
     console.log(postId, postReplies)
     useEffect(() => {
         setPostReplies(groupBy(Object.values(replies), ['postId'])[postId])
     },[replies])
+    useEffect(() => {
+        dispatch(getAllUsers())
+    },[])
     let replyList = postReplies?.map(reply => {
         let replyUID = reply.userId;
         return (
@@ -34,14 +39,14 @@ export default function ReplyDisplay(props){
 export function OneReply(props){
     let {reply} = props
     let users = useSelector(state => state.users);
-    const userId = useSelector(state => state.session.user.id);
+    const userId = useSelector(state => state.session.user?.id);
     let replyUID = reply.userId;
     return (
         <div className='reply_main' key={reply.id}>
                 <div className='reply_user'>
                     {users[replyUID]?.username}:
                     {reply.userId == userId &&
-                    <div>
+                    <div className='button_box'>
                     <OpenModalButton
                         buttonText={"edit reply"}
                         modalComponent={<ReplyForm postId={reply.postId} reply={reply}/>}

@@ -6,7 +6,7 @@ from app.forms import FeedForm
 feed_routes = Blueprint('/feeds', __name__)
 
 @feed_routes.route('/')
-@login_required
+# @login_required
 def feeds():
     feeds = Feed.query.all()
     return jsonify([feed.to_dict() for feed in feeds])

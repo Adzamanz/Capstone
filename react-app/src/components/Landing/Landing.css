@@ -1,6 +1,12 @@
 .main_mid{
     background-color: rgb(86, 86, 86);
     grid-column: 2;
+    width: 1000px;
+    border: solid 1px black;
+}
+.menu{
+
+    border: solid 2px black;
 }
 .official_tabs{
     display: flex;
@@ -17,6 +23,6 @@
 
 }
 .feed_list{
-    border: solid 2px rgb(204, 204, 204);
+    border: solid 2px rgb(0, 0, 0);
     grid-column: 3;
 }

@@ -31,7 +31,7 @@ export default function TransactionForm(props) {
                     <label>
                         Value
                         <input
-                        type="float"
+                        type="number"
                         value={value}
                         onChange={(e) => setValue(e.target.value)}
                         required
@@ -40,7 +40,7 @@ export default function TransactionForm(props) {
                     <label>
                         Fee
                         <input
-                        type="float"
+                        type="number"
                         value={fee}
                         onChange={(e) => setFee(e.target.value)}
                         required

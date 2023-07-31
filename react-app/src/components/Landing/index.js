@@ -12,6 +12,7 @@ export default function Landing () {
     const [selected, setSelected] = useState(1)
     const [display, setDisplay] = useState("message_board")
     let feeds = useSelector(state => state.feeds)
+    let user = useSelector(state => state.session.user)
     let feedsOrg = groupBy(Object.values(feeds), ['userId'])
     let general = {...feedsOrg};
     delete general[1];
@@ -26,6 +27,10 @@ export default function Landing () {
         setOfficialFeeds(ofic)
         setGeneralFeeds(gen)
     }, [feeds,category,selected])
+    useEffect(() => {
+        setCategory(0)
+        setSelected(1)
+    },[user])
     let generalFeedList = Object.values(generalFeeds)?.map(ele => {
         return ele.map(e => {
             return (
@@ -44,10 +49,10 @@ export default function Landing () {
     })
     return (
         <div className='mains'>
-            <div className='menu'>
+            {user && <div className='menu'>
                 <div onClick={() => setDisplay("message_board")}>Message Board</div>
                 <div onClick={() => setDisplay("my_donations")}>My Donations</div>
-            </div>
+            </div>}
             <div className='main_mid'>
                 <div className='main_display'>
                     {display == "message_board" && <FeedDisplay id={selected} />}
@@ -56,16 +61,20 @@ export default function Landing () {
             </div>
 
             <div className='feed_list'>
-                <div className='official_tabs'>
-                    <div className='tab' onClick={() => setCategory(0)}>
-                        Announcements
+                {user && display == "message_board" &&
+                <div>
+                    <div className='official_tabs'>
+                        <div className='tab' onClick={() => setCategory(0)}>
+                            Announcements
+                        </div>
+                        <div className='tab' onClick={() => setCategory(1)}>
+                            General
+                        </div>
+                        {category ? <OpenModalButton buttonText="create feed" modalComponent={<FeedForm/>}/> : <div/> }
                     </div>
-                    <div className='tab' onClick={() => setCategory(1)}>
-                        General
-                    </div>
-                    {category ? <OpenModalButton buttonText="create feed" modalComponent={<FeedForm/>}/> : <div/> }
+                    {category ? generalFeedList : officalFeedList}
                 </div>
-                {category ? generalFeedList : officalFeedList}
+                }
             </div>
         </div>
 

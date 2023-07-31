@@ -22,5 +22,15 @@
 .post_title{
     background-color: rgb(72, 72, 72);
     font-size: 17px;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+.button_box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+

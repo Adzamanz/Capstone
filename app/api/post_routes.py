@@ -8,7 +8,7 @@ post_routes = Blueprint('posts', __name__)
 
 #get all posts
 @post_routes.route('/')
-@login_required
+# @login_required
 def posts():
     posts = Post.query.all()
     return jsonify([post.to_dict() for post in posts])
@@ -39,13 +39,13 @@ def add_post():
         type=form.type.data,
         title=form.title.data,
         body=form.body.data,
-        reply=form.reply.data,
+        replies=form.replies.data,
         createdAt=datetime.now(),
         updatedAt=datetime.now(),
     )
     db.session.add(new_post)
     db.session.commit()
-    return jsonify(new_post.to_dict())
+    return jsonify(new_post)
 
 @post_routes.route('/<int:id>/edit', methods=['PUT'])
 @login_required
@@ -58,12 +58,12 @@ def edit_post(id):
         post.type=form.type.data
         post.title=form.title.data
         post.body=form.body.data
-        post.reply=form.reply.data
+        post.replies=form.replies.data
         post.updatedAt=datetime.now()
 
         db.session.commit()
 
-        return jsonify(post.to_dict())
+        return jsonify(post)
     else:
         return {'Error': "No Post Found"}
 
