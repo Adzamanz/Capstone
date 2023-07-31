@@ -1,3 +1,6 @@
+import { getAllPosts } from "./posts"
+import { getAllReplies } from "./replies"
+
 const GET_FEEDS = 'feeds/GET_FEEDS'
 const ADD_FEED = 'feeds/ADD_FEED'
 const DELETE_FEED = 'feeds/DELETE_FEED'
@@ -48,6 +51,8 @@ export const deleteFeedThunk = (feed) => async (dispatch) => {
       const details = await response.json();
 
       dispatch(deleteFeed(feed));
+      dispatch(getAllPosts())
+      dispatch(getAllReplies())
     }
 };
 export const createFeedThunk = (feed) => async (dispatch) => {

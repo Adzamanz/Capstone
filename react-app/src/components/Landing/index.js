@@ -21,12 +21,20 @@ export default function Landing () {
     // let officialFeeds = feedsOrg[1];
 
     useEffect(()=> {
+        feedsOrg = groupBy(Object.values(feeds), ['userId'])
         let ofic = feedsOrg[1]
-        let gen = feedsOrg;
+        let gen = feedsOrg
         delete gen[1];
         setOfficialFeeds(ofic)
         setGeneralFeeds(gen)
+
     }, [feeds,category,selected])
+    useEffect(()=>{
+        if(!feeds[selected]){
+            setCategory(0)
+            setSelected(1)
+        }
+    },[feeds])
     useEffect(() => {
         setCategory(0)
         setSelected(1)

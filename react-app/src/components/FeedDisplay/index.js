@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, } from 'react-redux';
+import { useDispatch, useSelector, } from 'react-redux';
 import { groupBy } from '../Utility';
 import './FeedDisplay.css'
 import PostDisplay from '../PostDisplay';
@@ -7,19 +7,28 @@ import OpenModalButton from '../OpenModalButton';
 import PostForm from '../PostForm';
 import { DeleteItemModal } from '../DeleteItemModal';
 import { deleteFeedThunk } from '../../store/feeds';
+import { getAllPosts } from '../../store/posts';
+import { getAllReplies } from '../../store/replies';
 
 export default function FeedDisplay (props) {
     let {id} = props;
-    let feed = useSelector(state => state.feeds[id])
+    const dispatch = useDispatch();
+
+    let feeds = useSelector(state => state.feeds)
+    let feed = feeds[id]
     let posts = useSelector(state => state.posts)
     let user = useSelector(state => state.session.user)
+
     const [postsOrg,setPostsOrg] = useState(groupBy(Object.values(posts), ['feedId']))
     const [postFeed, setPostFeed] = useState()
+
+    useEffect(() =>{
+        dispatch(getAllPosts())
+        dispatch(getAllReplies())
+    },[feed])
     useEffect(()=>{
         setPostsOrg(groupBy(Object.values(posts), ['feedId']))
-
-    },[feed,posts])
-    console.log(postsOrg)
+    },[posts])
     useEffect(()=>{
         setPostFeed(postsOrg[id]?.map(ele => {
             return (

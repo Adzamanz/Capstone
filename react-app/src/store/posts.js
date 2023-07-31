@@ -85,7 +85,7 @@ export const createPostThunk = (post) => async (dispatch) => {
     let newState = {};
     switch(action.type){
         case GET_POSTS:
-            newState = {...state};
+            newState = {};
             action.payload.forEach(post => {
                 newState[post.id] = post;
             })
