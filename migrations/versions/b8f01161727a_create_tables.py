@@ -98,6 +98,14 @@ def upgrade():
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        # op.execute(f"ALTER TABLE feeds SET SCHEMA {SCHEMA};")
+        # op.execute(f"ALTER TABLE posts SET SCHEMA {SCHEMA};")
+        # op.execute(f"ALTER TABLE replies SET SCHEMA {SCHEMA};")
+        # op.execute(f"ALTER TABLE tags SET SCHEMA {SCHEMA};")
+        # op.execute(f"ALTER TABLE posttags SET SCHEMA {SCHEMA};")
+        # op.execute(f"ALTER TABLE transactions SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
