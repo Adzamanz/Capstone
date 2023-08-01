@@ -11,7 +11,7 @@ post_tag_routes = Blueprint('post_tags', __name__)
 @login_required
 def post_tags():
     post_tags = PostTag.query.all()
-    return {'post_tags': [post_tag.to_dict() for post_tag in post_tags]}
+    return jsonify([post_tag.to_dict() for post_tag in post_tags])
 
 @post_tag_routes.route('/<int:id>')
 @login_required
@@ -24,7 +24,7 @@ def post_tag(id):
 def user_post_tags():
     user_id = current_user.id
     post_tags = PostTag.query.filter(PostTag.userId == user_id).all()
-    return {post_tags: [post_tag.to_dict() for post_tag in post_tags]}
+    return jsonify([post_tag.to_dict() for post_tag in post_tags])
 
 @post_tag_routes.route('/new', methods=['POST'])
 @login_required
@@ -32,14 +32,13 @@ def add_post_tag():
     form = PostTagForm()
     user_id = current_user.id
     new_post_tag = PostTag(
-        userId=user_id,
         postId=form.postId.data,
         type=form.type.data,
         description=form.description.data
     )
     db.session.add(new_post_tag)
     db.session.commit()
-    return jsonify(new_post_tag)
+    return jsonify(new_post_tag.to_dict())
 
 @post_tag_routes.route('/<int:id>/delete', methods=['DELETE'])
 @login_required

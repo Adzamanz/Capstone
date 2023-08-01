@@ -15,3 +15,10 @@ class PostTag(db.Model):
 
     tags = relationship("Tag", back_populates="postTag", cascade="all, delete-orphan")
     post = relationship("Post", back_populates="posttags")
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'postId': self.postId,
+            'type': self.type,
+            'description': self.description
+        }

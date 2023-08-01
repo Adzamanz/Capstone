@@ -21,7 +21,7 @@ export const deletePostTag = (postTag) => {
     };
 };
 export const getAllPostTags = () => async (dispatch) => {
-    const response = await fetch(`/api/post_tags/current`);
+    const response = await fetch(`/api/post_tags/`);
     if(response.ok) {
         const details = await response.json();
         await dispatch(getPostTags(details));
@@ -83,7 +83,6 @@ export const createPostTagThunk = (postTag) => async (dispatch) => {
             newState = {...state};
             delete newState[action.payload.id];
             return newState
-            return
         default:
             return state;
     }

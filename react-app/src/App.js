@@ -11,6 +11,7 @@ import { getAllFeeds } from "./store/feeds";
 import { getAllPosts } from "./store/posts";
 import { getAllReplies } from "./store/replies";
 import { getAllUsers } from "./store/users";
+import { getAllPostTags } from "./store/postTags";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ function App() {
     dispatch(getAllFeeds())
     dispatch(getAllPosts())
     dispatch(getAllReplies())
+    dispatch(getAllPostTags())
     dispatch(getAllUsers())
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);

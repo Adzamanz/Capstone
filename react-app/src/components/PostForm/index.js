@@ -1,43 +1,90 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useDebugValue } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createPostThunk, updatePostThunk } from "../../store/posts";
 
 import { useModal } from "../../context/Modal";
 
+import { groupBy } from "../Utility";
+
 import './PostForm.css'
+import PostTagForm from "../PostTagForm";
+import { createPostTagThunk, getAllPostTags } from "../../store/postTags";
+import OpenModalButton from "../OpenModalButton";
 
 export default function PostForm(props){
+
     const {feedId} = props
     const postData = props.post
 
     const dispatch = useDispatch()
     const { closeModal } = useModal();
 
-    const thisPost = useSelector(state => state.posts[postData])
-
+    let thisPost = useSelector(state => state.posts[postData])
+    const allPostTags = useSelector(state => state.postTags)
+// post
     const [date, setDate] = useState(thisPost?.date)
     const [type, setType] = useState(thisPost?.type||"none")
     const [title, setTitle] = useState(thisPost?.title)
     const [body, setBody] = useState(thisPost?.body)
     const [reply, setReply] = useState(thisPost?.reply || false)
+// post
+// post tags
+    const [postTags, setPostTags] = useState([])
+    const [postTagList, setPostTagList] = useState(postTags?.map(e => {
+        <div className="post_tag">
+            {e.description}
+            {e.type}
+            <div onClick={() => {
+
+            }}>delete post tag</div>
+        </div>
+    }))
+// post tags
 
     const [post, setPost] = useState({feedId,title,body,type,reply})
 
+    useEffect(() => {
+        dispatch(getAllPostTags())
+    },[])
     useEffect(()=>{
         date ? setPost({feedId,title,body,type,date,reply}) : setPost({feedId,title,body,type,reply});
     },[type,reply,body,title,date])
+    //i forsee issues with the below useEffect in regards to updating info mid post-edit
+    useEffect(() => {
+        setPostTags(groupBy(Object.values(allPostTags), ['postId'])[post])
+    },[allPostTags])
+
+    useEffect(() => {
+        console.log(postTags)
+        setPostTagList(
+            postTags?.map(e => {
+                return (
+                    <div className="post_tag">
+                        |{e.description}
+                         |
+                        {e.type}|
+                        <div>delete post tag</div>
+                    </div>
+                )
+            })
+        )
+    },[postTags])
 
     const submition = () => {
-        let data;
-
-        postData ? data = dispatch(updatePostThunk(post,thisPost.id)) : data = dispatch(createPostThunk(post));
-        console.log(data)
-        if(data){
-            closeModal()
+        if(postData){
+            dispatch(updatePostThunk(post,thisPost.id)).then(res => setPost(res))
+        }else{
+            dispatch(createPostThunk(post)).then(res => setPost(res))
         }
-        else{
-            console.log(data.json())
-        }
+    }
+    const submitPostTags = () => {
+        postTags?.forEach(e => {
+            if(!e.id){
+                let postId = post?.id
+                console.log(postId)
+                dispatch(createPostTagThunk({postId,...e}))
+            }
+        })
     }
 
     const handleSubmit = async (e) => {
@@ -45,6 +92,8 @@ export default function PostForm(props){
         console.log(feedId, title, body, type)
         if(feedId && title && body && type){
             submition()
+            submitPostTags()
+            closeModal()
         }
     }
     return (
@@ -99,7 +148,7 @@ export default function PostForm(props){
                     </div>
                     <div>
                         <label>
-                            Public: 
+                            Public:
                             <input
                                 type="checkbox"
                                 onChange={(e)=>{
@@ -108,6 +157,18 @@ export default function PostForm(props){
                                 checked={reply}
                             />
                         </label>
+                    </div>
+                    <div className="post_tag_box">
+                        <div className="post_tag_list">
+                            {postTagList}
+                        </div>
+                        <div className="post_tag_form">
+                            <PostTagForm
+                                postType={type}
+                                postTags={postTags}
+                                setPostTags={setPostTags}
+                            />
+                        </div>
                     </div>
                     <button type="submit">Submit</button>
             </form>

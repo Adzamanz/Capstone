@@ -1,7 +1,7 @@
 .main_mid{
     background-color: rgb(86, 86, 86);
     grid-column: 2;
-    width: 1000px;
+    width: auto;
     border: solid 1px black;
 }
 .menu{
@@ -20,6 +20,7 @@
     display: grid;
     background-color: rgb(86, 86, 86);
     grid-template-columns: 1fr 2fr 1fr;
+    width: auto;
 
 }
 .feed_list{
