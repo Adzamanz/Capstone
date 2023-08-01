@@ -71,6 +71,7 @@ export default function Landing () {
             <div className='feed_list'>
                 {user && display == "message_board" &&
                 <div>
+
                     <div className='official_tabs'>
                         <div className='tab' onClick={() => setCategory(0)}>
                             Announcements
@@ -78,9 +79,11 @@ export default function Landing () {
                         <div className='tab' onClick={() => setCategory(1)}>
                             General
                         </div>
-                        {category ? <OpenModalButton buttonText="create feed" modalComponent={<FeedForm/>}/> : <div/> }
                     </div>
-                    {category ? generalFeedList : officalFeedList}
+                    <div className='feed_list_display'>
+                        {category ? <OpenModalButton buttonText="create feed" modalComponent={<FeedForm/>}/> : <div/> }
+                        {category ? generalFeedList : officalFeedList}
+                    </div>
                 </div>
                 }
             </div>

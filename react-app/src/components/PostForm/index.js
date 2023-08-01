@@ -4,6 +4,8 @@ import { createPostThunk, updatePostThunk } from "../../store/posts";
 
 import { useModal } from "../../context/Modal";
 
+import './PostForm.css'
+
 export default function PostForm(props){
     const {feedId} = props
     const postData = props.post
@@ -46,61 +48,68 @@ export default function PostForm(props){
         }
     }
     return (
-        <div>
+        <div className="postform_main">
             <h1>Post</h1>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label>
-                        Title
-                        <input
-                            type="text"
-                            value={title}
-                            onChange={(e)=>setTitle(e.target.value)}
-                            required
-                        />
-                    </label>
-                    <label>
-                        Body
-                        <input
-                            type="text"
-                            value={body}
-                            onChange={(e)=>setBody(e.target.value)}
-                            required
-                        />
-                    </label>
-                    <label>
-                        Type
-                        <select
-                            name="type"
-                            value={type}
-                            onChange={(e)=>setType(e.target.value)}
-                        >
-                        <option key={'None'} value={'none'} defaultValue={true}>None</option>
-                        <option key={'Event'} value={'event'}>Event</option>
-                        <option key={'Donate'} value={'donate'}>Donate</option>
-                        <option key={'Event/Donate'} value={'event/donate'}>Event/Donate</option>
-                        </select>
-                    </label>
-                    {(type == 'event' || type == 'event/donate') && <label>
-                        Date
-                        <input
-                            type="date"
-                            value={date}
-                            onChange={(e)=>setDate(e.target.value)}
-                        />
-                    </label>}
-                    <label>
-                        Public
-                        <input
-                            type="checkbox"
-                            onChange={(e)=>{
-                                setReply(!reply)
-                            }}
-                            checked={reply}
-                        />
-                    </label>
+                    <div className="text_box">
+                        <label>
+                            Title
+                            <input
+                                type="text"
+                                value={title}
+                                onChange={(e)=>setTitle(e.target.value)}
+                                required
+                            />
+                        </label>
+                    </div>
+                    <div className="text_box">
+                        <label>
+                            Body
+                            <textarea
+                                value={body}
+                                onChange={(e)=>setBody(e.target.value)}
+                                required
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Type:
+                            <select
+                                name="type"
+                                value={type}
+                                onChange={(e)=>setType(e.target.value)}
+                            >
+                            <option key={'None'} value={'none'} defaultValue={true}>None</option>
+                            <option key={'Event'} value={'event'}>Event</option>
+                            <option key={'Donate'} value={'donate'}>Donate</option>
+                            <option key={'Event/Donate'} value={'event/donate'}>Event/Donate</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div>
+                        {(type == 'event' || type == 'event/donate') && <label>
+                            Date:
+                            <input
+                                type="date"
+                                value={date}
+                                onChange={(e)=>setDate(e.target.value)}
+                            />
+                        </label>}
+                    </div>
+                    <div>
+                        <label>
+                            Public: 
+                            <input
+                                type="checkbox"
+                                onChange={(e)=>{
+                                    setReply(!reply)
+                                }}
+                                checked={reply}
+                            />
+                        </label>
+                    </div>
                     <button type="submit">Submit</button>
-                </div>
             </form>
         </div>
     )

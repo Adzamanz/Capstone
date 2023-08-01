@@ -49,10 +49,10 @@ def add_transaction():
         fee=form.fee.data,
         description=form.description.data,
         entry_date=datetime.now(),
-        type='pledge'
+        type=form.type.data
     )
     if new_transaction.type != 'pledge':
-        new_transaction.transactionDate = datetime.now()
+        new_transaction.transaction_date = datetime.now()
 
     db.session.add(new_transaction)
     db.session.commit()

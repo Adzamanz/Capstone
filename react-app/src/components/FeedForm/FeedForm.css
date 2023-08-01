@@ -1,0 +1,15 @@
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.feedform_main{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+button{
+    margin: 5px;
+}

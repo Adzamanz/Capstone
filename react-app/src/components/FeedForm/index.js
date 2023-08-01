@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { createFeedThunk } from "../../store/feeds";
 import { useModal } from "../../context/Modal";
 
+import './FeedForm.css'
+
 export default function FeedForm(){
 	const { closeModal } = useModal();
     const dispatch = useDispatch()
@@ -25,29 +27,35 @@ export default function FeedForm(){
         }
     }
     return (
-        <div>
+        <div className="feedform_main">
             <h1>Create Feed</h1>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>
-                        Title
-                        <input
-                            type="text"
-                            value={description}
-                            onChange={(e)=>setDescription(e.target.value)}
-                            required
-                        />
-                    </label>
-                    <label>
-                        Public
-                        <input
-                            type="checkbox"
-                            value={isPublic}
-                            onChange={(e)=>setIsPublic(e.target.value)}
-                        />
-                    </label>
-                    <button type="submit" disabled={submitted}>Submit</button>
+                    <div>
+                        <label>
+                            Title
+                            <input
+                                type="text"
+                                value={description}
+                                onChange={(e)=>setDescription(e.target.value)}
+                                required
+                            />
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            Public
+                            <input
+                                type="checkbox"
+                                value={isPublic}
+                                onChange={(e)=>setIsPublic(e.target.value)}
+                            />
+                        </label>
+                    </div>
+
                 </div>
+                <button type="submit" disabled={submitted}>Submit</button>
             </form>
         </div>
     )

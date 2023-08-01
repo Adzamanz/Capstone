@@ -8,7 +8,7 @@
 }
 .reply_main{
     border: solid 1px black;
-
+    margin: 2px;
     font-size: 15px;
 }
 .reply_body{

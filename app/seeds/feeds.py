@@ -4,7 +4,7 @@ from sqlalchemy.sql import text
 def seed_feeds():
     announcements = Feed(userId=1, description="Official announcements feed",public=False)
     general = Feed(userId=1, description="General Feed", public=True)
-    study = Feed(userId=2,description="Isaac's Torah class Feed", public=False)
+    study = Feed(userId=4,description="Isaac's Torah class Feed", public=False)
     db.session.add(announcements)
     db.session.add(general)
     db.session.add(study)

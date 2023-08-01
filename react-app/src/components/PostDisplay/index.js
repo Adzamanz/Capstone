@@ -20,6 +20,9 @@ export default function PostDisplay(props){
     useEffect(() => {
         setCurrentPost(posts[postId])
     },[postId])
+    useEffect(() => {
+        setCurrentPost(posts[postId])
+    },[posts[postId]])
     return (
         <div className='post_main' key={postId}>
             <div className='post_content'>
@@ -37,14 +40,7 @@ export default function PostDisplay(props){
                         modalComponent={<DeleteItemModal action={deletePostThunk} target={currentPost} landing={'/'}/>}
                     />
                     </div>}
-                    {user && currentPost.reply
-                    &&
-                    <div>
-                        <OpenModalButton
-                        buttonText={"create reply"}
-                        modalComponent={<ReplyForm postId={postId}/>}
-                        />
-                    </div>}
+
                 </div>
                 <div className='post_body'>
                     {currentPost?.body}
@@ -57,9 +53,17 @@ export default function PostDisplay(props){
                     </div>
                     }
                 </div>
+                {user && currentPost.reply
+                    &&
+                    <div className='create_reply_box'>
+                        <OpenModalButton
+                        buttonText={"create reply"}
+                        modalComponent={<ReplyForm postId={postId}/>}
+                        />
+                    </div>}
             </div>
             <div className='reply_feed' onClick={(e) => setDisplayReplies(!displayReplies)}>
-                =REPLIES=
+                <div className='reply_feed_title'>=REPLIES=</div>
                 {displayReplies && <ReplyDisplay postId={postId}/>}
             </div>
 

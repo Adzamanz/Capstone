@@ -30,13 +30,9 @@ export default function FeedDisplay (props) {
         setPostsOrg(groupBy(Object.values(posts), ['feedId']))
     },[posts])
     useEffect(()=>{
-        setPostFeed(postsOrg[id]?.map(ele => {
-            return (
-                <PostDisplay postId={ele.id}/>
-            )
-        }))
+        setPostFeed(postsOrg[id]?.sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt)).map(ele => <PostDisplay postId={ele.id}/>))
     },[postsOrg])
-    console.log(postsOrg,postFeed)
+    console.log(postsOrg[id]?.map(ele => ele).sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt)))
     return (
         <div className='feed_box'>
             <div className='feed_title'>

@@ -1,0 +1,22 @@
+.postform_main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 5px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+form > div {
+    margin: 5px
+}
+.text_box > label{
+    display: flex;
+    flex-direction: column;
+}

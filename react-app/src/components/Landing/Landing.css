@@ -9,12 +9,12 @@
     border: solid 2px black;
 }
 .official_tabs{
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 .tab{
     border: solid 1px rgb(43, 43, 43);
-    width: 1fr;
+
 }
 .mains{
     display: grid;
@@ -25,4 +25,11 @@
 .feed_list{
     border: solid 2px rgb(0, 0, 0);
     grid-column: 3;
+}
+.feed_list_display{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
