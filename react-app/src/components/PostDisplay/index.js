@@ -77,9 +77,8 @@ export default function PostDisplay(props){
             <div className='post_tag_list'>
                 {thisPostTags?.map(e => {
                     return (
-                        <div>
+                        <div className='post_tag_button'>
                             {e.description}
-                            {e.type}
                         </div>
                     )
                 })}

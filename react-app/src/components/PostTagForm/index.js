@@ -38,7 +38,7 @@ export default function PostTagForm (props) {
                         >
                             <option key={'Like'} value={'like'}>Like</option>
                             <option key={'Attendance'} value={'attendance'}>Attendance</option>
-                            <option key={'Vote'} value={'vote'}>Vote</option>
+                            {/* <option key={'Vote'} value={'vote'}>Vote</option> */}
                         </select>
                     </label>
                 </div>

@@ -8,7 +8,7 @@ import { groupBy } from "../Utility";
 
 import './PostForm.css'
 import PostTagForm from "../PostTagForm";
-import { createPostTagThunk, getAllPostTags } from "../../store/postTags";
+import { createPostTagThunk, deletePostTagThunk, getAllPostTags } from "../../store/postTags";
 import OpenModalButton from "../OpenModalButton";
 
 export default function PostForm(props){
@@ -35,7 +35,9 @@ export default function PostForm(props){
             {e.description}
             {e.type}
             <div onClick={() => {
-
+                if(e.id){
+                    dispatch(deletePostTagThunk(e))
+                }
             }}>delete post tag</div>
         </div>
     }))
@@ -45,13 +47,23 @@ export default function PostForm(props){
 
     useEffect(() => {
         dispatch(getAllPostTags())
+
+        setPostTags(groupBy(Object.values(allPostTags), ['postId'])[postData])
     },[])
     useEffect(()=>{
         date ? setPost({feedId,title,body,type,date,reply}) : setPost({feedId,title,body,type,reply});
     },[type,reply,body,title,date])
     //i forsee issues with the below useEffect in regards to updating info mid post-edit
     useEffect(() => {
-        setPostTags(groupBy(Object.values(allPostTags), ['postId'])[post])
+
+        // const postTagVariable = groupBy(Object.values(allPostTags), ['postId'])[postData]
+        // const existingPostTags = postTagVariable ? [...postTagVariable] : []
+        // console.log(existingPostTags)
+        // const set = new Set([...existingPostTags, ...postTags])
+        // console.log(set)
+        // setPostTags([...set])
+
+        setPostTags(groupBy(Object.values(allPostTags), ['postId'])[postData])
     },[allPostTags])
 
     useEffect(() => {
@@ -60,24 +72,26 @@ export default function PostForm(props){
             postTags?.map(e => {
                 return (
                     <div className="post_tag">
-                        |{e.description}
-                         |
-                        {e.type}|
-                        <div>delete post tag</div>
+                        |{e.description}|{e.type}|
+                        <div onClick={() => {
+                            if(e.id){
+                                dispatch(deletePostTagThunk(e))
+                            }
+                            if(e){
+                                let tempPostTags = postTags;
+                                let target = tempPostTags.indexOf(e);
+                                tempPostTags.splice(target, 1)
+                                console.log(tempPostTags)
+                                setPostTags(tempPostTags)
+                            }
+                        }}>delete post tag</div>
                     </div>
                 )
             })
         )
-    },[postTags])
+    },[JSON.stringify(postTags)])
 
-    const submition = () => {
-        if(postData){
-            dispatch(updatePostThunk(post,thisPost.id)).then(res => setPost(res))
-        }else{
-            dispatch(createPostThunk(post)).then(res => setPost(res))
-        }
-    }
-    const submitPostTags = () => {
+    const submitPostTags = (post) => {
         postTags?.forEach(e => {
             if(!e.id){
                 let postId = post?.id
@@ -87,12 +101,19 @@ export default function PostForm(props){
         })
     }
 
+    const submission = () => {
+        if(postData){
+            dispatch(updatePostThunk(post,thisPost.id)).then(res => submitPostTags(res))
+        }else{
+            dispatch(createPostThunk(post)).then(res => submitPostTags(res))
+        }
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(feedId, title, body, type)
         if(feedId && title && body && type){
-            submition()
-            submitPostTags()
+            submission()
             closeModal()
         }
     }
