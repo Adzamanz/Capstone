@@ -29,32 +29,36 @@ export default function PostForm(props){
     const [reply, setReply] = useState(thisPost?.reply || false)
 // post
 // post tags
-    const [postTags, setPostTags] = useState([])
-    const [postTagList, setPostTagList] = useState(postTags?.map(e => {
-        <div className="post_tag">
-            {e.description}
-            {e.type}
-            <div onClick={() => {
-                if(e.id){
-                    dispatch(deletePostTagThunk(e))
-                }
-            }}>delete post tag</div>
-        </div>
-    }))
+    //this portion creates the visual list of the postTags in the custom-tag version of this form
+
+    // const [postTags, setPostTags] = useState([])
+    // const [postTagList, setPostTagList] = useState(postTags?.map(e => {
+    //     <div className="post_tag">
+    //         {e.description}
+    //         {e.type}
+    //         <div onClick={() => {
+    //             if(e.id){
+    //                 dispatch(deletePostTagThunk(e))
+    //             }
+    //         }}>delete post tag</div>
+    //     </div>
+    // }))
 // post tags
+    const [likes, setLikes] = useState(false)
+    const [attendance, setAttendance] = useState(false)
 
     const [post, setPost] = useState({feedId,title,body,type,reply})
 
-    useEffect(() => {
-        dispatch(getAllPostTags())
+    // useEffect(() => {
+    //     dispatch(getAllPostTags())
 
-        setPostTags(groupBy(Object.values(allPostTags), ['postId'])[postData])
-    },[])
+    //     setPostTags(groupBy(Object.values(allPostTags), ['postId'])[postData])
+    // },[])
     useEffect(()=>{
         date ? setPost({feedId,title,body,type,date,reply}) : setPost({feedId,title,body,type,reply});
     },[type,reply,body,title,date])
     //i forsee issues with the below useEffect in regards to updating info mid post-edit
-    useEffect(() => {
+    // useEffect(() => {
 
         // const postTagVariable = groupBy(Object.values(allPostTags), ['postId'])[postData]
         // const existingPostTags = postTagVariable ? [...postTagVariable] : []
@@ -63,57 +67,69 @@ export default function PostForm(props){
         // console.log(set)
         // setPostTags([...set])
 
-        setPostTags(groupBy(Object.values(allPostTags), ['postId'])[postData])
-    },[allPostTags])
+        // setPostTags(groupBy(Object.values(allPostTags), ['postId'])[postData])
+    // },[allPostTags])
 
-    useEffect(() => {
-        console.log(postTags)
-        setPostTagList(
-            postTags?.map(e => {
-                return (
-                    <div className="post_tag">
-                        |{e.description}|{e.type}|
-                        <div onClick={() => {
-                            if(e.id){
-                                dispatch(deletePostTagThunk(e))
-                            }
-                            if(e){
-                                let tempPostTags = postTags;
-                                let target = tempPostTags.indexOf(e);
-                                tempPostTags.splice(target, 1)
-                                console.log(tempPostTags)
-                                setPostTags(tempPostTags)
-                            }
-                        }}>delete post tag</div>
-                    </div>
-                )
-            })
-        )
-    },[JSON.stringify(postTags)])
+    // useEffect(() => {
+    //     console.log(postTags)
+    //     setPostTagList(
+    //         postTags?.map(e => {
+    //             return (
+    //                 <div className="post_tag">
+    //                     |{e.description}|{e.type}|
+    //                     <div onClick={() => {
+    //                         if(e.id){
+    //                             dispatch(deletePostTagThunk(e))
+    //                         }
+    //                         if(e){
+    //                             let tempPostTags = postTags;
+    //                             let target = tempPostTags.indexOf(e);
+    //                             tempPostTags.splice(target, 1)
+    //                             console.log(tempPostTags)
+    //                             setPostTags(tempPostTags)
+    //                         }
+    //                     }}>delete post tag</div>
+    //                 </div>
+    //             )
+    //         })
+    //     )
+    // },[JSON.stringify(postTags)])
 
-    const submitPostTags = (post) => {
-        postTags?.forEach(e => {
-            if(!e.id){
-                let postId = post?.id
-                console.log(postId)
-                dispatch(createPostTagThunk({postId,...e}))
-            }
-        })
-    }
+    // const submitPostTags = (post) => {
+    //     postTags?.forEach(e => {
+    //         if(!e.id){
+    //             let postId = post?.id
+    //             console.log(postId)
+    //             dispatch(createPostTagThunk({postId,...e}))
+    //         }
+    //     })
+    // }
 
-    const submission = () => {
-        if(postData){
-            dispatch(updatePostThunk(post,thisPost.id)).then(res => submitPostTags(res))
-        }else{
-            dispatch(createPostThunk(post)).then(res => submitPostTags(res))
-        }
-    }
+    // const submission = () => {
+    //     if(postData){
+    //         dispatch(updatePostThunk(post,thisPost.id))
+    //         // .then(res => submitPostTags(res))
+    //     }else{
+    //         dispatch(createPostThunk(post))
+    //         // .then(res => submitPostTags(res))
+    //     }
+    // }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(feedId, title, body, type)
+        console.log(feedId, title, body, type, likes, attendance)
         if(feedId && title && body && type){
-            submission()
+            let data;
+            if(postData){
+                data = await dispatch(updatePostThunk(post,thisPost.id))
+                // .then(res => submitPostTags(res))
+            }else{
+                data = await dispatch(createPostThunk(post))
+                // .then(res => submitPostTags(res))
+            }
+            let dataId = data?.id
+            if(likes && data) dispatch(createPostTagThunk({postId: dataId,type:'like', description:'Like'}))
+            if(attendance && data) dispatch(createPostTagThunk({postId: dataId,type:'Attendance', description:'Attendance'}))
             closeModal()
         }
     }
@@ -179,7 +195,27 @@ export default function PostForm(props){
                             />
                         </label>
                     </div>
-                    <div className="post_tag_box">
+                    <div className="like_and_attendance_box">
+                                <label>
+                                    Likes
+                                    <input
+                                        type="checkbox"
+                                        value={likes}
+                                        onChange={(e) => setLikes(e.target.value)}
+                                    />
+                                </label>
+                                {(type == 'event' || type == 'event/donate') &&
+                                    <label>
+                                        Attendance
+                                        <input
+                                            type="checkbox"
+                                            value={attendance}
+                                            onChange={(e) => setAttendance(e.target.value)}
+                                        />
+                                    </label>
+                                }
+                    </div>
+                    {/* <div className="post_tag_box">
                         <div className="post_tag_list">
                             {postTagList}
                         </div>
@@ -190,7 +226,7 @@ export default function PostForm(props){
                                 setPostTags={setPostTags}
                             />
                         </div>
-                    </div>
+                    </div> */}
                     <button type="submit">Submit</button>
             </form>
         </div>

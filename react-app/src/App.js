@@ -12,6 +12,7 @@ import { getAllPosts } from "./store/posts";
 import { getAllReplies } from "./store/replies";
 import { getAllUsers } from "./store/users";
 import { getAllPostTags } from "./store/postTags";
+import { getAllTags } from "./store/tags";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function App() {
     dispatch(getAllPosts())
     dispatch(getAllReplies())
     dispatch(getAllPostTags())
+    dispatch(getAllTags())
     dispatch(getAllUsers())
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);

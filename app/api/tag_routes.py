@@ -9,7 +9,7 @@ tag_routes = Blueprint('tags', __name__)
 @login_required
 def tags():
     tags = Tag.query.all()
-    return {'tags': [tag.to_dict() for tag in tags]}
+    return jsonify([tag.to_dict() for tag in tags])
 
 @tag_routes.route('/<int:id>')
 @login_required
@@ -37,7 +37,7 @@ def add_tag():
     )
     db.session.add(new_tag)
     db.session.commit()
-    return jsonify(new_tag)
+    return jsonify(new_tag.to_dict())
 
 @tag_routes.route('/<int:id>/delete', methods=['DELETE'])
 @login_required

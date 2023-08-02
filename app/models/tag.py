@@ -18,3 +18,11 @@ class Tag(db.Model):
     post = relationship("Post", back_populates="tags")
     user = relationship("User", back_populates="tags")
     postTag = relationship("PostTag", back_populates="tags")
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'userId': self.userId,
+            'postid': self.postId,
+            'tagId': self.tagId,
+            'description': self.description
+        }

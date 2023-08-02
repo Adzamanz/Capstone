@@ -11,30 +11,30 @@ import { DeleteItemModal } from '../DeleteItemModal';
 import { deletePostThunk, getAllPosts } from '../../store/posts';
 import TransactionForm from '../TransactionForm';
 import { getAllPostTags } from '../../store/postTags';
+import { createTagThunk, deleteTagThunk, getAllTags } from '../../store/tags'
 
 export default function PostDisplay(props){
     const dispatch = useDispatch();
     let {postId} = props
     let posts = useSelector(state => state.posts);
-    let postTags = useSelector(state => state.postTags)
+    let postTags = useSelector(state => state.postTags);
+    let tags = useSelector(state => state.tags)
     let user = useSelector(state => state.session.user)
     // let currentPost = posts[id];
     const [displayReplies, setDisplayReplies] = useState(false)
     const [currentPost, setCurrentPost] = useState(posts[postId]);
     const [thisPostTags, setThisPostTags] = useState(groupBy(Object.values(postTags),['postId'])[postId])
     useEffect(() => {
-        dispatch(getAllPostTags)
-        dispatch(getAllPosts)
+        dispatch(getAllTags())
+        dispatch(getAllPostTags())
+        dispatch(getAllPosts())
     },[])
     useEffect(() => {
         setCurrentPost(posts[postId])
     },[postId])
-    // useEffect(() => {
-    //     setCurrentPost(posts[postId])
-    // },[posts[postId]])
     useEffect(()=> {
         setThisPostTags(groupBy(Object.values(postTags),['postId'])[postId])
-    },[postTags])
+    },[postTags, currentPost, tags])
     return (
         <div className='post_main' key={postId}>
             <div className='post_content'>
@@ -76,8 +76,19 @@ export default function PostDisplay(props){
             </div>
             <div className='post_tag_list'>
                 {thisPostTags?.map(e => {
+                    let groupedTags = groupBy(Object.values(tags), ['tagId','userId'])
+                    let taggedList = groupedTags[e.id];
+                    let tagged = taggedList ? taggedList[user.id] : 0
                     return (
-                        <div className='post_tag_button'>
+                        <div className={`post_tag_button ${tagged ? "true_tag" : "false_tag"}`}
+
+                            onClick={() => {
+                                if(!tagged) dispatch(createTagThunk({postId, tagId: e.id, userId: user.id, description: e.description}))
+                                else{
+                                    dispatch(deleteTagThunk(tagged[0]))
+                                }
+                            }}
+                        >
                             {e.description}
                         </div>
                     )

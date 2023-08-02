@@ -21,7 +21,7 @@ export const deleteTag = (tag) => {
     };
 };
 export const getAllTags = () => async (dispatch) => {
-    const response = await fetch(`/api/tags/current`);
+    const response = await fetch(`/api/tags/`);
     if(response.ok) {
         const details = await response.json();
         await dispatch(getTags(details));
