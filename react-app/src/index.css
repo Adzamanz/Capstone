@@ -1,11 +1,24 @@
 /* TODO Add site wide styles */
 .main_app{
+    /* display: grid;
+    grid-template-columns: 1fr 3fr; */
     display: flex;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     text-align: center;
-    color: rgb(0, 0, 0)
+    color: rgb(0, 0, 0);
+    gap: 5px;
+}
+.main_menu{
+    /* grid-column: 1; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 body{
-    background-color: gray;
+    background-color: rgb(216, 224, 230);
+}
+.clickable{
+    cursor: pointer;
 }

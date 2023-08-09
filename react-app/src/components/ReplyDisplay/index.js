@@ -43,8 +43,8 @@ export function OneReply(props){
     let replyUID = reply.userId;
     return (
         <div className='reply_main' key={reply.id}>
-                <div className='reply_user'>
-                    {users[replyUID]?.username}:
+                <div>
+
                     {reply.userId == userId &&
                     <div className='button_box'>
                     <OpenModalButton
@@ -58,7 +58,7 @@ export function OneReply(props){
                     </div>}
                 </div>
                 <div className='reply_body'>
-                    {reply.body}
+                {<div className='reply_user'> {users[replyUID]?.username}: </div>}{<div className='reply_message'>{reply.body}</div>}
                 </div>
             </div>
     )

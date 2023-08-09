@@ -2,30 +2,80 @@ import React,{ useEffect, useState } from 'react';
 
 import { useDispatch, useSelector, } from 'react-redux';
 import { getAllTransactions, getEveryTransaction } from '../../store/transactions';
+import { getAllUsers } from '../../store/users';
+import { groupBy } from '../Utility';
+
 import './DonationList.css'
-export default function DonationList () {
+
+export default function DonationList (props) {
+
+    let transactions = useSelector(state => state.transactions)
+    let posts = useSelector(state => state.posts)
+    let myTransactions = groupBy(Object.values(transactions), ['postId','type'])
+    const [viewTransactions, setViewTransactions] = useState(Object.values(transactions))
+    let view = viewTransactions;
+    useEffect(()=>{
+        setViewTransactions(transactions)
+    },[transactions])
     const dispatch = useDispatch()
     let userId = useSelector(state => state.session.user?.id)
-    let transactions = useSelector(state => state.transactions)
+    let users = useSelector(state => state.users)
     useEffect(() => {
        userId == 1 ? dispatch(getEveryTransaction()) : dispatch(getAllTransactions())
+       dispatch(getAllUsers())
     },[])
     return (
-        <div>
-            {Object.values(transactions)?.map(e => {
-                return (
-                    <div className='transaction_display'>
-                        <div>userId: {e.userId}</div>
-                        <div>postId: {e.postId || "N/A"}</div>
-                        <div>value: {e.value}</div>
-                        <div>fee: {e.fee}</div>
-                        <div>description: {e.description}</div>
-                        <div>entry_date: {e.entry_date}</div>
-                        <div>transaction_date: {e.transaction_date || "N/A"}</div>
-                        <div>type: {e.type}</div>
-                    </div>
-                )
+        <div className='transaction_main'>
+            <div>
+                <div className='title_bar'>Donation List</div>
+                {Object.keys(view)?.map(e => {
+                    return (
+                        <div className='transaction_display'>
+                            <div className='tran_half a'>
+                                <div>user: {users[view[e].userId]?.username}</div>
+                                <div>type: {view[e].type}</div>
+                                <div>value: {view[e].value}</div>
+                                <div>fee: {view[e].fee}</div>
+                            </div>
+                            <div className='tran_half b'>
+                                <div>postId: {view[e].postId || "N/A"}</div>
+                                <div>description: {view[e].description}</div>
+                                <div>entry_date: {view[e].entry_date}</div>
+                                <div>transaction_date: {view[e].transaction_date || "N/A"}</div>
+                            </div>
+                        </div>
+                    )
                 })}
+            </div>
+            <div className='donation_sub_menu'>
+                <div className='donation_list_categories'>
+                    <div className='index_title'> Donations </div>
+                    <div className='all_div clickable' onClick={() => setViewTransactions(transactions)}> All </div>
+                    <div className='pledge_list'>
+                        <div className='pledge_div clickable' onClick={() => setViewTransactions(groupBy(Object.values(transactions), ['type'])?.pledge)} >Pledges</div>
+                        {Object.keys(myTransactions).map(e => {
+                            if(myTransactions[e].pledge){
+                                return (
+                                    <div className="pledge_post_name clickable" onClick={() => setViewTransactions(myTransactions[e]?.pledge)}>
+                                    {posts[e]?.title || "N/A"}
+                                </div>
+                            )}
+                        })
+                    }
+                    </div>
+                    <div className='fulfilled_list'>
+                        <div className='fulfilled_div clickable' onClick={() => setViewTransactions(groupBy(Object.values(transactions), ['type']).pay)} >Fulfilled</div>
+                        {Object.keys(myTransactions).map(e => {
+                            if(myTransactions[e].pay){
+                                return (
+                                    <div  className="fulfilled_post_name clickable" onClick={() => setViewTransactions(myTransactions[e]?.pay)}>
+                                        {posts[e]?.title || "N/A"}
+                                    </div>
+                            )}
+                        })}
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

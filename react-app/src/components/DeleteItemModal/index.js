@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom";
-
+import './DeleteItemModal.css'
 export const DeleteItemModal = (props) => {
     const {action, target, landing} = props
     const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export const DeleteItemModal = (props) => {
         closeModal();
     }
     return(
-        <div className="deletemain">
+        <div className="delete_main">
             <h3>Are you sure you want to delete?</h3>
             <div>
                 <button id='yesbutton' onClick={() => handleSubmit()}>

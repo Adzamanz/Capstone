@@ -63,11 +63,12 @@ export default function TransactionForm(props) {
                         required
                         >
                             <option key={"Pledge"} value={"pledge"} defaultValue={true}>Pledge</option>
-                            <option key={"Paypal"} value={"paypal"}>Paypal</option>
+                            <option key={"Pay"} value={"pay"}>Pay</option>
+                            {/* <option key={"Paypal"} value={"paypal"}>Paypal</option>
                             <option key={"Venmo"} value={"venmo"}>Venmo</option>
                             <option key={"Zelle"} value={"zelle"}>Zelle</option>
                             <option key={"Bitcoin"} value={"bitcoin"}>Bitcoin</option>
-                            <option key={"Card"} value={"card"}>Card</option>
+                            <option key={"Card"} value={"card"}>Card</option> */}
                         </select>
                     </label>
                     <button type="submit">Submit</button>

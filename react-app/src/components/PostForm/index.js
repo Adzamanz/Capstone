@@ -21,6 +21,7 @@ export default function PostForm(props){
 
     let thisPost = useSelector(state => state.posts[postData])
     const allPostTags = useSelector(state => state.postTags)
+    const thisPostTags = groupBy(Object.values(allPostTags), ['postId', 'type'])
 // post
     const [date, setDate] = useState(thisPost?.date)
     const [type, setType] = useState(thisPost?.type||"none")
@@ -44,8 +45,9 @@ export default function PostForm(props){
     //     </div>
     // }))
 // post tags
-    const [likes, setLikes] = useState(false)
-    const [attendance, setAttendance] = useState(false)
+    const [likes, setLikes] = useState(thisPostTags[postData]?.like?.length > 0 || false)
+    const [attendance, setAttendance] = useState(thisPostTags[postData]?.attendance?.length > 0 || false)
+    console.log(thisPostTags[postData])
 
     const [post, setPost] = useState({feedId,title,body,type,reply})
 
@@ -128,8 +130,11 @@ export default function PostForm(props){
                 // .then(res => submitPostTags(res))
             }
             let dataId = data?.id
-            if(likes && data) dispatch(createPostTagThunk({postId: dataId,type:'like', description:'Like'}))
-            if(attendance && data) dispatch(createPostTagThunk({postId: dataId,type:'Attendance', description:'Attendance'}))
+            if(likes && data && !thisPostTags[postData]?.like?.length) dispatch(createPostTagThunk({postId: dataId,type:'like', description:'Like'}))
+            else if(!likes && thisPostTags[postData]?.like?.length > 0) dispatch(deletePostTagThunk(thisPostTags[postData]?.like[0]))
+
+            if(attendance && data && !thisPostTags[postData]?.attendance?.length) dispatch(createPostTagThunk({postId: dataId,type:'attendance', description:'Attendance'}))
+            else if(!attendance && thisPostTags[postData]?.attendance?.length > 0) dispatch(deletePostTagThunk(thisPostTags[postData]?.attendance[0]))
             closeModal()
         }
     }
@@ -167,9 +172,9 @@ export default function PostForm(props){
                                 onChange={(e)=>setType(e.target.value)}
                             >
                             <option key={'None'} value={'none'} defaultValue={true}>None</option>
-                            <option key={'Event'} value={'event'}>Event</option>
-                            <option key={'Donate'} value={'donate'}>Donate</option>
-                            <option key={'Event/Donate'} value={'event/donate'}>Event/Donate</option>
+                            <option title="for posts about events on specific days!" key={'Event'} value={'event'}>Event</option>
+                            <option title="for posts promoting a cause to donate!" key={'Donate'} value={'donate'}>Donate</option>
+                            <option title="for posts promoting a cause to donate for an event on a specific day!"key={'Event/Donate'} value={'event/donate'}>Event/Donate</option>
                             </select>
                         </label>
                     </div>
@@ -184,7 +189,7 @@ export default function PostForm(props){
                         </label>}
                     </div>
                     <div>
-                        <label>
+                        <label title="checking this box allows users to reply to this post!">
                             Public:
                             <input
                                 type="checkbox"
@@ -196,21 +201,23 @@ export default function PostForm(props){
                         </label>
                     </div>
                     <div className="like_and_attendance_box">
-                                <label>
+                                <label title="checking this box makes it so users can like your post!">
                                     Likes
                                     <input
                                         type="checkbox"
                                         value={likes}
-                                        onChange={(e) => setLikes(e.target.value)}
+                                        onChange={(e) => setLikes(!likes)}
+                                        checked={likes}
                                     />
                                 </label>
                                 {(type == 'event' || type == 'event/donate') &&
-                                    <label>
+                                    <label title="checking this box makes it so users can claim attendance!">
                                         Attendance
                                         <input
                                             type="checkbox"
                                             value={attendance}
-                                            onChange={(e) => setAttendance(e.target.value)}
+                                            onChange={(e) => setAttendance(!attendance)}
+                                            checked={attendance}
                                         />
                                     </label>
                                 }

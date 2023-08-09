@@ -12,18 +12,23 @@ export default function FeedForm(){
     const [isPublic, setIsPublic] = useState(false)
     const [feed, setFeed] = useState({description, public: isPublic})
     const [submitted, setSubmitted] = useState(false);
+    const [errors, setErrors] = useState({})
     useEffect(()=>{
         setFeed({description, public: isPublic})
     },[description, isPublic])
     const handleSubmit = async (e) => {
         e.preventDefault();
         setSubmitted(true)
-        if(description){
-            console.log(feed)
+        if(description.length <= 50 && description.length > 0){
+            setErrors({})
             const data = await dispatch(createFeedThunk(feed));
             if(data){
                 closeModal()
             }
+        }
+        else{
+            setErrors({descError: "Feed title must be between 1 and 50 characters"})
+            setSubmitted(false)
         }
     }
     return (
@@ -41,6 +46,7 @@ export default function FeedForm(){
                                 required
                             />
                         </label>
+                        {errors.descError && <div className="error">{errors.descError}</div>}
                     </div>
 
                     <div>

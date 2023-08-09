@@ -1,0 +1,19 @@
+form{
+    display: flex;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+}
+label{
+    align-self: flex-start;
+    padding: 5px;
+}
+.reply_form_main{
+    padding: 5px;
+    border: solid 2px black;
+    display: flex;
+    flex-direction: column;
+}
+h1{
+    align-self: center;
+}

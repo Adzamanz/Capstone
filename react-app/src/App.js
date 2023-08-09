@@ -13,15 +13,23 @@ import { getAllReplies } from "./store/replies";
 import { getAllUsers } from "./store/users";
 import { getAllPostTags } from "./store/postTags";
 import { getAllTags } from "./store/tags";
+import { getAllTransactions } from "./store/transactions";
+import FeedDisplay from "./components/FeedDisplay";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import DonationList from "./components/DonationList";
+import Menu from "./components/Menu";
+import { useParams } from "react-router-dom/cjs/react-router-dom";
+import MyPosts from "./components/MyPosts";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
-
+  const history = useHistory();
   const targetRef = useRef(0)
 
   useEffect(() => {
+    dispatch(getAllTransactions())
     dispatch(getAllFeeds())
     dispatch(getAllPosts())
     dispatch(getAllReplies())
@@ -35,10 +43,20 @@ function App() {
     <div >
       <Navigation isLoaded={isLoaded} />
       <div className="main_app">
-      {isLoaded && (
+        <div className="main_menu">
+          {sessionUser && <Menu />}
+        </div>
+      <div className="main_display">
+        {isLoaded && (
         <Switch>
-          <Route exact path="/">
-            <Landing />
+          <Route path="/feeds/:id">
+            <FeedDisplay />
+          </Route>
+          <Route path="/my_posts/:id">
+            <MyPosts />
+          </Route>
+          <Route path="/donations">
+            <DonationList />
           </Route>
           <Route path="/login" >
             <LoginFormPage />
@@ -46,8 +64,12 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path="/">
+            <Landing />
+          </Route>
         </Switch>
-      )}
+        )}
+      </div>
       </div>
     </div>
   );

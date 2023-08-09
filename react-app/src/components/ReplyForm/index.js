@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createReplyThunk, updateReplyThunk } from '../../store/replies';
 import { useModal } from '../../context/Modal';
-
+import './ReplyForm.css'
 export default function ReplyForm (props) {
     const { closeModal } = useModal();
     const {postId} = props;
@@ -25,10 +25,11 @@ export default function ReplyForm (props) {
 
     }
     return (
-        <div>
+        <div className='reply_form_main'>
+            <h1>Reply Form</h1>
             <form onSubmit={handleSubmit}>
                 <label>
-                    Body
+                    Reply:
                     <input
                         type="text"
                         value={body}

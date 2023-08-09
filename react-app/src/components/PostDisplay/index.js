@@ -17,6 +17,7 @@ export default function PostDisplay(props){
     const dispatch = useDispatch();
     let {postId} = props
     let posts = useSelector(state => state.posts);
+    let thisPost = useSelector(state => state.posts || {})
     let postTags = useSelector(state => state.postTags);
     let tags = useSelector(state => state.tags)
     let user = useSelector(state => state.session.user)
@@ -31,7 +32,7 @@ export default function PostDisplay(props){
     },[])
     useEffect(() => {
         setCurrentPost(posts[postId])
-    },[postId])
+    },[postId, thisPost])
     useEffect(()=> {
         setThisPostTags(groupBy(Object.values(postTags),['postId'])[postId])
     },[postTags, currentPost, tags])
@@ -40,20 +41,20 @@ export default function PostDisplay(props){
             <div className='post_content'>
                 <div className='post_title'>
                     {currentPost?.title}
-                    {(currentPost?.userId == user?.id)
-                    &&
-                    <div className='button_box'>
-                        <OpenModalButton
-                        buttonText={"edit post"}
-                        modalComponent={<PostForm feedId={currentPost?.feedId} post={currentPost?.id}/>}
-                        />
-                        <OpenModalButton
-                        buttonText={"delete post"}
-                        modalComponent={<DeleteItemModal action={deletePostThunk} target={currentPost} landing={'/'}/>}
-                    />
-                    </div>}
 
                 </div>
+                {(currentPost?.userId == user?.id)
+                &&
+                <div className='post_button_box'>
+                    <OpenModalButton
+                    buttonText={"edit post"}
+                    modalComponent={<PostForm feedId={currentPost?.feedId} post={currentPost?.id}/>}
+                    />
+                    <OpenModalButton
+                    buttonText={"delete post"}
+                    modalComponent={<DeleteItemModal action={deletePostThunk} target={currentPost} landing={'/'}/>}
+                />
+                </div>}
                 <div className='post_body'>
                     {currentPost?.body}
                     {(currentPost?.type == 'donate' || currentPost?.type == 'event/donate') &&
@@ -80,7 +81,7 @@ export default function PostDisplay(props){
                     let taggedList = groupedTags[e.id];
                     let tagged = taggedList ? taggedList[user.id] : 0
                     return (
-                        <div className={`post_tag_button ${tagged ? "true_tag" : "false_tag"}`}
+                        <div className={`post_tag_button clickable ${tagged ? "true_tag" : "false_tag"}`}
 
                             onClick={() => {
                                 if(!tagged) dispatch(createTagThunk({postId, tagId: e.id, userId: user.id, description: e.description}))
@@ -94,10 +95,10 @@ export default function PostDisplay(props){
                     )
                 })}
             </div>
-            <div className='reply_feed' onClick={(e) => setDisplayReplies(!displayReplies)}>
-                <div className='reply_feed_title'>=REPLIES=</div>
+            {currentPost?.reply && <div className='reply_feed' onClick={(e) => setDisplayReplies(!displayReplies)}>
+                <div className='reply_feed_title clickable'>=REPLIES=</div>
                 {displayReplies && <ReplyDisplay postId={postId}/>}
-            </div>
+            </div>}
 
         </div>
     )

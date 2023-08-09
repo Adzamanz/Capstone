@@ -1,12 +1,24 @@
 .main_mid{
-    background-color: rgb(86, 86, 86);
     grid-column: 2;
     width: auto;
+    background-color: rgb(206, 213, 214);
     border: solid 1px black;
 }
 .menu{
-
+    margin-right: 10px;
     border: solid 2px black;
+    background-color: rgb(206, 213, 214);
+}
+.index_title{
+    background-color: rgb(95, 97, 122);
+    padding: 5px;
+}
+.menu_title{
+    background-color: rgb(95, 97, 122);
+    padding: 5px;
+}
+.menu > div{
+    border-bottom: solid 1px black;
 }
 .official_tabs{
     display: grid;
@@ -14,23 +26,13 @@
 }
 .tab{
     border: solid 1px rgb(43, 43, 43);
-
+    padding: 3px;
+    background-color: rgb(95, 97, 122);
+    padding: 5px;
 }
 .mains{
     display: grid;
-    background-color: rgb(86, 86, 86);
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 2fr 1fr;
     width: auto;
-
-}
-.feed_list{
-    border: solid 2px rgb(0, 0, 0);
-    grid-column: 3;
-}
-.feed_list_display{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    margin: 5px;
 }

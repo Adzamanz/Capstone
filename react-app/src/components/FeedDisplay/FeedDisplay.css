@@ -1,37 +1,67 @@
+.feed_main{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
 .feed_box{
     display: flex;
-    border: solid 2px black;
+    border: solid 1px black;
+    flex-direction: column;
+    min-width: 300px;
+    width: auto;
+    align-self: flex-start;
+}
+.feed_title{
+    background-color: rgb(95, 97, 122);
+    padding:5px;
+    display: flex;
     flex-direction: column;
     width: auto;
     justify-content: center;
     align-items: center;
 }
-.feed_title{
-    background-color: rgb(44, 44, 44);
-    border: solid 2px black;
-    padding: 5px;
+.feed_body{
+    min-width: 300px;
+}
+.feed_button_box{
     display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    padding: 1px 2px;
+}
+.feed_list{
+    margin-left: 10px;
+    border: solid 1px rgb(0, 0, 0);
+    background-color: rgb(206, 213, 214);
+    grid-column: 3;
+}
+.feed_list_button_box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.feed_list_display{
+    display: flexbox;
     flex-direction: column;
-    width: 99%;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
-.post_main{
-    border: solid 2px black;
-    max-width: 400px;
-    height: min-content;
-    padding: 5px;
-}
-.post_title{
-    background-color: rgb(49, 49, 49);
-}
-.post_body{
-    background-color: grey;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-PostDisplay{
+.feed_list_display > div{
+    border-bottom: solid 1px black;
+    padding: 5px 10px;
 
+}
+.feed_desc{
+    word-break: break-all;
+}
+.feed_desc:hover{
+ background-color: rgb(201, 201, 249);
+}
+.feed_sub_menu{
+    display: flexbox;
+    max-width: 30%;
+    align-self: flex-start;
 }
