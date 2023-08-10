@@ -83,18 +83,19 @@ export default function FeedDisplay () {
                 <div className='feed_title'>
                     {feed?.description}
                 </div>
-                {(feed?.public || feed?.userId == user?.id)
-                &&
-                <div className='feed_button_box'>
-                    <OpenModalButton
-                    buttonText={"create post"}
-                    modalComponent={<PostForm feedId={id}/>}
-                    />
-                    <OpenModalButton
-                        buttonText={"delete feed"}
-                        modalComponent={<DeleteItemModal action={deleteFeedThunk} target={feed} landing={'/'}/>}
-                    />
-                </div>}
+                    {(feed?.public || feed?.userId == user?.id)
+                    &&
+                    <div className='feed_button_box'>
+                        <OpenModalButton
+                        buttonText={" new "}
+                        modalComponent={<PostForm feedId={id}/>}
+                        />
+                        <OpenModalButton
+                            buttonText={" Delete "}
+                            modalComponent={<DeleteItemModal action={deleteFeedThunk} target={feed} landing={'/'}/>}
+                        />
+                    </div>}
+
                 <div className='feed_body'>
                     {postFeed || <div> Nothing here </div>}
                 </div>

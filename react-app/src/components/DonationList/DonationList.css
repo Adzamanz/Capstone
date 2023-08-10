@@ -1,18 +1,21 @@
 .transaction_main{
     display: flex;
     justify-content: space-between;
-    grid-template-columns: 1fr, 1fr;
 
 }
 .donation_sub_menu{
-    grid-column: 2;
+    padding-left: 10px;
 }
 .donation_list_categories{
-
     display: flex;
     flex-direction: column;
     width: 150px;
     border: solid 1px black;
+    background-color: rgb(206, 213, 214);
+}
+.donation_list_categories > .clickable:hover{
+    transition: 1s;
+    margin-right: 5px;
 }
 .transaction_display{
     display: flex;
@@ -24,7 +27,6 @@
 .tran_half{
     display: flex;
     flex-direction: column;
-
 }
 .title_bar{
     border: solid 1px black;
@@ -38,14 +40,11 @@
     align-items: end;
 }
 .all_div{
-    background-color: aqua;
     font-weight: bold;
 }
 .pledge_div{
-    background-color: aqua;
     font-weight: bold;
 }
 .fulfilled_div{
-    background-color: aqua;
     font-weight: bold;
 }

@@ -1,9 +1,11 @@
 .button{
-    border: solid 1px black;
+    border: solid 2px rgba(127, 127, 127, 0.204);
+    color: black;
     width: fit-content;
     padding: 2px;
     margin: 2px;
+    /* background-color: rgb(95, 95, 95); */
 }
 .button:hover {
-    background-color: rgba(0, 0, 0, 0.338);
+    background-color: rgba(172, 172, 172, 0.202);
 }

@@ -6,7 +6,7 @@ import ReplyDisplay  from '../ReplyDisplay'
 import ReplyForm from '../ReplyForm';
 import PostForm from '../PostForm';
 import './PostDisplay.css'
-import repliesReducer from '../../store/replies';
+import repliesReducer, { getAllReplies } from '../../store/replies';
 import { DeleteItemModal } from '../DeleteItemModal';
 import { deletePostThunk, getAllPosts } from '../../store/posts';
 import TransactionForm from '../TransactionForm';
@@ -17,10 +17,10 @@ export default function PostDisplay(props){
     const dispatch = useDispatch();
     let {postId} = props
     let posts = useSelector(state => state.posts);
-    let thisPost = useSelector(state => state.posts || {})
     let postTags = useSelector(state => state.postTags);
     let tags = useSelector(state => state.tags)
     let user = useSelector(state => state.session.user)
+    let thisReplies = useSelector(state => groupBy(Object.values(state.replies),['postId'])[postId])
     // let currentPost = posts[id];
     const [displayReplies, setDisplayReplies] = useState(false)
     const [currentPost, setCurrentPost] = useState(posts[postId]);
@@ -29,10 +29,11 @@ export default function PostDisplay(props){
         dispatch(getAllTags())
         dispatch(getAllPostTags())
         dispatch(getAllPosts())
+        dispatch(getAllReplies())
     },[])
     useEffect(() => {
         setCurrentPost(posts[postId])
-    },[postId, thisPost])
+    },[postId, posts[postId]], thisReplies)
     useEffect(()=> {
         setThisPostTags(groupBy(Object.values(postTags),['postId'])[postId])
     },[postTags, currentPost, tags])
@@ -41,7 +42,6 @@ export default function PostDisplay(props){
             <div className='post_content'>
                 <div className='post_title'>
                     {currentPost?.title}
-
                 </div>
                 {(currentPost?.userId == user?.id)
                 &&
@@ -57,23 +57,15 @@ export default function PostDisplay(props){
                 </div>}
                 <div className='post_body'>
                     {currentPost?.body}
+                </div>
                     {(currentPost?.type == 'donate' || currentPost?.type == 'event/donate') &&
-                    <div>
+                    <div className='donate_button'>
                         <OpenModalButton
                         buttonText={"Donate"}
                         modalComponent={<TransactionForm postId={postId}/>}
                         />
                     </div>
                     }
-                </div>
-                {user && currentPost?.reply
-                    &&
-                    <div className='create_reply_box'>
-                        <OpenModalButton
-                        buttonText={"create reply"}
-                        modalComponent={<ReplyForm postId={postId}/>}
-                        />
-                    </div>}
             </div>
             <div className='post_tag_list'>
                 {thisPostTags?.map(e => {
@@ -95,8 +87,16 @@ export default function PostDisplay(props){
                     )
                 })}
             </div>
-            {currentPost?.reply && <div className='reply_feed' onClick={(e) => setDisplayReplies(!displayReplies)}>
-                <div className='reply_feed_title clickable'>=REPLIES=</div>
+                    {user && currentPost?.reply
+                        &&
+                        <div className='create_reply_box'>
+                            <OpenModalButton
+                            buttonText={"create reply"}
+                            modalComponent={<ReplyForm postId={postId}/>}
+                            />
+                        </div>}
+            {currentPost?.reply && thisReplies?.length > 0  && <div className='reply_feed' >
+                <div className='reply_feed_title clickable' onClick={(e) => setDisplayReplies(!displayReplies)}>{displayReplies ? "HIDE" : "SHOW"} REPLIES</div>
                 {displayReplies && <ReplyDisplay postId={postId}/>}
             </div>}
 

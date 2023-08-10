@@ -55,6 +55,9 @@ function App() {
           <Route path="/my_posts/:id">
             <MyPosts />
           </Route>
+          <Route path="/my_posts">
+            <MyPosts />
+          </Route>
           <Route path="/donations">
             <DonationList />
           </Route>

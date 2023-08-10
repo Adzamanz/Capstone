@@ -11,7 +11,6 @@ export const DeleteItemModal = (props) => {
 
     const handleSubmit = async () => {
         dispatch(action(target));
-        history.push(landing);
         closeModal();
     }
     return(

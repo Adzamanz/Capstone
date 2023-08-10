@@ -28,6 +28,7 @@ export default function PostForm(props){
     const [title, setTitle] = useState(thisPost?.title)
     const [body, setBody] = useState(thisPost?.body)
     const [reply, setReply] = useState(thisPost?.reply || false)
+    const [errors, setErrors] = useState({});
 // post
 // post tags
     //this portion creates the visual list of the postTags in the custom-tag version of this form
@@ -116,11 +117,25 @@ export default function PostForm(props){
     //         // .then(res => submitPostTags(res))
     //     }
     // }
-
+    const validate = () => {
+        let newErrors = {}
+        if(title.length > 50 || title.length < 1){
+            newErrors.title = "title must be between 1 and 50 characters"
+        }
+        if(body.length > 1000 || body.length < 1){
+            newErrors.body = "the body of your post must be between 1 and 1000 characters"
+        }
+        if(type == 'event' && !date|| type == 'event/donate' && !date){
+            newErrors.date = "If the post type is an event, please set a date!"
+        }
+        setErrors(newErrors)
+        console.log(errors)
+    }
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(feedId, title, body, type, likes, attendance)
-        if(feedId && title && body && type){
+        validate()
+        if(feedId && title && body && type && !errors){
             let data;
             if(postData){
                 data = await dispatch(updatePostThunk(post,thisPost.id))
@@ -152,6 +167,7 @@ export default function PostForm(props){
                                 required
                             />
                         </label>
+                        {errors.title && <div className="error"> {errors.title} </div>}
                     </div>
                     <div className="text_box">
                         <label>
@@ -161,6 +177,7 @@ export default function PostForm(props){
                                 onChange={(e)=>setBody(e.target.value)}
                                 required
                             />
+                            {errors.body && <div className="error"> {errors.body} </div>}
                         </label>
                     </div>
                     <div>
@@ -178,16 +195,18 @@ export default function PostForm(props){
                             </select>
                         </label>
                     </div>
+                    {(type == 'event' || type == 'event/donate') &&
                     <div>
-                        {(type == 'event' || type == 'event/donate') && <label>
+                        <label>
                             Date:
                             <input
                                 type="date"
                                 value={date}
                                 onChange={(e)=>setDate(e.target.value)}
                             />
-                        </label>}
-                    </div>
+                        </label>
+                        {errors.date && <div className="error"> {errors.date} </div>}
+                    </div>}
                     <div>
                         <label title="checking this box allows users to reply to this post!">
                             Public:

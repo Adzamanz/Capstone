@@ -12,16 +12,23 @@ export default function ReplyForm (props) {
     const thisReply = useSelector(state => state.replies[replyId])
     const [body, setBody] = useState(thisReply?.body)
     const [errors, setErrors] = useState({})
+
+    const validate = () => {
+        let newErrors = {}
+        if(body.length > 300){
+            newErrors.body = "the body of your reply must be less than 300 characters"
+        }
+        setErrors(newErrors)
+    }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if(body){
+        validate()
+        if(body && !errors.body){
             let newReply = {...thisReply,body}
             replyId ? dispatch(updateReplyThunk(newReply, replyId)) : await dispatch(createReplyThunk({postId,body}));
             closeModal();
         }
-        else{
-            setErrors({body: "you must have a body for your reply!"})
-        }
+        console.log(errors)
 
     }
     return (
@@ -36,8 +43,8 @@ export default function ReplyForm (props) {
                         onChange={(e)=>setBody(e.target.value)}
                         required
                     />
-                    {Object.values(errors) && <div>{Object.values(errors)[0]}</div>}
                 </label>
+                {errors.body && <div className='error'>{errors.body}</div>}
                 <button type="submit">Submit</button>
             </form>
         </div>

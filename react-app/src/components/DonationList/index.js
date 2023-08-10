@@ -51,7 +51,7 @@ export default function DonationList (props) {
                 <div className='donation_list_categories'>
                     <div className='index_title'> Donations </div>
                     <div className='all_div clickable' onClick={() => setViewTransactions(transactions)}> All </div>
-                    <div className='pledge_list'>
+
                         <div className='pledge_div clickable' onClick={() => setViewTransactions(groupBy(Object.values(transactions), ['type'])?.pledge)} >Pledges</div>
                         {Object.keys(myTransactions).map(e => {
                             if(myTransactions[e].pledge){
@@ -62,8 +62,6 @@ export default function DonationList (props) {
                             )}
                         })
                     }
-                    </div>
-                    <div className='fulfilled_list'>
                         <div className='fulfilled_div clickable' onClick={() => setViewTransactions(groupBy(Object.values(transactions), ['type']).pay)} >Fulfilled</div>
                         {Object.keys(myTransactions).map(e => {
                             if(myTransactions[e].pay){
@@ -74,7 +72,6 @@ export default function DonationList (props) {
                             )}
                         })}
                     </div>
-                </div>
             </div>
         </div>
     )

@@ -8,17 +8,21 @@
     align-items: start;
     text-align: center;
     color: rgb(0, 0, 0);
-    gap: 5px;
+    margin-top: 10px;
 }
 .main_menu{
     /* grid-column: 1; */
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 body{
     background-color: rgb(216, 224, 230);
 }
 .clickable{
     cursor: pointer;
+}
+.error{
+    color: red;
 }

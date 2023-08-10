@@ -8,6 +8,7 @@ export default function Menu() {
             <div className='menu_title'> Menu </div>
             <div className='clickable' onClick={() => history.push("/feeds")}>Message Board</div>
             <div className='clickable' onClick={() => history.push("/donations")}>My Donations</div>
+            <div className='clickable' onClick={() => history.push("/my_posts")}>My Posts</div>
         </div>
     )
 }
