@@ -3,11 +3,13 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin-top: 15px;
 }
 .feed_box{
     display: flex;
     border: solid 1px black;
     flex-direction: column;
+    margin-right: 30px;
     width: 500px;
     align-self: flex-start;
 }

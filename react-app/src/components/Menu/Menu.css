@@ -20,7 +20,7 @@
 }
 .menu >.clickable:hover{
     transition: 1s;
-    margin-left: 5px;
+    font-size: 15px;
 }
 .menu_option{
     width:30%;

@@ -47,9 +47,13 @@ function App() {
           {sessionUser && <Menu />}
         </div>
       <div className="main_display">
-        {isLoaded && (
-        <Switch>
+
+
+           {isLoaded && (sessionUser ? <Switch>
           <Route path="/feeds/:id">
+            <FeedDisplay />
+          </Route>
+          <Route path="/feeds">
             <FeedDisplay />
           </Route>
           <Route path="/my_posts/:id">
@@ -67,11 +71,17 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/">
-            <Landing />
+          <Route path="">
+          <FeedDisplay />
           </Route>
-        </Switch>
-        )}
+          </Switch>
+          :<Switch>
+          <Route path="">
+          <FeedDisplay />
+          </Route>
+          </Switch>
+          )}
+
       </div>
       </div>
     </div>

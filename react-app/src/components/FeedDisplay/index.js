@@ -87,11 +87,11 @@ export default function FeedDisplay () {
                 &&
                 <div className='feed_button_box'>
                     <OpenModalButton
-                    buttonText={" new "}
+                    buttonText={" New Post "}
                     modalComponent={<PostForm feedId={id}/>}
                     />
                     <OpenModalButton
-                        buttonText={" Delete "}
+                        buttonText={" Delete Feed "}
                         modalComponent={<DeleteItemModal action={deleteFeedThunk} target={feed} landing={'/'}/>}
                     />
                 </div>}
