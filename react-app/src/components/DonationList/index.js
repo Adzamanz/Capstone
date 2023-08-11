@@ -12,7 +12,7 @@ export default function DonationList (props) {
     let transactions = useSelector(state => state.transactions)
     let posts = useSelector(state => state.posts)
     let myTransactions = groupBy(Object.values(transactions), ['postId','type'])
-    const [viewTransactions, setViewTransactions] = useState(Object.values(transactions))
+    const [viewTransactions, setViewTransactions] = useState(transactions)
     let view = viewTransactions;
     useEffect(()=>{
         setViewTransactions(transactions)
@@ -28,7 +28,7 @@ export default function DonationList (props) {
         <div className='transaction_main'>
             <div>
                 <div className='title_bar'>Donation List</div>
-                {Object.keys(view)?.map(e => {
+                {Object.keys(viewTransactions || {})?.map(e => {
                     return (
                         <div className='transaction_display'>
                             <div className='tran_half a'>
