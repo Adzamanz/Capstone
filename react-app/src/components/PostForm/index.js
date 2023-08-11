@@ -58,6 +58,7 @@ export default function PostForm(props){
     // },[])
     useEffect(()=>{
         date ? setPost({feedId,title,body,type,date,reply}) : setPost({feedId,title,body,type,reply});
+        console.log(date)
     },[type,reply,body,title,date])
     //i forsee issues with the below useEffect in regards to updating info mid post-edit
     // useEffect(() => {
@@ -134,7 +135,7 @@ export default function PostForm(props){
         e.preventDefault();
         console.log(feedId, title, body, type, likes, attendance,)
         validate()
-        console.log(errors)
+        console.log(date)
         if(feedId && title && body && type && !Object.values(errors).length){
             let data;
             if(postData){
