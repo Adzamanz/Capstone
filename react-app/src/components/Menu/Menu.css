@@ -1,10 +1,13 @@
 .menu{
-    margin-right: 10px;
+    position:fixed;
+    z-index: 2;
+    top: 25px;
+    margin: 20px;
     border: solid 1px black;
     background-color: rgb(206, 213, 214);
-    max-width: 150px;
+    width:inherit;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     text-align: center;
 }
 .menu_title{
@@ -18,4 +21,7 @@
 .menu >.clickable:hover{
     transition: 1s;
     margin-left: 5px;
+}
+.menu_option{
+    width:30%;
 }

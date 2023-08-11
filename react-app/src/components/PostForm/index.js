@@ -124,16 +124,17 @@ export default function PostForm(props){
         if(body.length > 1000 || body.length < 1){
             newErrors.body = "the body of your post must be between 1 and 1000 characters"
         }
-        if(type == 'event' && !date|| type == 'event/donate' && !date){
+        if((type == 'event' || type == 'event/donate') && !date){
             newErrors.date = "If the post type is an event, please set a date!"
         }
         setErrors(newErrors)
-        console.log(errors)
+        console.log(!date)
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(feedId, title, body, type, likes, attendance,)
         validate()
+        console.log(errors)
         if(feedId && title && body && type && !Object.values(errors).length){
             let data;
             if(postData){

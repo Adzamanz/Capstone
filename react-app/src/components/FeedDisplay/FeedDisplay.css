@@ -8,8 +8,7 @@
     display: flex;
     border: solid 1px black;
     flex-direction: column;
-    min-width: 300px;
-    width: auto;
+
     align-self: flex-start;
 }
 .feed_title{
@@ -17,7 +16,6 @@
     padding:5px;
     display: flex;
     flex-direction: row;
-    width: auto;
     justify-content: center;
     align-items: center;
     overflow-wrap: break-word;
@@ -25,50 +23,58 @@
     word-break: break-word;
 }
 .feed_body > div{
-    min-width: 300px;
-    margin: 5px;
+    margin: 15px;
 }
 .feed_button_box{
     position: relative;
     display: flex;
+    height: fit-content;
     justify-content: space-between;
     bottom: 29px;
 }
-.feed_list{
-    margin-left: 10px;
-    border: solid 1px rgb(0, 0, 0);
-    background-color: rgb(206, 213, 214);
-    grid-column: 3;
-}
 .feed_list_button_box{
+    background-color: rgb(95, 97, 122);
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: center;
 }
 .feed_list_display{
-    display: flexbox;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 .feed_list_display > div{
-    border-bottom: solid 1px black;
-    padding: 5px 10px;
+    padding:  2px 5px;
 
 }
 .feed_desc{
+    background-color: white;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 5px;
     font-size: 14px;
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;
 }
 .feed_desc:hover{
- margin-right: 5px;
+ padding: 10px;
  transition: 1s;
 }
 .feed_sub_menu{
-    display: flexbox;
-    max-width: 30%;
-    align-self: flex-start;
+    position: fixed;
+    left:70%;
+    top:80px;
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    background-color: rgb(206, 213, 214);
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 5px;
+    max-height: 80%;
+    overflow-y: scroll;
 }

@@ -5,27 +5,43 @@
 }
 .my_posts_list_title{
     background-color: rgb(95, 97, 122);
+    padding: 5px;
 }
 .post_sub_menu{
+    scroll-behavior: auto;
     background-color: rgb(206, 213, 214);
-    border-top: solid 1px black;
-    border-left: solid 1px black;
-    border-right: solid 1px black;
-    margin-left: 5px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 5px;
+    position: fixed;
+    left:70%;
+    top: 80px;
+    display: flex;
+    max-width: 30%;
+    align-self: flex-start;
+    max-height: 80%;
+    overflow-y: scroll;
 }
 .post_tab{
-    background-color: rgb(206, 213, 214);
-    border-bottom: solid 1px black;
-    padding: 2px;
+    background-color: white;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 5px;
+    font-size: 14px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
 }
 .post_tab:hover{
     transition: 1s;
-    margin-right: 5px;
+    padding: 10px;
 }
 .my_posts_display{
     margin-right: 5px;
 }
 .my_posts_main{
+    margin-top: 10px;
     display: flex;
     align-items: flex-start;
     justify-content: center;

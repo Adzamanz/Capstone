@@ -3,9 +3,9 @@
     /* display: grid;
     grid-template-columns: 1fr 3fr; */
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    align-items: start;
+    align-items: center;
     text-align: center;
     color: rgb(0, 0, 0);
     margin-top: 10px;
@@ -16,10 +16,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width:80%;
+}
+.main_display{
+    position: relative;
+    top:60px;
 }
 body{
     background-color: rgb(216, 224, 230);
 }
+
 .clickable{
     cursor: pointer;
 }

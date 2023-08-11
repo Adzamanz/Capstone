@@ -83,18 +83,18 @@ export default function FeedDisplay () {
                 <div className='feed_title'>
                     {feed?.description}
                 </div>
-                    {(feed?.public || feed?.userId == user?.id)
-                    &&
-                    <div className='feed_button_box'>
-                        <OpenModalButton
-                        buttonText={" new "}
-                        modalComponent={<PostForm feedId={id}/>}
-                        />
-                        <OpenModalButton
-                            buttonText={" Delete "}
-                            modalComponent={<DeleteItemModal action={deleteFeedThunk} target={feed} landing={'/'}/>}
-                        />
-                    </div>}
+                {(feed?.public || feed?.userId == user?.id)
+                &&
+                <div className='feed_button_box'>
+                    <OpenModalButton
+                    buttonText={" new "}
+                    modalComponent={<PostForm feedId={id}/>}
+                    />
+                    <OpenModalButton
+                        buttonText={" Delete "}
+                        modalComponent={<DeleteItemModal action={deleteFeedThunk} target={feed} landing={'/'}/>}
+                    />
+                </div>}
 
                 <div className='feed_body'>
                     {postFeed || <div> Nothing here </div>}
@@ -102,13 +102,12 @@ export default function FeedDisplay () {
             </div>
 
             {user && <div className='feed_sub_menu'>
-                <div className='feed_list'>
-                    <div className='feed_list_display'>
-                        <div className='feed_list_button_box'><OpenModalButton buttonText="create feed" modalComponent={<FeedForm/>}/></div>
-                        {generalFeedList}
-                    </div>
+                <div className='feed_list_display'>
+                    <div className='feed_list_button_box'><OpenModalButton buttonText="create feed" modalComponent={<FeedForm/>}/></div>
+                    {generalFeedList}
                 </div>
-            </div>}
+            </div>
+            }
         </div>
     )
 }

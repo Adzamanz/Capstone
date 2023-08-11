@@ -11,7 +11,7 @@ import { getAllTransactions, getEveryTransaction } from '../../store/transaction
 export default function Landing () {
     return (
         <div className='landing_main'>
-            <div className='main_display'>
+            <div className='landing_main_display'>
                 <FeedDisplay />
             </div>
         </div>

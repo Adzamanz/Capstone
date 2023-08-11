@@ -35,6 +35,7 @@
   display: none;
 }
 .navbar {
+  position: fixed;
   display: flex;
   flex-direction: row;
   background-color: rgb(103, 103, 103);
