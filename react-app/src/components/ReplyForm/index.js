@@ -34,7 +34,7 @@ export default function ReplyForm (props) {
     return (
         <div className='reply_form_main'>
             <h1>Reply Form</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='reply_form'>
                 <label>
                     Reply:
                     <input

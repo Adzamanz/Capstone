@@ -32,36 +32,37 @@ export default function FeedForm(){
         }
     }
     return (
-        <div className="feedform_main">
+        <div className="feed_form_main">
             <h1>Create Feed</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <div>
-                        <label>
-                            Title
-                            <input
-                                type="text"
-                                value={description}
-                                onChange={(e)=>setDescription(e.target.value)}
-                                required
-                            />
-                        </label>
-                        {errors.descError && <div className="error">{errors.descError}</div>}
-                    </div>
+            <form onSubmit={handleSubmit} className="feed_form">
+                <div className="feed_input_form">
 
-                    <div>
-                        <label>
-                            Public
+                    <div className="feed_input_box">
+                        <div className="feed_input_label">Title</div>
+                        <div className="feed_input">
                             <input
-                                type="checkbox"
-                                value={isPublic}
-                                onChange={(e)=>setIsPublic(e.target.value)}
+                            type="text"
+                            value={description}
+                            onChange={(e)=>setDescription(e.target.value)}
+                            required
                             />
-                        </label>
+                        </div>
                     </div>
-
+                    {errors.descError && <div className="error">{errors.descError}</div>}
+                    <div className="feed_input_box">
+                        <div className="feed_input_label">Public</div>
+                        <div className="feed_input">
+                            <input
+                            type="checkbox"
+                            value={isPublic}
+                            onChange={(e)=>setIsPublic(e.target.value)}
+                            />
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" disabled={submitted}>Submit</button>
+                <div className="feed_form_button_box">
+                    <button type="submit" disabled={submitted}>Submit</button>
+                </div>
             </form>
         </div>
     )

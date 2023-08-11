@@ -1,0 +1,25 @@
+.signup_modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.signup_form{
+    display: flex;
+    flex-direction: column;
+
+}
+.signup_input_box{
+    display: inline-flex;
+    justify-content: space-between;
+    margin: 5px;
+}
+.signup_input{
+    margin: 5px;
+}
+.signup_input_label{
+    margin: 5px
+}
+.signup_button_box{
+    align-self: center;
+}

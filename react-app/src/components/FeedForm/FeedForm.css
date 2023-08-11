@@ -1,15 +1,25 @@
-form{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.feedform_main{
+
+.feed_form_main{
     padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-button{
-    margin: 5px;
+.feed_input_form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.feed_input_box{
+    display: inline-flex;
+    justify-content: space-between;
+}
+.feed_form_button_box{
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    align-content: center;
+    justify-content: center;
 }
