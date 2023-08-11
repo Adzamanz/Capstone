@@ -48,7 +48,6 @@ export default function PostForm(props){
 // post tags
     const [likes, setLikes] = useState(thisPostTags[postData]?.like?.length > 0 || false)
     const [attendance, setAttendance] = useState(thisPostTags[postData]?.attendance?.length > 0 || false)
-    console.log(thisPostTags[postData])
 
     const [post, setPost] = useState({feedId,title,body,type,reply})
 
@@ -133,9 +132,9 @@ export default function PostForm(props){
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(feedId, title, body, type, likes, attendance)
+        console.log(feedId, title, body, type, likes, attendance,)
         validate()
-        if(feedId && title && body && type && !errors){
+        if(feedId && title && body && type && !Object.values(errors).length){
             let data;
             if(postData){
                 data = await dispatch(updatePostThunk(post,thisPost.id))
