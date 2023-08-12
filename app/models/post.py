@@ -13,7 +13,7 @@ class Post(db.Model):
     feedId = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("feeds.id")), nullable=False)
     userId = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     date = db.Column(db.DateTime)
-    type = db.Column(db.String(10), nullable=False)
+    type = db.Column(db.String(15), nullable=False)
     title = db.Column(db.String(50), nullable=False)
     body = db.Column(db.String(3000), nullable=False)
     reply = db.Column(db.Boolean, nullable=False)

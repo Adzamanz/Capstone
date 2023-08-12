@@ -60,7 +60,7 @@ def edit_post(id):
         post.body=form.body.data
         post.reply=form.reply.data
         post.updatedAt=datetime.now()
-        print(form.date.data)
+        print(form.type.data)
         db.session.commit()
         return jsonify(post.to_dict())
     else:

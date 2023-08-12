@@ -1,19 +1,16 @@
 """create tables
 
-Revision ID: b8f01161727a
-Revises:
-Create Date: 2023-07-31 20:11:27.253800
+Revision ID: 72f1464304a3
+Revises: 
+Create Date: 2023-08-12 09:00:47.904689
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = 'b8f01161727a'
+revision = '72f1464304a3'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -44,7 +41,7 @@ def upgrade():
     sa.Column('feedId', sa.Integer(), nullable=False),
     sa.Column('userId', sa.Integer(), nullable=False),
     sa.Column('date', sa.DateTime(), nullable=True),
-    sa.Column('type', sa.String(length=10), nullable=False),
+    sa.Column('type', sa.String(length=15), nullable=False),
     sa.Column('title', sa.String(length=50), nullable=False),
     sa.Column('body', sa.String(length=3000), nullable=False),
     sa.Column('reply', sa.Boolean(), nullable=False),
@@ -98,14 +95,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-        # op.execute(f"ALTER TABLE feeds SET SCHEMA {SCHEMA};")
-        # op.execute(f"ALTER TABLE posts SET SCHEMA {SCHEMA};")
-        # op.execute(f"ALTER TABLE replies SET SCHEMA {SCHEMA};")
-        # op.execute(f"ALTER TABLE tags SET SCHEMA {SCHEMA};")
-        # op.execute(f"ALTER TABLE posttags SET SCHEMA {SCHEMA};")
-        # op.execute(f"ALTER TABLE transactions SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
