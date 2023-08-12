@@ -17,6 +17,7 @@
 .feed_input_box{
     display: inline-flex;
     justify-content: space-between;
+    margin: 5px;
 }
 .feed_form_button_box{
     display: flex;
