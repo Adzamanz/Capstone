@@ -23,7 +23,7 @@ export default function PostForm(props){
     const allPostTags = useSelector(state => state.postTags)
     const thisPostTags = groupBy(Object.values(allPostTags), ['postId', 'type'])
 // post
-    const [date, setDate] = useState(new Date(thisPost?.date).toJSON().split("T")[0])
+    const [date, setDate] = useState(new Date(thisPost?.date).toJSON()?.split("T")[0])
     const [type, setType] = useState(thisPost?.type||"none")
     const [title, setTitle] = useState(thisPost?.title)
     const [body, setBody] = useState(thisPost?.body)
