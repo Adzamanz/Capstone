@@ -1,4 +1,6 @@
-
+.feed_form>div{
+    margin: 5px;
+}
 .feed_form_main{
     padding: 10px;
     display: flex;
@@ -22,4 +24,14 @@
     align-self: center;
     align-content: center;
     justify-content: center;
+}
+.feed_form_button_box >div{
+    background-color: rgb(176, 176, 176);
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+.feed_form_button_box >div:hover{
+    background-color: rgb(86, 86, 86);
+    cursor: pointer;
 }

@@ -17,7 +17,7 @@ export default function FeedForm(){
         setFeed({description, public: isPublic})
     },[description, isPublic])
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         setSubmitted(true)
         if(description.length <= 50 && description.length > 0){
             setErrors({})
@@ -61,7 +61,7 @@ export default function FeedForm(){
                     </div>
                 </div>
                 <div className="feed_form_button_box">
-                    <button type="submit" disabled={submitted}>Submit</button>
+                    <div onClick={() => {if(!submitted) handleSubmit()}}>Submit</div>
                 </div>
             </form>
         </div>

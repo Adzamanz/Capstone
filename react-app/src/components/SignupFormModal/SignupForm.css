@@ -23,3 +23,13 @@
 .signup_button_box{
     align-self: center;
 }
+.signup_button_box>div{
+    background-color: rgb(176, 176, 176);
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+.signup_button_box>div:hover{
+    background-color: rgb(86, 86, 86);
+    cursor: pointer;
+}

@@ -31,4 +31,5 @@ body{
 }
 .error{
     color: red;
+    align-self: center;
 }

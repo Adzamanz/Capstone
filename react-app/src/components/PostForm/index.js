@@ -123,7 +123,7 @@ export default function PostForm(props){
         }
     },[type])
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         console.log(feedId, title, body, type, likes, attendance,)
 
         let newErrors = {}
@@ -158,7 +158,7 @@ export default function PostForm(props){
     return (
         <div className="postform_main">
             <h1>Post</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="post_form">
                     <div className="text_box">
                         <label>
                             Title
@@ -255,7 +255,9 @@ export default function PostForm(props){
                             />
                         </div>
                     </div> */}
-                    <button type="submit">Submit</button>
+                    <div className="post_form_button_box">
+                        <div onClick={handleSubmit} type="submit">Submit</div>
+                    </div>
             </form>
         </div>
     )

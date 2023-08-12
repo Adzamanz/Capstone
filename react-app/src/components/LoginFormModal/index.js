@@ -21,7 +21,7 @@ function LoginFormModal() {
     }
   }
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
@@ -62,7 +62,7 @@ function LoginFormModal() {
           </div>
         </div>
         <div className="login_button_box">
-          <button type="submit">Log In</button>
+          <div onClick={handleSubmit} type="submit">Log In</div>
         </div>
         <div className="demo_login" onClick={loginDemo}>Log In as Demo1</div>
       </form>

@@ -19,6 +19,17 @@
   overflow: hidden;
   border-radius: 20px;
 }
+.log_out_button{
+  background-color: rgb(176, 176, 176);
+  padding: 5px;
+  overflow: hidden;
+  border-radius: 5px;
+  text-align: center;
+}
+.log_out_button:hover{
+  background-color: rgb(86, 86, 86);
+  cursor: pointer;
+}
 .logged_out_menu{
   display: flex;
   align-items: center;

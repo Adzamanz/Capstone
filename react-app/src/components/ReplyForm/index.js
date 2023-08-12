@@ -45,7 +45,9 @@ export default function ReplyForm (props) {
                     />
                 </label>
                 {errors.body && <div className='error'>{errors.body}</div>}
-                <button type="submit">Submit</button>
+                <div className='reply_form_button_box'>
+                    <div onClick={handleSubmit} type="submit">Submit</div>
+                </div>
             </form>
         </div>
     )

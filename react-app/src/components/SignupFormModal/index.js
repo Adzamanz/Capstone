@@ -14,18 +14,28 @@ function SignupFormModal() {
 	const { closeModal } = useModal();
 
 	const handleSubmit = async (e) => {
-		e.preventDefault();
-		if (password === confirmPassword) {
+		// e.preventDefault();
+		let newErrors = {};
+		if(!email.includes("@") || !email.includes(".") || !(email.indexOf(".") > email.indexOf("@")) || !(email.indexOf("@") > 0) || email.length > 255){
+			newErrors.email="please enter a valid email."
+		}
+		if(username.length > 40){
+			newErrors.username="please enter a username less than 40 characters"
+		}
+		if(password.length < 8){
+			newErrors.password="your password must be at least 8 characters long"
+		}
+		if(password !== confirmPassword){
+			newErrors.confirmPassword="Confirm Password field must be the same as the Password field"
+		}
+		setErrors(newErrors)
+		if (Object.values(newErrors) == 0) {
 			const data = await dispatch(signUp(username, email, password));
 			if (data) {
 				setErrors(data);
 			} else {
 				closeModal();
 			}
-		} else {
-			setErrors([
-				"Confirm Password field must be the same as the Password field",
-			]);
 		}
 	};
 
@@ -33,11 +43,6 @@ function SignupFormModal() {
 		<div className="signup_modal">
 			<h1>Sign Up</h1>
 			<form onSubmit={handleSubmit} className="signup_form">
-				<ul>
-					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
-					))}
-				</ul>
 				<div className="signup_input_box">
 					<div className="signup_input_label">Email</div>
 					<div className="signup_input">
@@ -49,6 +54,7 @@ function SignupFormModal() {
 						/>
 					</div>
 				</div>
+					{errors.email && <div className="error"> {errors.email} </div>}
 				<div className="signup_input_box">
 					<div className="signup_input_label">Username</div>
 					<div className="signup_input">
@@ -60,6 +66,7 @@ function SignupFormModal() {
 						/>
 					</div>
 				</div>
+					{errors.username && <div className="error"> {errors.username} </div>}
 				<div className="signup_input_box">
 					<div className="signup_input_label">Password</div>
 					<div className="signup_input">
@@ -71,6 +78,7 @@ function SignupFormModal() {
 						/>
 					</div>
 				</div>
+					{errors.password && <div className="error"> {errors.password} </div>}
 				<div className="signup_input_box">
 					<div className="signup_input_label">Confirm Password</div>
 					<div className="signup_input">
@@ -81,9 +89,11 @@ function SignupFormModal() {
 							required
 						/>
 					</div>
+
 				</div>
+					{errors.confirmPassword && <div className="error"> {errors.confirmPassword} </div>}
 				<div className="signup_button_box">
-					<button type="submit">Sign Up</button>
+				<div onClick={handleSubmit} type="submit">Sign Up</div>
 				</div>
 			</form>
 		</div>

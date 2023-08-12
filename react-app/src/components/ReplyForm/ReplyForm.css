@@ -14,3 +14,16 @@
     align-items: center;
     justify-content: center;
 }
+.reply_form>div{
+    margin:5px;
+}
+.reply_form_button_box>div{
+    background-color: rgb(176, 176, 176);
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+.reply_form_button_box>div:hover{
+    background-color: rgb(86, 86, 86);
+    cursor: pointer;
+}
