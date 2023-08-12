@@ -28,7 +28,7 @@ export default function DonationList (props) {
         <div className='transaction_main'>
             <div>
                 <div className='title_bar'>Donation List</div>
-                {Object.keys(viewTransactions || {})?.map(e => {
+                {viewTransactions ? Object.keys(viewTransactions || {})?.map(e => {
                     return (
                         <div className='transaction_display'>
                             <div className='tran_half a'>
@@ -45,7 +45,7 @@ export default function DonationList (props) {
                             </div>
                         </div>
                     )
-                })}
+                }): <div>Nothing here.</div>}
             </div>
             <div className='donation_sub_menu'>
                 <div className='donation_list_categories'>

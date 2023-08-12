@@ -20,6 +20,7 @@ export default function PostDisplay(props){
     let postTags = useSelector(state => state.postTags);
     let tags = useSelector(state => state.tags)
     let user = useSelector(state => state.session.user)
+
     let thisReplies = useSelector(state => groupBy(Object.values(state.replies),['postId'])[postId])
     // let currentPost = posts[id];
     const [displayReplies, setDisplayReplies] = useState(false)
@@ -96,7 +97,7 @@ export default function PostDisplay(props){
                             />
                         </div>}
             {currentPost?.reply && thisReplies?.length > 0  && <div className='reply_feed' >
-                <div className='reply_feed_title clickable' onClick={(e) => setDisplayReplies(!displayReplies)}>{displayReplies ? "HIDE" : "SHOW"} REPLIES</div>
+                <div className='reply_feed_title clickable' onClick={(e) => setDisplayReplies(!displayReplies)}>{displayReplies ? "HIDE" : "SHOW"} REPLIES : {thisReplies.length}</div>
                 {displayReplies && <ReplyDisplay postId={postId}/>}
             </div>}
 

@@ -1,6 +1,5 @@
 .menu{
     position:fixed;
-    z-index: 2;
     top: 25px;
     margin: 20px;
     border: solid 1px black;

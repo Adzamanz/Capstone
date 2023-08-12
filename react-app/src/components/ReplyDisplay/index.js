@@ -12,9 +12,9 @@ export default function ReplyDisplay(props){
     let {postId} = props;
     const dispatch = useDispatch()
     let replies = useSelector(state => state.replies);
+    const [postReplies,setPostReplies] = useState(groupBy(Object.values(replies), ['postId'])[postId]);
     let users = useSelector(state => state.users);
     const userId = useSelector(state => state.session.user?.id);
-    const [postReplies,setPostReplies] = useState(groupBy(Object.values(replies), ['postId'])[postId]);
     console.log(postId, postReplies)
     useEffect(() => {
         setPostReplies(groupBy(Object.values(replies), ['postId'])[postId])

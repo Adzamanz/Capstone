@@ -23,7 +23,7 @@ export default function PostForm(props){
     const allPostTags = useSelector(state => state.postTags)
     const thisPostTags = groupBy(Object.values(allPostTags), ['postId', 'type'])
 // post
-    const [date, setDate] = useState(thisPost?.date)
+    const [date, setDate] = useState(new Date(thisPost?.date).toJSON().split("T")[0])
     const [type, setType] = useState(thisPost?.type||"none")
     const [title, setTitle] = useState(thisPost?.title)
     const [body, setBody] = useState(thisPost?.body)
@@ -128,15 +128,26 @@ export default function PostForm(props){
         if((type == 'event' || type == 'event/donate') && !date){
             newErrors.date = "If the post type is an event, please set a date!"
         }
+        console.log(newErrors)
         setErrors(newErrors)
         console.log(!date)
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(feedId, title, body, type, likes, attendance,)
-        validate()
-        console.log(date)
-        if(feedId && title && body && type && !Object.values(errors).length){
+
+        let newErrors = {}
+        if(title.length > 50 || title.length < 1){
+            newErrors.title = "title must be between 1 and 50 characters"
+        }
+        if(body.length > 1000 || body.length < 1){
+            newErrors.body = "the body of your post must be between 1 and 1000 characters"
+        }
+        if((type == 'event' || type == 'event/donate') && !date){
+            newErrors.date = "If the post type is an event, please set a date!"
+        }
+        setErrors(newErrors)
+        if(feedId && title && body && type && (!Object.values(newErrors).length > 0)){
             let data;
             if(postData){
                 data = await dispatch(updatePostThunk(post,thisPost.id))

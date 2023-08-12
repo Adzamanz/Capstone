@@ -22,3 +22,14 @@
 .login_button_box{
     align-self: center;
 }
+.demo_login{
+    background-color: white;
+    padding: 5px;
+    margin: 5px;
+    border: solid 1px black;
+    text-align: center;
+}
+.demo_login:hover{
+    background-color: antiquewhite;
+    cursor: pointer;
+}
