@@ -117,21 +117,11 @@ export default function PostForm(props){
     //         // .then(res => submitPostTags(res))
     //     }
     // }
-    const validate = () => {
-        let newErrors = {}
-        if(title.length > 50 || title.length < 1){
-            newErrors.title = "title must be between 1 and 50 characters"
+    useEffect(() => {
+        if(type == "donate" || type == "none"){
+            setAttendance(false);
         }
-        if(body.length > 1000 || body.length < 1){
-            newErrors.body = "the body of your post must be between 1 and 1000 characters"
-        }
-        if((type == 'event' || type == 'event/donate') && !date){
-            newErrors.date = "If the post type is an event, please set a date!"
-        }
-        console.log(newErrors)
-        setErrors(newErrors)
-        console.log(!date)
-    }
+    },[type])
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(feedId, title, body, type, likes, attendance,)

@@ -36,6 +36,7 @@
 .post_tab:hover{
     transition: 1s;
     padding: 10px;
+    cursor: pointer;
 }
 .my_posts_display{
     margin-right: 5px;
