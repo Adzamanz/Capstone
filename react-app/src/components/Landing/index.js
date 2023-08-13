@@ -7,10 +7,36 @@ import DonationList from '../DonationList';
 import FeedForm from '../FeedForm'
 import './Landing.css'
 import { getAllTransactions, getEveryTransaction } from '../../store/transactions';
+import PostDisplay from '../PostDisplay';
 
 export default function Landing () {
+    const dispatch = useDispatch();
+    let posts = useSelector(state => state.posts);
+    let organizedPosts = groupBy(Object.values(posts),['type'])
+    let eventDonatePosts = organizedPosts["event/donate"];
+    let eventPosts = organizedPosts?.event
+    let allEvents = [...eventDonatePosts, ...eventPosts]
+    let orderedEventPosts = allEvents.map(ele => ele).sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt))
+    let eventDates = orderedEventPosts.map(ele => ele.date)
+    // let upcoming = using index of nearest date after today in event dates, find the upcoming event posts
+    let theUpcomingPosts = orderedEventPosts.map( ele => {(<div>
+        <PostDisplay postId={ele.id}/>
+    </div>)})
     return (
-                <FeedDisplay />
+        <div className='landing_main'>
+            <div className='landing_image'>
+
+            </div>
+            <div className='landing_welcome'>
+
+            </div>
+            <div className='landing_new'>
+                <FeedDisplay justFeed={true} />
+            </div>
+            <div className='landing_upcoming  '>
+
+            </div>
+        </div>
     )
 }
 

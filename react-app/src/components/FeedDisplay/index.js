@@ -13,7 +13,8 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import FeedForm from '../FeedForm';
 
-export default function FeedDisplay () {
+export default function FeedDisplay (props) {
+    const {justFeed} = props;
     let {id} = useParams();
     if(!id) id = 1;
     // const {id} = props;
@@ -101,7 +102,7 @@ export default function FeedDisplay () {
                 </div>
             </div>
 
-            {user && <div className='feed_sub_menu'>
+            {user && !justFeed && <div className='feed_sub_menu'>
                 <div className='feed_list_display'>
                     <div className='feed_list_button_box'><OpenModalButton buttonText="create feed" modalComponent={<FeedForm/>}/></div>
                     {generalFeedList}
