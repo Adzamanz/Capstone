@@ -1,20 +1,32 @@
 .transaction_main{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     position: relative;
     z-index: -1;
 
 }
+.transaction_box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .donation_sub_menu{
     position: fixed;
-    left:70%;
-    top: 80px;
+    right:10%;
+    top:80px;
     display: flex;
-    max-width: 30%;
+    flex-direction: column;
+    width: 10%;
+    background-color: rgb(206, 213, 214);
+    overflow-y: hidden;
+    border-radius: 10px;
+    margin: 5px;
+    max-height: 80%;
     align-self: flex-start;
 }
 .donation_list_categories{
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     width: 150px;
     background-color: rgb(206, 213, 214);
@@ -22,13 +34,25 @@
     border-radius: 10px;
     margin: 5px;
     max-height: 80%;
+    overflow-y: scroll; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    scrollbar-width: none;
     overflow-y: scroll;
+    overflow-x: hidden;
+}
+.index_title{
+    width: 100%;
 }
 .donation_list_categories > .clickable{
     background-color: white;
     overflow: hidden;
     border-radius: 10px;
     margin: 5px;
+    width: 90%;
 }
 .donation_list_categories > .clickable:hover{
     transition: 1s;
@@ -39,6 +63,8 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 10px;
+    background-color: antiquewhite;
+    margin: 5px;
 }
 .tran_half{
     display: flex;
@@ -47,6 +73,7 @@
 .title_bar{
     background-color: rgb(95, 97, 122);
     padding: 5px;
+    width: 100%;
 }
 .a{
     align-items: start;

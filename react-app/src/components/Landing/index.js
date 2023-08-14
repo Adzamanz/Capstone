@@ -8,33 +8,68 @@ import FeedForm from '../FeedForm'
 import './Landing.css'
 import { getAllTransactions, getEveryTransaction } from '../../store/transactions';
 import PostDisplay from '../PostDisplay';
+import { getAllPosts } from '../../store/posts';
 
 export default function Landing () {
     const dispatch = useDispatch();
     let posts = useSelector(state => state.posts);
-    let organizedPosts = groupBy(Object.values(posts),['type'])
-    let eventDonatePosts = organizedPosts["event/donate"];
-    let eventPosts = organizedPosts?.event
-    let allEvents = [...eventDonatePosts, ...eventPosts]
-    let orderedEventPosts = allEvents.map(ele => ele).sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt))
-    let eventDates = orderedEventPosts.map(ele => ele.date)
+    const getUpcomingEvents = () => {
+        let organizedPosts = groupBy(Object.values(posts),['type'])
+        let eventAndDonate = organizedPosts["event/donate"]
+        let allEvents = eventAndDonate ? eventAndDonate.concat(organizedPosts?.event) : organizedPosts?.event
+        let objectEvents = groupBy(allEvents, ['date'])
+        let dateList = Object.values(objectEvents).sort((a,b)=> new Date(b) - new Date(a))
+        let upcoming = allEvents?.filter(ele => {
+            let now = Date.now()
+            return (new Date(ele.date) > now)
+        })
+        console.log(organizedPosts)
+        return upcoming
+
+    }
+    useEffect(() => {
+        dispatch(getAllPosts)
+    },[])
+    const [upcoming, setUpcoming] = useState(getUpcomingEvents()?.map( ele => {
+        console.log(ele)
+        return(
+
+            <PostDisplay postId={ele.id}/>
+        )
+    }));
+
+    useEffect(() => {
+        setUpcoming(getUpcomingEvents()?.map( ele => {
+            return (
+                <PostDisplay postId={ele.id}/>
+            )
+        }))
+    },[posts])
+    // let orderedEventPosts = allEvents.map(ele => ele).sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt))
+    // let eventDates = orderedEventPosts.map(ele => ele.date)
     // let upcoming = using index of nearest date after today in event dates, find the upcoming event posts
-    let theUpcomingPosts = orderedEventPosts.map( ele => {(<div>
-        <PostDisplay postId={ele.id}/>
-    </div>)})
+
+    console.log(upcoming)
     return (
         <div className='landing_main'>
-            <div className='landing_image'>
-
+            <h2> Welcome to the Westwood Bet Knesset</h2>
+            <div className='landing_image_box'>
+                <img src="photo.jpg" className='landing_image'/>
             </div>
             <div className='landing_welcome'>
+                <div>
+                    We are
+                </div>
+                <div>Location</div>
+                <div> contact info </div>
 
             </div>
             <div className='landing_new'>
                 <FeedDisplay justFeed={true} />
             </div>
-            <div className='landing_upcoming  '>
-
+            <div className='landing_upcoming'>
+                <div className='landing_upcoming_title'> Upcoming Events! </div>
+                {upcoming}
             </div>
         </div>
     )

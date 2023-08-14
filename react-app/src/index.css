@@ -9,6 +9,7 @@
     text-align: center;
     color: rgb(0, 0, 0);
     margin-top: 10px;
+    z-index: -1;
 }
 .main_menu{
     /* grid-column: 1; */
@@ -17,10 +18,16 @@
     align-items: center;
     justify-content: center;
     width:80%;
+    z-index: 2;
 }
 .main_display{
     position: relative;
     top:60px;
+    background-color: rgb(205, 182, 152);
+    padding: 15px;
+    border-radius: 10px;
+    width: 50%;
+    z-index: 1;
 }
 body{
     background-color: rgb(216, 224, 230);

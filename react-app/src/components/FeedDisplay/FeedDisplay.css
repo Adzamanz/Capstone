@@ -9,9 +9,9 @@
 }
 .feed_box{
     display: flex;
-    border: solid 1px black;
+    background-color: rgb(245, 223, 207);
+    border: solid 1px rgb(0, 0, 0);
     flex-direction: column;
-    margin-right: 30px;
     width: 500px;
     align-self: flex-start;
 }
@@ -55,6 +55,9 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    scrollbar-width: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 .feed_list_display > div{
     padding:  2px 5px;
@@ -76,15 +79,14 @@
 }
 .feed_sub_menu{
     position: fixed;
-    left:70%;
+    right:10%;
     top:80px;
     display: flex;
     flex-direction: column;
-    width: 150px;
+    width: auto;
     background-color: rgb(206, 213, 214);
-    overflow: hidden;
+    overflow-y: hidden;
     border-radius: 10px;
     margin: 5px;
     max-height: 80%;
-    overflow-y: scroll;
 }

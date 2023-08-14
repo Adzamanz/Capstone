@@ -26,7 +26,7 @@ export default function DonationList (props) {
     },[])
     return (
         <div className='transaction_main'>
-            <div>
+            <div className='transaction_box'>
                 <div className='title_bar'>Donation List</div>
                 {viewTransactions ? Object.keys(viewTransactions || {})?.map(e => {
                     return (

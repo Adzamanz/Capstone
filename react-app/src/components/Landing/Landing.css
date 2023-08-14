@@ -17,6 +17,13 @@
     background-color: rgb(95, 97, 122);
     padding: 5px;
 }
+.landing_image{
+    max-width: 70%;
+}
+.landing_image_box{
+    align-self: center;
+    width: 100%;
+}
 .official_tabs{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -32,4 +39,18 @@
     grid-template-columns: 2fr 1fr;
     width: auto;
     margin: 5px;
+}
+.landing_upcoming{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+.landing_upcoming>div{
+    margin: 5px;
+}
+.landing_upcoming_title{
+    background-color: antiquewhite;
+    width: 85%;
 }

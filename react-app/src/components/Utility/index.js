@@ -1,7 +1,7 @@
 export function groupBy(arr, groups) {
     let grouped = {};
     // a is the object getting grouped from the array (arr)
-    arr.forEach((a) => {
+    arr?.forEach((a) => {
       // o is the object used to hold objects in each group each loop,
       // g is group category by,
       // i is the index

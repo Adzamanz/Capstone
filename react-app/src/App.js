@@ -72,12 +72,12 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="">
-          <FeedDisplay />
+          <Landing />
           </Route>
           </Switch>
           :<Switch>
           <Route path="">
-          <FeedDisplay />
+          <Landing />
           </Route>
           </Switch>
           )}
