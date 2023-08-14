@@ -37,19 +37,27 @@
 .post_title{
     background-color: rgb(72, 72, 72);
     font-size: 17px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+.post_date{
+    margin: 5px;
+}
 .post_button_box{
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between ;
-    bottom: 21px;
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
     font-size: 10px;
+    margin: 5px;
+}
+.post_edit{
+    grid-column: 1;
+}
+.post_delete{
+    grid-column: 3;
 }
 .post_tag_list{
     display: flex;

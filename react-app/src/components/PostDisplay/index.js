@@ -40,24 +40,33 @@ export default function PostDisplay(props){
     },[postTags, currentPost, tags])
     return (
         <div className='post_main' key={postId}>
-            <div className='post_content'>
+                <div className='post_content'>
+
                 <div className='post_title'>
-                    {currentPost?.title}
-                </div>
                 {(currentPost?.userId == user?.id)
                 &&
                 <div className='post_button_box'>
+                <div className='post_edit'>
                     <OpenModalButton
                     buttonText={"edit post"}
                     modalComponent={<PostForm feedId={currentPost?.feedId} post={currentPost?.id}/>}
                     />
+                </div>
+                <div className='post_delete'>
                     <OpenModalButton
                     buttonText={"delete post"}
                     modalComponent={<DeleteItemModal action={deletePostThunk} target={currentPost} landing={'/'}/>}
-                />
-                </div>}
+                    />
+                </div>
+            </div>}
+                    {currentPost?.title}
+                </div>
+                <div className='post_date'>{currentPost?.date?.split(" 00")[0]}</div>
+
+
                 <div className='post_body'>
                     {currentPost?.body}
+
                 </div>
                     {(currentPost?.type == 'donate' || currentPost?.type == 'event/donate') &&
                     <div className='donate_button'>
@@ -68,6 +77,7 @@ export default function PostDisplay(props){
                     </div>
                     }
             </div>
+
             <div className='post_tag_list'>
                 {thisPostTags?.map(e => {
                     let groupedTags = groupBy(Object.values(tags), ['tagId','userId'])

@@ -9,15 +9,16 @@
 }
 .feed_box{
     display: flex;
-    background-color: rgb(245, 223, 207);
-    border: solid 1px rgb(0, 0, 0);
+    background-color: rgb(207, 222, 245);
     flex-direction: column;
     width: 500px;
     align-self: flex-start;
+    overflow: hidden;
+    border-radius: 10px;
 }
 .feed_title{
     background-color: rgb(95, 97, 122);
-    padding:5px;
+    padding:10px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -37,10 +38,9 @@
 }
 .feed_button_box{
     position: relative;
-    display: flex;
+    display: inline-flex;
     height: fit-content;
     justify-content: space-between;
-    bottom: 29px;
 }
 .feed_list_button_box{
     background-color: rgb(95, 97, 122);

@@ -52,23 +52,26 @@ export default function Landing () {
     console.log(upcoming)
     return (
         <div className='landing_main'>
-            <h2> Welcome to the Westwood Bet Knesset</h2>
-            <div className='landing_image_box'>
-                <img src="photo.jpg" className='landing_image'/>
-            </div>
-            <div className='landing_welcome'>
-                <div>
-                    We are
+            <h2 className='landing_h1'> Welcome to the Westwood Bet Knesset</h2>
+            <div className='landing_info'>
+                <div className='landing_image_box'>
+                    <img src="photo.jpg" className='landing_image'/>
                 </div>
-                <div>Location</div>
-                <div> contact info </div>
-
+                <div className='landing_welcome'>
+                    <div>
+                        We are
+                    </div>
+                    <div>Location</div>
+                    <div> contact info </div>
+                </div>
             </div>
+
             <div className='landing_new'>
                 <FeedDisplay justFeed={true} />
             </div>
+            <div className='landing_upcoming_title'> Upcoming Events! </div>
             <div className='landing_upcoming'>
-                <div className='landing_upcoming_title'> Upcoming Events! </div>
+
                 {upcoming}
             </div>
         </div>
