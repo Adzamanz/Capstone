@@ -55,9 +55,6 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    scrollbar-width: none;
-    overflow-y: scroll;
-    overflow-x: hidden;
 }
 .feed_list_display > div{
     padding:  2px 5px;
@@ -84,8 +81,11 @@
     display: flex;
     flex-direction: column;
     width: auto;
+    max-width: 10%;
     background-color: rgb(206, 213, 214);
-    overflow-y: hidden;
+    overflow: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
     border-radius: 10px;
     margin: 5px;
     max-height: 80%;

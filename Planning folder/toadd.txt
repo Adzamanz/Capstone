@@ -1,3 +1,4 @@
 to add:
 Calendar
 more posttag options
+better layout for display and content (post Dates)

@@ -17,14 +17,19 @@ export default function Landing () {
         let organizedPosts = groupBy(Object.values(posts),['type'])
         let eventAndDonate = organizedPosts["event/donate"]
         let allEvents = eventAndDonate ? eventAndDonate.concat(organizedPosts?.event) : organizedPosts?.event
+        console.log(allEvents)
         let objectEvents = groupBy(allEvents, ['date'])
-        let dateList = Object.values(objectEvents).sort((a,b)=> new Date(b) - new Date(a))
-        let upcoming = allEvents?.filter(ele => {
-            let now = Date.now()
-            return (new Date(ele.date) > now)
+        let dateList = Object.values(allEvents).sort((a,b) => new Date(a.date) - new Date(b.date)) || []
+        console.log(dateList)
+        let upcomings = dateList?.filter(ele => {
+            let now = Date.now()//.getTime()
+            let then = new Date(ele.date)
+            console.log(then,now)
+
+            return (then > now)
         })
-        console.log(organizedPosts)
-        return upcoming
+        console.log(upcomings)
+        return upcomings
 
     }
     useEffect(() => {

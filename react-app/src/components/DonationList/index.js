@@ -33,12 +33,12 @@ export default function DonationList (props) {
                         <div className='transaction_display'>
                             <div className='tran_half a'>
                                 <div>user: {users[view[e].userId]?.username}</div>
-                                <div>type: {view[e].type}</div>
                                 <div>value: {view[e].value}</div>
                                 <div>fee: {view[e].fee}</div>
+                                <div>postId: {view[e].postId || "N/A"}</div>
                             </div>
                             <div className='tran_half b'>
-                                <div>postId: {view[e].postId || "N/A"}</div>
+                                <div>type: {view[e].type}</div>
                                 <div>description: {view[e].description}</div>
                                 <div>entry_date: {view[e].entry_date}</div>
                                 <div>transaction_date: {view[e].transaction_date || "N/A"}</div>

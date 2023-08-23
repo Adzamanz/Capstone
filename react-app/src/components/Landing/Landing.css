@@ -22,11 +22,11 @@
     background-color: rgb(206, 213, 214);
 }
 .index_title{
-    background-color: rgb(95, 97, 122);
+    background-color: rgb(139, 142, 181);
     padding: 5px;
 }
 .menu_title{
-    background-color: rgb(95, 97, 122);
+    background-color: rgb(150, 153, 191);
     padding: 5px;
 }
 .landing_image{
@@ -71,7 +71,7 @@
     margin: 5px;
 }
 .landing_upcoming_title{
-    background-color: rgb(95, 97, 122);
+    background-color: rgb(114, 120, 201);
     padding: 10px;
     width: 85%;
 }

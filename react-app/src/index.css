@@ -23,14 +23,14 @@
 .main_display{
     position: relative;
     top:60px;
-    background-color: rgb(187, 207, 230);
+    /* background-color: rgb(187, 207, 230); */
     padding: 15px;
     border-radius: 10px;
     width: 50%;
     z-index: 1;
 }
 body{
-    background-color: rgb(216, 224, 230);
+    background-color: rgb(68, 90, 123);
 }
 
 .clickable{

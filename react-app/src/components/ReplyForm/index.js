@@ -18,7 +18,7 @@ export default function ReplyForm (props) {
         e.preventDefault();
 
         let newErrors = {}
-        if(body.length > 300){
+        if(body?.length > 300){
             newErrors.body = "the body of your reply must be less than 300 characters"
         }
         setErrors(newErrors)

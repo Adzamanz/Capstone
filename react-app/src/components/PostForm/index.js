@@ -127,10 +127,10 @@ export default function PostForm(props){
         console.log(feedId, title, body, type, likes, attendance,)
 
         let newErrors = {}
-        if(title.length > 50 || title.length < 1){
+        if(!title || title?.length > 50 || title?.length < 1){
             newErrors.title = "title must be between 1 and 50 characters"
         }
-        if(body.length > 1000 || body.length < 1){
+        if(body?.length > 1000 || body?.length < 1){
             newErrors.body = "the body of your post must be between 1 and 1000 characters"
         }
         if((type == 'event' || type == 'event/donate') && !date){

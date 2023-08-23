@@ -19,7 +19,7 @@ export default function FeedForm(){
     const handleSubmit = async (e) => {
         // e.preventDefault();
         setSubmitted(true)
-        if(description.length <= 50 && description.length > 0){
+        if(description?.length <= 50 && description?.length > 0){
             setErrors({})
             const data = await dispatch(createFeedThunk(feed));
             if(data){
