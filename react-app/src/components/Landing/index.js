@@ -19,7 +19,7 @@ export default function Landing () {
         let allEvents = eventAndDonate ? eventAndDonate.concat(organizedPosts?.event) : organizedPosts?.event
         console.log(allEvents)
         let objectEvents = groupBy(allEvents, ['date'])
-        let dateList = Object.values(allEvents).sort((a,b) => new Date(a.date) - new Date(b.date)) || []
+        let dateList = Object.values(allEvents  || {}).sort((a,b) => new Date(a.date) - new Date(b.date)) || []
         console.log(dateList)
         let upcomings = dateList?.filter(ele => {
             let now = Date.now()//.getTime()

@@ -15,3 +15,5 @@ export function groupBy(arr, groups) {
     });
     return grouped;
   }
+//groupBy(arr, ['age', 'location'])
+
