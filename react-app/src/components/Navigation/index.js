@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
+import Menu from '../Menu';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
@@ -11,9 +12,16 @@ function Navigation({ isLoaded }){
 	return (
 		<nav className="navbar">
 			<div>
-				{/* <NavLink exact to="/">Home</NavLink> */}
 				<div className='clickable' onClick={() => history.push('/')}>Home</div>
 			</div>
+			<div className="main_menu">
+          	{sessionUser &&
+			<div className='page_nav'>
+				<div className='menu_option clickable' onClick={() => history.push("/feeds")}>Message Board</div>
+            	<div className='menu_option clickable' onClick={() => history.push("/donations")}>My Donations</div>
+            	<div className='menu_option clickable' onClick={() => history.push("/my_posts")}>My Posts</div>
+			</div>}
+        	</div>
 			{isLoaded && (
 				<div>
 					<ProfileButton user={sessionUser} />

@@ -82,7 +82,7 @@ export default function PostDisplay(props){
                 {thisPostTags?.map(e => {
                     let groupedTags = groupBy(Object.values(tags), ['tagId','userId'])
                     let taggedList = groupedTags[e.id];
-                    let tagged = taggedList ? taggedList[user.id] : 0
+                    let tagged = taggedList ? taggedList[user?.id] : 0
                     return (
                         <div className={`post_tag_button clickable ${tagged ? "true_tag" : "false_tag"}`}
 

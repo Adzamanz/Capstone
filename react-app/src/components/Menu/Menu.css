@@ -1,14 +1,15 @@
 .menu{
-    position:fixed;
-    top: 25px;
     margin: 20px;
     border: solid 1px black;
     background-color: rgb(206, 213, 214);
     width:inherit;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     z-index: 0;
+    gap:50px;
 }
 .menu_title{
     background-color: rgb(95, 97, 122);
@@ -22,6 +23,6 @@
     transition: 1s;
     font-size: 15px;
 }
-.menu_option{
+/* .menu_option{
     width:33%;
-}
+} */

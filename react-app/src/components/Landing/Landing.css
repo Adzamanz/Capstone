@@ -10,36 +10,12 @@
     align-items: center;
     justify-content: center;
 }
-.landing_h1{
-    background-color: rgb(215, 229, 250);
-    padding: 10px;
-    width: 80%;
-    align-self: center;
-}
-.menu{
-    margin-right: 10px;
-    border: solid 2px black;
-    background-color: rgb(206, 213, 214);
-}
+
 .index_title{
     background-color: rgb(139, 142, 181);
     padding: 5px;
 }
-.menu_title{
-    background-color: rgb(150, 153, 191);
-    padding: 5px;
-}
-.landing_image{
-    max-width: 90%;
-    margin: 15px;
-    width: 100%;
-}
-.landing_image_box{
-    align-self: center;
-    overflow: hidden;
-    border-radius: 10px;
-    width: auto;
-}
+
 .official_tabs{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -77,13 +53,4 @@
 }
 .landing_new{
     margin: 15px
-}
-.landing_welcome{
-    margin:15px;
-}
-.landing_info{
-    background-color: rgb(215, 231, 250);
-    overflow: hidden;
-    border-radius: 10px;
-    width: 80%;
 }

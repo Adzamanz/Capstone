@@ -20,6 +20,7 @@ import DonationList from "./components/DonationList";
 import Menu from "./components/Menu";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
 import MyPosts from "./components/MyPosts";
+import Landing2 from "./components/Landing2";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,46 +44,43 @@ function App() {
     <div >
       <Navigation isLoaded={isLoaded} />
       <div className="main_app">
-        <div className="main_menu">
-          {sessionUser && <Menu />}
+
+        <div className="main_display">
+
+            {isLoaded && (sessionUser ? <Switch>
+            <Route path="/feeds/:id">
+              <FeedDisplay />
+            </Route>
+            <Route path="/feeds">
+              <FeedDisplay />
+            </Route>
+            <Route path="/my_posts/:id">
+              <MyPosts />
+            </Route>
+            <Route path="/my_posts">
+              <MyPosts />
+            </Route>
+            <Route path="/donations">
+              <DonationList />
+            </Route>
+            <Route path="/login" >
+              <LoginFormPage />
+            </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route>
+            <Route path="">
+            <Landing2 />
+            </Route>
+            </Switch>
+            :<Switch>
+            <Route path="">
+            <Landing2 />
+            </Route>
+            </Switch>
+            )}
+
         </div>
-      <div className="main_display">
-
-
-           {isLoaded && (sessionUser ? <Switch>
-          <Route path="/feeds/:id">
-            <FeedDisplay />
-          </Route>
-          <Route path="/feeds">
-            <FeedDisplay />
-          </Route>
-          <Route path="/my_posts/:id">
-            <MyPosts />
-          </Route>
-          <Route path="/my_posts">
-            <MyPosts />
-          </Route>
-          <Route path="/donations">
-            <DonationList />
-          </Route>
-          <Route path="/login" >
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route path="">
-          <Landing />
-          </Route>
-          </Switch>
-          :<Switch>
-          <Route path="">
-          <Landing />
-          </Route>
-          </Switch>
-          )}
-
-      </div>
       </div>
     </div>
   );
