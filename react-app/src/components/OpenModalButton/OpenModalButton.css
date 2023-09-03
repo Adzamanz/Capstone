@@ -1,5 +1,6 @@
 .button{
-    border: solid 3px rgb(115, 108, 144);
+    border: solid 3px rgb(255, 255, 255);
+    background-color: white;
     border-radius: 3px;
     overflow: hidden;
     color: black;
