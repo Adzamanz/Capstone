@@ -57,14 +57,28 @@ gap: 20em;
 .navbar {
   position: fixed;
   display: flex;
-  flex-direction: row;
-  background-color: #8aac1a;
-  color: rgb(255, 255, 255);
+  flex-direction: column;
+  z-index: 3;
   top: 0;
   left: 0;
   width: 100%;
+}
+.logo_nav{
+  height: 50px;
+}
+.t_nav{
+display: flex;
+background-color: rgb(250, 250, 250);
+align-items: center;
+justify-content: center;
+}
+.b_nav{
+  display: flex;
+  flex-direction: row;
+  background-color: #8aac1a;
+  color: rgb(255, 255, 255);
+
   align-items: center;
   justify-content: space-around;
   height: 40px;
-  z-index: 3;
 }

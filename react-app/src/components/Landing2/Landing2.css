@@ -1,0 +1,16 @@
+.preview_div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.preview_image_display{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.landing_image{
+    height: 500px;
+}
+.prev_arrow{
+    font-size: 60px;
+}

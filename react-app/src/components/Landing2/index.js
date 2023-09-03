@@ -1,11 +1,11 @@
 import React from 'react';
 
+import PictureView from '../PictureView';
+import "./Landing2.css"
 export default function Landing2(){
     return (
         <div>
-            <div className='preview_div'>
-                <img src="photo.jpg" className='landing_image'/>
-            </div>
+            <PictureView/>
         </div>
     )
 }

@@ -1,32 +1,22 @@
 .picture_view{
+    margin: 20px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-.landing_h1{
-    background-color: rgb(215, 229, 250);
-    padding: 10px;
-    width: 80%;
-    align-self: center;
+.preview_div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.preview_image_display{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .landing_image{
-    max-width: 90%;
-    margin: 15px;
-    width: 100%;
+    height: 500px;
 }
-.landing_image_box{
-    align-self: center;
-    overflow: hidden;
-    border-radius: 10px;
-    width: auto;
-}
-.landing_welcome{
-    margin:15px;
-}
-.landing_info{
-    background-color: rgb(215, 231, 250);
-    overflow: hidden;
-    border-radius: 10px;
-    width: 80%;
+.prev_arrow{
+    font-size: 60px;
 }
