@@ -19,7 +19,7 @@
     box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.266);
 }
 .feed_title{
-    background-color: rgb(95, 122, 95);
+    background-color: #8aac1a;
     padding:10px;
     display: flex;
     flex-direction: row;
@@ -45,7 +45,7 @@
     justify-content: space-between;
 }
 .feed_list_button_box{
-    background-color: rgb(95, 122, 95);
+    background-color: #8aac1a;
     display: flex;
     width: 100%;
     align-items: center;
@@ -80,7 +80,7 @@
 .feed_sub_menu{
     position: fixed;
     right:10%;
-    top:80px;
+    top:100px;
     display: flex;
     flex-direction: column;
     width: auto;
@@ -91,6 +91,6 @@
     scrollbar-width: none;
     border-radius: 10px;
     margin: 15px;
-    max-height: 80%;
+    max-height: 60%;
     box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.266);
 }

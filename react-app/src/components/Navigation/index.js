@@ -13,12 +13,10 @@ function Navigation({ isLoaded }){
 		<nav className="navbar">
 			<div className='t_nav'> <img src='wbk-logo.jpg' className='logo_nav'/> </div>
 			<div className='b_nav'>
-				<div>
-					<div className='clickable' onClick={() => history.push('/')}>Home</div>
-				</div>
 				<div className="main_menu">
 					{sessionUser &&
 					<div className='page_nav'>
+						<div className='menu_option clickable' onClick={() => history.push('/')}>Home</div>
 						<div className='menu_option clickable' onClick={() => history.push("/feeds")}>Message Board</div>
 						<div className='menu_option clickable' onClick={() => history.push("/donations")}>My Donations</div>
 						<div className='menu_option clickable' onClick={() => history.push("/my_posts")}>My Posts</div>

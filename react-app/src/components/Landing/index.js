@@ -56,9 +56,9 @@ export default function Landing () {
         <div className='landing_main'>
             <PictureView />
 
-            <div className='landing_new'>
+            {/* <div className='landing_new'>
                 <FeedDisplay justFeed={true} />
-            </div>
+            </div> */}
             <div className='landing_upcoming_title'> Upcoming Events! </div>
             <div className='landing_upcoming'>
 

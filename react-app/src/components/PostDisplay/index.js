@@ -42,25 +42,25 @@ export default function PostDisplay(props){
         <div className='post_main' key={postId}>
                 <div className='post_content'>
 
-                <div className='post_title'>
-                {(currentPost?.userId == user?.id)
-                &&
-                <div className='post_button_box'>
-                <div className='post_edit'>
-                    <OpenModalButton
-                    buttonText={"edit post"}
-                    modalComponent={<PostForm feedId={currentPost?.feedId} post={currentPost?.id}/>}
-                    />
-                </div>
-                <div className='post_delete'>
-                    <OpenModalButton
-                    buttonText={"delete post"}
-                    modalComponent={<DeleteItemModal action={deletePostThunk} target={currentPost} landing={'/'}/>}
-                    />
-                </div>
-            </div>}
-                    {currentPost?.title}
-                </div>
+                    <div className='post_title'>
+                        {(currentPost?.userId == user?.id)
+                        &&
+                        <div className='post_button_box'>
+                            <div className='post_edit'>
+                                <OpenModalButton
+                                buttonText={"edit post"}
+                                modalComponent={<PostForm feedId={currentPost?.feedId} post={currentPost?.id}/>}
+                                />
+                            </div>
+                            <div className='post_delete'>
+                                <OpenModalButton
+                                buttonText={"delete post"}
+                                modalComponent={<DeleteItemModal action={deletePostThunk} target={currentPost} landing={'/'}/>}
+                                />
+                            </div>
+                        </div>}
+                        <div className='title_div'>{currentPost?.title}</div>
+                    </div>
                 <div className='post_date'>{currentPost?.date?.split(" 00")[0]}</div>
 
 
