@@ -50,13 +50,13 @@ export default function DonationList (props) {
             <div className='donation_sub_menu'>
                 <div className='donation_list_categories'>
                     <div className='index_title'> Donations </div>
-                    <div className='all_div clickable' onClick={() => setViewTransactions(transactions)}> All </div>
+                    <div className='pledge_div clickable' onClick={() => setViewTransactions(transactions)}> All </div>
 
                         <div className='pledge_div clickable' onClick={() => setViewTransactions(groupBy(Object.values(transactions), ['type'])?.pledge)} >Pledges</div>
                         {Object.keys(myTransactions).map(e => {
                             if(myTransactions[e].pledge){
                                 return (
-                                    <div className="pledge_post_name clickable" onClick={() => setViewTransactions(myTransactions[e]?.pledge)}>
+                                    <div className="post_name clickable" onClick={() => setViewTransactions(myTransactions[e]?.pledge)}>
                                     {posts[e]?.title || "N/A"}
                                 </div>
                             )}
@@ -66,7 +66,7 @@ export default function DonationList (props) {
                         {Object.keys(myTransactions).map(e => {
                             if(myTransactions[e].pay){
                                 return (
-                                    <div  className="fulfilled_post_name clickable" onClick={() => setViewTransactions(myTransactions[e]?.pay)}>
+                                    <div  className="post_name clickable" onClick={() => setViewTransactions(myTransactions[e]?.pay)}>
                                         {posts[e]?.title || "N/A"}
                                     </div>
                             )}

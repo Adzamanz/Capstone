@@ -10,15 +10,17 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 5px;
 }
 .donation_sub_menu{
     position: fixed;
     right:10%;
-    top:80px;
+    top:120px;
     display: flex;
     flex-direction: column;
     width: 10%;
-    background-color: rgb(206, 213, 214);
+    background-color: white;
+    box-shadow: 0px 0px 2px .5px rgba(0, 0, 0, 0.265);
     overflow-y: hidden;
     border-radius: 10px;
     margin: 5px;
@@ -46,6 +48,8 @@
 }
 .index_title{
     width: 100%;
+    background-color: #8aac1a;
+    color: white;
 }
 .donation_list_categories > .clickable{
     background-color: white;
@@ -71,7 +75,8 @@
     flex-direction: column;
 }
 .title_bar{
-    background-color: rgb(95, 97, 122);
+    background-color: #8aac1a;
+    color: white;
     padding: 5px;
     width: 100%;
 }
@@ -81,12 +86,17 @@
 .b{
     align-items: end;
 } */
-.all_div{
-    font-weight: bold;
-}
+
 .pledge_div{
     font-weight: bold;
+    transition: 1s;
 }
 .fulfilled_div{
+    transition: 1s;
     font-weight: bold;
+
+}
+.post_name:hover{
+    transition: 1s;
+    color: #8aac1a;
 }
