@@ -80,10 +80,9 @@ justify-content: center;
   flex-direction: row;
   background-color: #8aac1a;
   color: rgb(255, 255, 255);
-
-  align-items: center;
-  justify-content: space-around;
   height: 40px;
+  align-items: center;
+  justify-content: center;
 }
 .main_menu{
   align-self: center;
@@ -91,4 +90,7 @@ justify-content: center;
 }
 .menu_option{
   margin: 0px 20%;
+  width:100px;
+  display: flex;
+  flex-direction: row;
 }

@@ -16,10 +16,10 @@ function Navigation({ isLoaded }){
 				<div className="main_menu">
 					{sessionUser &&
 					<div className='page_nav'>
-						<div className='menu_option clickable' onClick={() => history.push('/')}>Home</div>
-						<div className='menu_option clickable' onClick={() => history.push("/feeds")}>Message Board</div>
-						<div className='menu_option clickable' onClick={() => history.push("/donations")}>My Donations</div>
-						<div className='menu_option clickable' onClick={() => history.push("/my_posts")}>My Posts</div>
+						<div className='menu_option clickable' onClick={() => history.push('/')}><i class="ri-home-2-fill"></i>Home</div>
+						<div className='menu_option clickable' onClick={() => history.push("/feeds")}><i class="ri-discuss-fill"></i>Forum</div>
+						<div className='menu_option clickable' onClick={() => history.push("/donations")}><i class="ri-money-dollar-box-fill"></i>Donations</div>
+						<div className='menu_option clickable' onClick={() => history.push("/my_posts")}><i class="ri-archive-fill"></i>Posts</div>
 					</div>}
 				</div>
 				{isLoaded && (

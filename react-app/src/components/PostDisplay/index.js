@@ -16,10 +16,10 @@ import { createTagThunk, deleteTagThunk, getAllTags } from '../../store/tags'
 export default function PostDisplay(props){
     const dispatch = useDispatch();
     let {postId} = props
-    let posts = useSelector(state => state.posts);
-    let postTags = useSelector(state => state.postTags);
-    let tags = useSelector(state => state.tags)
-    let user = useSelector(state => state.session.user)
+    let posts = useSelector(state => state?.posts);
+    let postTags = useSelector(state => state?.postTags);
+    let tags = useSelector(state => state?.tags)
+    let user = useSelector(state => state?.session?.user)
 
     let thisReplies = useSelector(state => groupBy(Object.values(state.replies),['postId'])[postId])
     // let currentPost = posts[id];
@@ -79,7 +79,7 @@ export default function PostDisplay(props){
             </div>
 
             <div className='post_tag_list'>
-                {thisPostTags?.map(e => {
+                {user && thisPostTags?.map(e => {
                     let groupedTags = groupBy(Object.values(tags), ['tagId','userId'])
                     let taggedList = groupedTags[e.id];
                     let tagged = taggedList ? taggedList[user?.id] : 0
