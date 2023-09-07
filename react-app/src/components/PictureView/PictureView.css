@@ -13,7 +13,8 @@
     overflow: hidden;
 }
 .landing_image{
-    height: 500px;
+    max-width: 100%;
+    
 }
 .prev_arrow{
     transition: all .5s;

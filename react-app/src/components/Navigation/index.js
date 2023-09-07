@@ -13,17 +13,31 @@ function Navigation({ isLoaded }){
 		<nav className="navbar">
 			<div className='t_nav'> <img src='wbk-logo.jpg' className='logo_nav'/> </div>
 			<div className='b_nav'>
-				<div className="main_menu">
-					{sessionUser &&
-					<div className='page_nav'>
-						<div className='menu_option clickable' onClick={() => history.push('/')}><i class="ri-home-2-fill"></i>Home</div>
-						<div className='menu_option clickable' onClick={() => history.push("/feeds")}><i class="ri-discuss-fill"></i>Forum</div>
-						<div className='menu_option clickable' onClick={() => history.push("/donations")}><i class="ri-money-dollar-box-fill"></i>Donations</div>
-						<div className='menu_option clickable' onClick={() => history.push("/my_posts")}><i class="ri-archive-fill"></i>Posts</div>
-					</div>}
-				</div>
+				{sessionUser &&
+				<div className='main_menu'>
+					<div className='gap'></div>
+					<div className='menu_option clickable' onClick={() => history.push('/')}>
+						<i class="ri-home-2-fill"></i>
+						<div className='size_check'>Home</div>
+					</div>
+					<div className='gap'></div>
+					<div className='menu_option clickable' onClick={() => history.push("/feeds")}>
+						<i class="ri-discuss-fill"></i>
+						<div className='size_check'>Forum</div>
+					</div>
+					<div className='gap'></div>
+					<div className='menu_option clickable' onClick={() => history.push("/donations")}>
+						<i class="ri-money-dollar-box-fill"></i>
+						<div className='size_check'>Donations</div>
+						</div>
+					<div className='gap'></div>
+					<div className='menu_option clickable' onClick={() => history.push("/my_posts")}>
+						<i class="ri-archive-fill"></i>
+						<div className='size_check'>Posts</div>
+					</div>
+				</div>}
 				{isLoaded && (
-					<div>
+					<div className='profile_button_div'>
 						<ProfileButton user={sessionUser} />
 					</div>
 				)}
