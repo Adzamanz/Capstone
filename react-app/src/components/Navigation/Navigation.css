@@ -75,7 +75,7 @@ justify-content: center;
   color: rgb(255, 255, 255);
   height: 40px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 10%;
   padding: 0px 10px;
 }
@@ -89,17 +89,32 @@ justify-content: center;
 .menu_option{
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+  transition: 1s;
+}
+.menu_option:hover{
+  transition: 1s;
+  color:#8aac1a;
+  background-color: white;
 }
 .gap{
   width:7vw;
 }
 @media screen and (min-width: 501px) {
   .size_check {
+    transition: .5s;
     font-size: 15px;
+    text-align: center;
   }
 }
 @media screen and (max-width: 500px){
   .size_check {
+    transition: .5s;
     font-size: 0px;
+    text-align: center;
   }
 }
