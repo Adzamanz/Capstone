@@ -23,7 +23,7 @@
 .post_main{
     background-color:#f6f6f6;
     padding: 2px;
-    width: 400px;
+    max-width: 60%;
     color: black;
 }
 .post_content{
