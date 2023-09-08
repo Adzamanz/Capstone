@@ -44,7 +44,7 @@ function ProfileButton({ user }) {
   const closeMenu = () => setShowMenu(false);
 
   return (
-    <>
+    <div className="profile_main">
       <div className='profile_button clickable' onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </div>
@@ -73,7 +73,7 @@ function ProfileButton({ user }) {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }
 

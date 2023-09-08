@@ -1,7 +1,14 @@
+.profile_main{
+  align-self: flex-start;
+}
+.profile_button_div{
+  position: relative;
+  
+}
 .profile-dropdown {
   position: absolute;
-  top: 90px;
-  right:50px;
+  top:32px;
+  right:0px;
   color: #8aac1a;
   background-color: rgb(242, 242, 242);
   border: solid 1px black;
