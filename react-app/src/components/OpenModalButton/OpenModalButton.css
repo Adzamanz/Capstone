@@ -1,14 +1,20 @@
 .button{
     border: solid 3px rgb(255, 255, 255);
-    background-color: white;
+    background-color: #8aac1a;
     border-radius: 3px;
     overflow: hidden;
-    color: black;
+    color: white;
     width: fit-content;
     padding: 2px;
     margin: 2px;
-    /* background-color: rgb(95, 95, 95); */
+    transition: 1s;
+    text-align: center;
+}
+.button>i{
+    text-align: center;
 }
 .button:hover {
-    background-color: rgb(102, 99, 166);
+    transition: 1s;
+    background-color: rgb(255, 255, 255);
+    color:#8aac1a;
 }

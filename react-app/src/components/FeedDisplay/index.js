@@ -98,13 +98,16 @@ export default function FeedDisplay (props) {
                 </div>}
 
                 <div className='feed_body'>
-                    {postFeed || <div> Nothing here </div>}
+                    {postFeed || <div className='empty_div'> Nothing here </div>}
                 </div>
             </div>
 
             {user && !justFeed && <div className='feed_sub_menu'>
+                <div className='feed_list_button_box'><OpenModalButton buttonText={<i class="ri-add-box-line">new feed</i>} modalComponent={<FeedForm/>}/></div>
+                <div className='feed_list_title'>Feed List</div>
                 <div className='feed_list_display'>
-                    <div className='feed_list_button_box'><OpenModalButton buttonText="create feed" modalComponent={<FeedForm/>}/></div>
+
+                    {officalFeedListMaker()}
                     {generalFeedList}
                 </div>
             </div>
