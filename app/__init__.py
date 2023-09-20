@@ -13,6 +13,7 @@ from .api.reply_routes import reply_routes
 from .api.transaction_routes import transaction_routes
 from .api.post_tag_routes import post_tag_routes
 from .api.tag_routes import tag_routes
+from .api.image_routes import image_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -40,6 +41,7 @@ app.register_blueprint(reply_routes, url_prefix='/api/replies')
 app.register_blueprint(transaction_routes, url_prefix='/api/transactions')
 app.register_blueprint(post_tag_routes, url_prefix='/api/post_tags')
 app.register_blueprint(tag_routes, url_prefix='/api/tags')
+app.register_blueprint(image_routes, url_prefix='/api/images')
 db.init_app(app)
 Migrate(app, db)
 

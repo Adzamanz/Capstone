@@ -2,6 +2,7 @@ import React, { useState, useEffect, useDebugValue } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createPostThunk, updatePostThunk } from "../../store/posts";
 
+import ImageForm from "../ImageForm";
 import { useModal } from "../../context/Modal";
 
 import { groupBy } from "../Utility";
@@ -10,6 +11,7 @@ import './PostForm.css'
 import PostTagForm from "../PostTagForm";
 import { createPostTagThunk, deletePostTagThunk, getAllPostTags } from "../../store/postTags";
 import OpenModalButton from "../OpenModalButton";
+import { createImageThunk, getAllImages } from "../../store/images";
 
 export default function PostForm(props){
 
@@ -21,6 +23,7 @@ export default function PostForm(props){
 
     let thisPost = useSelector(state => state.posts[postData])
     const allPostTags = useSelector(state => state.postTags)
+    const postImages = useSelector(state => state.images)
     const thisPostTags = groupBy(Object.values(allPostTags), ['postId', 'type'])
 // post
     const [date, setDate] = useState(new Date(thisPost?.date).toJSON()?.split("T")[0])
@@ -29,102 +32,36 @@ export default function PostForm(props){
     const [body, setBody] = useState(thisPost?.body)
     const [reply, setReply] = useState(thisPost?.reply || false)
     const [errors, setErrors] = useState({});
-// post
-// post tags
-    //this portion creates the visual list of the postTags in the custom-tag version of this form
+    const [images, setImages] = useState({});
 
-    // const [postTags, setPostTags] = useState([])
-    // const [postTagList, setPostTagList] = useState(postTags?.map(e => {
-    //     <div className="post_tag">
-    //         {e.description}
-    //         {e.type}
-    //         <div onClick={() => {
-    //             if(e.id){
-    //                 dispatch(deletePostTagThunk(e))
-    //             }
-    //         }}>delete post tag</div>
-    //     </div>
-    // }))
-// post tags
     const [likes, setLikes] = useState(thisPostTags[postData]?.like?.length > 0 || false)
     const [attendance, setAttendance] = useState(thisPostTags[postData]?.attendance?.length > 0 || false)
 
     const [post, setPost] = useState({feedId,title,body,type,reply})
 
-    // useEffect(() => {
-    //     dispatch(getAllPostTags())
+    useEffect(() => {
+        dispatch(getAllImages())
+    },[])
 
-    //     setPostTags(groupBy(Object.values(allPostTags), ['postId'])[postData])
-    // },[])
     useEffect(()=>{
         date ? setPost({feedId,title,body,type,date,reply}) : setPost({feedId,title,body,type,reply});
         console.log(date)
     },[type,reply,body,title,date])
-    //i forsee issues with the below useEffect in regards to updating info mid post-edit
-    // useEffect(() => {
 
-        // const postTagVariable = groupBy(Object.values(allPostTags), ['postId'])[postData]
-        // const existingPostTags = postTagVariable ? [...postTagVariable] : []
-        // console.log(existingPostTags)
-        // const set = new Set([...existingPostTags, ...postTags])
-        // console.log(set)
-        // setPostTags([...set])
-
-        // setPostTags(groupBy(Object.values(allPostTags), ['postId'])[postData])
-    // },[allPostTags])
-
-    // useEffect(() => {
-    //     console.log(postTags)
-    //     setPostTagList(
-    //         postTags?.map(e => {
-    //             return (
-    //                 <div className="post_tag">
-    //                     |{e.description}|{e.type}|
-    //                     <div onClick={() => {
-    //                         if(e.id){
-    //                             dispatch(deletePostTagThunk(e))
-    //                         }
-    //                         if(e){
-    //                             let tempPostTags = postTags;
-    //                             let target = tempPostTags.indexOf(e);
-    //                             tempPostTags.splice(target, 1)
-    //                             console.log(tempPostTags)
-    //                             setPostTags(tempPostTags)
-    //                         }
-    //                     }}>delete post tag</div>
-    //                 </div>
-    //             )
-    //         })
-    //     )
-    // },[JSON.stringify(postTags)])
-
-    // const submitPostTags = (post) => {
-    //     postTags?.forEach(e => {
-    //         if(!e.id){
-    //             let postId = post?.id
-    //             console.log(postId)
-    //             dispatch(createPostTagThunk({postId,...e}))
-    //         }
-    //     })
-    // }
-
-    // const submission = () => {
-    //     if(postData){
-    //         dispatch(updatePostThunk(post,thisPost.id))
-    //         // .then(res => submitPostTags(res))
-    //     }else{
-    //         dispatch(createPostThunk(post))
-    //         // .then(res => submitPostTags(res))
-    //     }
-    // }
     useEffect(() => {
         if(type == "donate" || type == "none"){
             setAttendance(false);
         }
     },[type])
+
+    const removeFromImages = (name) => {
+        let newImages = {...images}  ;
+        delete newImages[name];
+        setImages(newImages);
+    }
     const handleSubmit = async (e) => {
         // e.preventDefault();
-        console.log(feedId, title, body, type, likes, attendance,)
+        // console.log(feedId, title, body, type, likes, attendance,)
 
         let newErrors = {}
         if(!title || title?.length > 50 || title?.length < 1){
@@ -147,14 +84,33 @@ export default function PostForm(props){
                 // .then(res => submitPostTags(res))
             }
             let dataId = data?.id
+
+            // postTags
             if(likes && data && !thisPostTags[postData]?.like?.length) dispatch(createPostTagThunk({postId: dataId,type:'like', description:'Like'}))
             else if(!likes && thisPostTags[postData]?.like?.length > 0) dispatch(deletePostTagThunk(thisPostTags[postData]?.like[0]))
 
             if(attendance && data && !thisPostTags[postData]?.attendance?.length) dispatch(createPostTagThunk({postId: dataId,type:'attendance', description:'Attendance'}))
             else if(!attendance && thisPostTags[postData]?.attendance?.length > 0) dispatch(deletePostTagThunk(thisPostTags[postData]?.attendance[0]))
+
+            //images
+
+            let imageData = Object.keys(images);
+
+            if(imageData.length > 0){
+                imageData.forEach(e => {
+                    let currData = {
+                        name: e,
+                        postId: dataId,
+                        image: images[e]
+                    };
+                    console.log(currData)
+                    createImageThunk(currData)
+                })
+            }
             closeModal()
         }
     }
+
     return (
         <div className="postform_main">
             <h1>Post</h1>
@@ -243,18 +199,21 @@ export default function PostForm(props){
                                     </label>
                                 }
                     </div>
-                    {/* <div className="post_tag_box">
-                        <div className="post_tag_list">
-                            {postTagList}
-                        </div>
-                        <div className="post_tag_form">
-                            <PostTagForm
-                                postType={type}
-                                postTags={postTags}
-                                setPostTags={setPostTags}
-                            />
-                        </div>
-                    </div> */}
+                    <ImageForm setImages={setImages} images={images}/>
+                    <div onClick={() => console.log(images)}>
+                        check
+                    </div>
+                    <div>
+                        {
+                            Object.keys(images).map( e => {
+                                return (
+                                    <div onClick={() => removeFromImages(e)}>
+                                        {e}:<img src={URL.createObjectURL(images[e])} />
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
                     <div className="post_form_button_box">
                         <div onClick={handleSubmit} type="submit">Submit</div>
                     </div>

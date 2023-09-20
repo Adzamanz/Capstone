@@ -12,6 +12,7 @@ import { deletePostThunk, getAllPosts } from '../../store/posts';
 import TransactionForm from '../TransactionForm';
 import { getAllPostTags } from '../../store/postTags';
 import { createTagThunk, deleteTagThunk, getAllTags } from '../../store/tags'
+import { getAllImages } from '../../store/images';
 
 export default function PostDisplay(props){
     const dispatch = useDispatch();
@@ -19,9 +20,11 @@ export default function PostDisplay(props){
     let posts = useSelector(state => state?.posts);
     let postTags = useSelector(state => state?.postTags);
     let tags = useSelector(state => state?.tags)
+    let images = useSelector(state => state.images)
     let user = useSelector(state => state?.session?.user)
 
     let thisReplies = useSelector(state => groupBy(Object.values(state.replies),['postId'])[postId])
+    let thisImages = groupBy(Object.values(images), ['postId'])[postId]
     // let currentPost = posts[id];
     const [displayReplies, setDisplayReplies] = useState(false)
     const [currentPost, setCurrentPost] = useState(posts[postId]);
@@ -31,7 +34,9 @@ export default function PostDisplay(props){
         dispatch(getAllPostTags())
         dispatch(getAllPosts())
         dispatch(getAllReplies())
+        dispatch(getAllImages())
     },[])
+    
     useEffect(() => {
         setCurrentPost(posts[postId])
     },[postId, posts[postId]], thisReplies)

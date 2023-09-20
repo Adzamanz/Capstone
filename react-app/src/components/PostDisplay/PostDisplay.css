@@ -1,3 +1,6 @@
+img{
+    max-width: 200px;
+}
 .reply_feed{
     margin-top: 2px;
     padding: 4px;
@@ -23,7 +26,6 @@
 .post_main{
     background-color:#f6f6f6;
     padding: 2px;
-    max-width: 60%;
     color: black;
 }
 .post_content{
@@ -55,9 +57,9 @@
     margin: 5px;
 }
 .post_button_box{
-    position: absolute;
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
+    position: relative;
+    display: flex;
+
     font-size: 10px;
     margin: 5px;
 }
@@ -104,6 +106,7 @@
     word-break: break-word;
     margin-bottom: 20px;
     font-size: 15px;
+    min-width: 60vh;
 }
 .true_tag{
     background-color: rgb(245, 230, 171);

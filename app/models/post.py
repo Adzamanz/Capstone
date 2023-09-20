@@ -27,6 +27,7 @@ class Post(db.Model):
     replies = relationship("Reply", back_populates="post", cascade="all, delete-orphan")
     posttags = relationship("PostTag", back_populates="post", cascade="all, delete-orphan")
     tags = relationship("Tag", back_populates="post", cascade="all, delete-orphan")
+    images = relationship("Image", back_populates="post", cascade="all, delete-orphan")
 
     def to_dict(self):
         replies1 = [
@@ -51,5 +52,6 @@ class Post(db.Model):
             'reply': self.reply,
             'createdAt': self.createdAt,
             'updatedAt': self.updatedAt,
-            'replies': replies1
+            'replies': replies1,
+            'images': self.images
         }

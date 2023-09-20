@@ -8,6 +8,7 @@ import transactions from './transactions'
 import postTags from './postTags'
 import tags from './tags'
 import users from './users'
+import images from './images'
 
 const rootReducer = combineReducers({
   session,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   postTags,
   tags,
   users,
+  images,
 });
 
 

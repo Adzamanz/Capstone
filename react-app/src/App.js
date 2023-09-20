@@ -21,6 +21,7 @@ import Menu from "./components/Menu";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
 import MyPosts from "./components/MyPosts";
 import Landing2 from "./components/Landing2";
+import { getAllImages } from "./store/images";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ function App() {
     dispatch(getAllPostTags())
     dispatch(getAllTags())
     dispatch(getAllUsers())
+    dispatch(getAllImages())
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
 

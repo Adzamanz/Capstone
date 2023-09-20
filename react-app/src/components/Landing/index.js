@@ -55,7 +55,6 @@ export default function Landing () {
     return (
         <div className='landing_main'>
             <PictureView />
-
             {/* <div className='landing_new'>
                 <FeedDisplay justFeed={true} />
             </div> */}

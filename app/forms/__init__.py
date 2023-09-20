@@ -6,3 +6,4 @@ from .reply_form import ReplyForm
 from .transaction_form import TransactionForm
 from .post_tag_form import PostTagForm
 from .tag_form import TagForm
+from .image_form import ImageForm

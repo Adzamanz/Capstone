@@ -95,7 +95,7 @@ export default function(){
                 })}
             </div>}
             {(thisPost?.type == "donate" || thisPost?.type == "event/donate") && <div>
-                {(thisTotal?.pay + thisTotal?.pledge > 0) &&
+                {((thisTotal?.pay || 0 + thisTotal?.pledge || 0) > 0) &&
                 <div>
                     <div className='post_details_total'>
                         Total Donations:{thisTotal?.pay + thisTotal?.pledge}
