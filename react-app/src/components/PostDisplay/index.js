@@ -13,6 +13,7 @@ import TransactionForm from '../TransactionForm';
 import { getAllPostTags } from '../../store/postTags';
 import { createTagThunk, deleteTagThunk, getAllTags } from '../../store/tags'
 import { getAllImages } from '../../store/images';
+import PictureView from '../PictureView';
 
 export default function PostDisplay(props){
     const dispatch = useDispatch();
@@ -43,6 +44,12 @@ export default function PostDisplay(props){
     useEffect(()=> {
         setThisPostTags(groupBy(Object.values(postTags),['postId'])[postId])
     },[postTags, currentPost, tags])
+
+
+
+
+
+
     return (
         <div className='post_main' key={postId}>
                 <div className='post_content'>
@@ -67,7 +74,8 @@ export default function PostDisplay(props){
                         <div className='title_div'>{currentPost?.title}</div>
                     </div>
                 <div className='post_date'>{currentPost?.date?.split(" 00")[0]}</div>
-
+                        
+                        <PictureView images={images}/>
 
                 <div className='post_body'>
                     {currentPost?.body}
