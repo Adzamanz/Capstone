@@ -37,7 +37,7 @@ export default function PostDisplay(props){
         dispatch(getAllReplies())
         dispatch(getAllImages())
     },[])
-    
+
     useEffect(() => {
         setCurrentPost(posts[postId])
     },[postId, posts[postId]], thisReplies)
@@ -74,8 +74,8 @@ export default function PostDisplay(props){
                         <div className='title_div'>{currentPost?.title}</div>
                     </div>
                 <div className='post_date'>{currentPost?.date?.split(" 00")[0]}</div>
-                        
-                        <PictureView images={images}/>
+
+                        {thisImages && <PictureView images={thisImages}/>}
 
                 <div className='post_body'>
                     {currentPost?.body}

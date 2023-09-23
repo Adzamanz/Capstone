@@ -1,8 +1,8 @@
 """create tables
 
-Revision ID: 0aa97979fc4a
-Revises: 
-Create Date: 2023-09-14 12:22:22.083557
+Revision ID: 53ab302a4255
+Revises:
+Create Date: 2023-09-22 14:08:40.254837
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '0aa97979fc4a'
+revision = '53ab302a4255'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -28,6 +28,9 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
+     if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+
     op.create_table('feeds',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('userId', sa.Integer(), nullable=False),
@@ -36,6 +39,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+     if environment == "production":
+        op.execute(f"ALTER TABLE feeds SET SCHEMA {SCHEMA};")
+
     op.create_table('posts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('feedId', sa.Integer(), nullable=False),
@@ -51,6 +57,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+     if environment == "production":
+        op.execute(f"ALTER TABLE posts SET SCHEMA {SCHEMA};")
+
     op.create_table('images',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('userId', sa.Integer(), nullable=False),
@@ -60,6 +69,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+     if environment == "production":
+        op.execute(f"ALTER TABLE images SET SCHEMA {SCHEMA};")
+
     op.create_table('posttags',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('postId', sa.Integer(), nullable=False),
@@ -68,6 +80,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['postId'], ['posts.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+     if environment == "production":
+        op.execute(f"ALTER TABLE posttags SET SCHEMA {SCHEMA};")
+
     op.create_table('replies',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('userId', sa.Integer(), nullable=False),
@@ -79,6 +94,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+     if environment == "production":
+        op.execute(f"ALTER TABLE replies SET SCHEMA {SCHEMA};")
+
     op.create_table('transactions',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('userId', sa.Integer(), nullable=False),
@@ -93,6 +111,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+     if environment == "production":
+        op.execute(f"ALTER TABLE transactions SET SCHEMA {SCHEMA};")
+
     op.create_table('tags',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('userId', sa.Integer(), nullable=False),
@@ -104,6 +125,8 @@ def upgrade():
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+     if environment == "production":
+        op.execute(f"ALTER TABLE tags SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 

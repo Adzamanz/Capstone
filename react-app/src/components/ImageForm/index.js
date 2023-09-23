@@ -15,6 +15,8 @@ export default function ImageForm(props) {
     }else{
         newImages[name] = image;
         name ? setImages(newImages) : alert("Please enter a name.")
+        setName("");
+        setImage()
     }
   };
 
@@ -28,7 +30,7 @@ export default function ImageForm(props) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}> */}
         <div>
           <input
             type="file"
@@ -46,7 +48,7 @@ export default function ImageForm(props) {
         </div>
 
         <div className="add_image" onClick={handleSubmit}>Add</div>
-      </form>
+      {/* </form> */}
     </div>
   );
 }

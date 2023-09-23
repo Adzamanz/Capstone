@@ -60,15 +60,14 @@ export const deleteImageThunk = (image) => async (dispatch) => {
 };
 export const createImageThunk = (data) => async (dispatch) => {
     const formData  = new FormData();
-
     for(const name in data) {
       formData.append(name, data[name]);
     }
-    console.log(formData)
     const response = await fetch(`/api/images/new`, {
       method: 'POST',
       body: formData,
     });
+    console.log(response)
     if (response.ok) {
       const details = await response.json();
       dispatch(addImage(details));

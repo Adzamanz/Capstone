@@ -52,6 +52,5 @@ class Post(db.Model):
             'reply': self.reply,
             'createdAt': self.createdAt,
             'updatedAt': self.updatedAt,
-            'replies': replies1,
-            'images': self.images
+            'replies': replies1
         }

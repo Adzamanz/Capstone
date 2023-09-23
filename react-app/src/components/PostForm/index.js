@@ -104,7 +104,7 @@ export default function PostForm(props){
                         image: images[e]
                     };
                     console.log(currData)
-                    createImageThunk(currData)
+                    dispatch(createImageThunk(currData))
                 })
             }
             closeModal()
@@ -208,7 +208,8 @@ export default function PostForm(props){
                             Object.keys(images).map( e => {
                                 return (
                                     <div onClick={() => removeFromImages(e)}>
-                                        {e}:<img src={URL.createObjectURL(images[e])} />
+                                        {e}
+                                         {/* <img src={URL.createObjectURL(images[e])} /> */}
                                     </div>
                                 )
                             })

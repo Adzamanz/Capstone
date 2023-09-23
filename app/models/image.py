@@ -1,6 +1,10 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.orm import relationship
 from sqlalchemy.schema import ForeignKey
+import requests
+import os
+
+url = os.environ.get('BUCKET_URL')
 
 class Image(db.Model):
     __tablename__ = "images"
@@ -15,6 +19,10 @@ class Image(db.Model):
 
     post = relationship("Post", back_populates="images")
     user = relationship("User", back_populates="images")
+
+    def img(self):
+        response = requests.get(f"{url}/{self.userId}@{self.name}")
+        return response.content
 
     def to_dict(self):
         return {

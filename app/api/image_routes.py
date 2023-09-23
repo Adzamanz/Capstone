@@ -68,11 +68,11 @@ def add_image():
     form = ImageForm()
     user_id = current_user.id
 
-    if 'file' not in request.files:
+    if 'image' not in request.files:
         flash('No file uploaded', 'danger')
 
     print(request.files)
-    file_to_upload = request.files['file']
+    file_to_upload = request.files['image']
 
     if file_to_upload.filename == '':
         flash('No file uploaded', 'danger')
@@ -85,7 +85,7 @@ def add_image():
     upload_file_to_s3(file_to_upload, f"{user_id}@{new_image.name}" )
     data = {
         "name": f"{user_id}@{new_image.name}",
-        "image": form.file.data
+        "image": form.image.data
     }
     print(request.files)
     db.session.add(new_image)
