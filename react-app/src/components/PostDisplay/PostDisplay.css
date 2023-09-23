@@ -27,6 +27,7 @@ img{
     background-color:#f6f6f6;
     padding: 2px;
     color: black;
+    max-width: 100%;
 }
 .post_content{
     background-color: white;
@@ -106,7 +107,7 @@ img{
     word-break: break-word;
     margin-bottom: 20px;
     font-size: 15px;
-    min-width: 60vh;
+    min-width: 60vw;
 }
 .true_tag{
     background-color: rgb(245, 230, 171);
