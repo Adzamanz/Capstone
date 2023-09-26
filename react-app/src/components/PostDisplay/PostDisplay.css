@@ -1,3 +1,7 @@
+
+
+
+
 img{
     max-width: 200px;
 }
@@ -36,9 +40,13 @@ img{
     font-size: 14px;
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 
 }
 .post_title{
+    width:99%;
     background-color: #8aac1a;
     font-size: 17px;
     padding: 10px;
@@ -107,7 +115,8 @@ img{
     word-break: break-word;
     margin-bottom: 20px;
     font-size: 15px;
-    min-width: 60vw;
+    min-width: 30vw;
+    max-width: 99%;
 }
 .true_tag{
     background-color: rgb(245, 230, 171);

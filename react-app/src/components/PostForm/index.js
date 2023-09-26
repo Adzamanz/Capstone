@@ -11,7 +11,7 @@ import './PostForm.css'
 import PostTagForm from "../PostTagForm";
 import { createPostTagThunk, deletePostTagThunk, getAllPostTags } from "../../store/postTags";
 import OpenModalButton from "../OpenModalButton";
-import { createImageThunk, getAllImages } from "../../store/images";
+import { createImageThunk, deleteImageThunk, getAllImages } from "../../store/images";
 
 export default function PostForm(props){
 
@@ -24,6 +24,8 @@ export default function PostForm(props){
     let thisPost = useSelector(state => state.posts[postData])
     const allPostTags = useSelector(state => state.postTags)
     const postImages = useSelector(state => state.images)
+    let thisPostImages = groupBy(Object.values(postImages), ['postId'])[postData]
+    console.log(thisPostImages)
     const thisPostTags = groupBy(Object.values(allPostTags), ['postId', 'type'])
 // post
     const [date, setDate] = useState(new Date(thisPost?.date).toJSON()?.split("T")[0])
@@ -32,7 +34,7 @@ export default function PostForm(props){
     const [body, setBody] = useState(thisPost?.body)
     const [reply, setReply] = useState(thisPost?.reply || false)
     const [errors, setErrors] = useState({});
-    const [images, setImages] = useState({});
+    const [images, setImages] = useState(groupBy(thisPostImages, ['name']));
 
     const [likes, setLikes] = useState(thisPostTags[postData]?.like?.length > 0 || false)
     const [attendance, setAttendance] = useState(thisPostTags[postData]?.attendance?.length > 0 || false)
@@ -55,7 +57,9 @@ export default function PostForm(props){
     },[type])
 
     const removeFromImages = (name) => {
-        let newImages = {...images}  ;
+        let newImages = {...images};
+        console.log(newImages[name])
+        dispatch(deleteImageThunk(newImages[name][0]))
         delete newImages[name];
         setImages(newImages);
     }
@@ -104,7 +108,7 @@ export default function PostForm(props){
                         image: images[e]
                     };
                     console.log(currData)
-                    dispatch(createImageThunk(currData))
+                    if(!e.id)dispatch(createImageThunk(currData))
                 })
             }
             closeModal()
@@ -207,9 +211,8 @@ export default function PostForm(props){
                         {
                             Object.keys(images).map( e => {
                                 return (
-                                    <div onClick={() => removeFromImages(e)}>
-                                        {e}
-                                         {/* <img src={URL.createObjectURL(images[e])} /> */}
+                                    <div>
+                                        {e}<div className="delete_image_div" onClick={() => removeFromImages(e)}>Delete {e}</div>
                                     </div>
                                 )
                             })

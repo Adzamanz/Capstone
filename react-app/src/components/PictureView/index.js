@@ -19,7 +19,7 @@ export default function PictureView(props) {
     return (
             <div className='preview_div'>
                 <div className='preview_previous prev_arrow' onClick={decrement}>
-                    <i class="ri-arrow-left-s-line"></i>
+                    {(images && images.length > 1) && <i class="ri-arrow-left-s-line"></i>}
                 </div>
                 <div className='preview_image_display'>
                     {/* <i class="ri-arrow-left-s-line"/> */}
@@ -27,7 +27,7 @@ export default function PictureView(props) {
                     {/* <i class="ri-arrow-right-s-line"/> */}
                 </div>
                 <div className='preview_next prev_arrow' onClick={increment}>
-                    <i class="ri-arrow-right-s-line"></i>
+                    {images && images.length > 1 && <i class="ri-arrow-right-s-line"></i>}
                 </div>
             </div>
     )
