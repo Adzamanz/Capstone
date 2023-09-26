@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
     replies = relationship("Reply", back_populates="user", cascade="all, delete-orphan")
     transactions = relationship("Transaction", back_populates="user")
     tags = relationship("Tag", back_populates="user", cascade="all, delete-orphan")
-    images = relationship("Image", back_populates="user",cascade="all, delete-orphan")
+    images = relationship("Image", back_populates="user", cascade="all, delete-orphan")
 
     @property
     def password(self):
