@@ -1,6 +1,8 @@
 
 import React, { useState} from "react";
 
+import "./ImageForm.css"
+
 export default function ImageForm(props) {
   // Initialize state to hold the uploaded image and form data
   const {images, setImages} = props;
@@ -47,7 +49,7 @@ export default function ImageForm(props) {
             />
         </div>
 
-        <div className="add_image" onClick={handleSubmit}>Add</div>
+        <div className="add_image" onClick={handleSubmit}>Add to Post</div>
       {/* </form> */}
     </div>
   );

@@ -204,15 +204,15 @@ export default function PostForm(props){
                                 }
                     </div>
                     <ImageForm setImages={setImages} images={images}/>
-                    <div onClick={() => console.log(images)}>
-                        check
-                    </div>
-                    <div>
+                    <div className="image_list_title">image list</div>
+                    <div className="this_image_list">
+
                         {
                             Object.keys(images).map( e => {
                                 return (
-                                    <div>
-                                        {e}<div className="delete_image_div" onClick={() => removeFromImages(e)}>Delete {e}</div>
+                                    <div className="image_item">
+                                        <div className="image_name">{e}</div>
+                                        <div className="delete_image_div" onClick={() => removeFromImages(e)}>Delete {e}</div>
                                     </div>
                                 )
                             })

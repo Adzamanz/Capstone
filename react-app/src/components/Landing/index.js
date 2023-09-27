@@ -39,7 +39,6 @@ export default function Landing () {
     const [upcoming, setUpcoming] = useState(getUpcomingEvents()?.map( ele => {
         console.log(ele)
         return(
-
             <PostDisplay postId={ele.id}/>
         )
     }));
@@ -54,13 +53,9 @@ export default function Landing () {
     console.log(upcoming)
     return (
         <div className='landing_main'>
-            <PictureView />
-            {/* <div className='landing_new'>
-                <FeedDisplay justFeed={true} />
-            </div> */}
+            <img className="home_image" src="./photo.jpg" />
             <div className='landing_upcoming_title'> Upcoming Events! </div>
             <div className='landing_upcoming'>
-
                 {upcoming}
             </div>
         </div>

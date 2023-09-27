@@ -49,3 +49,6 @@
 .landing_new{
     margin: 5px
 }
+.home_image{
+    max-width: 50vw;
+}

@@ -23,3 +23,22 @@
 .post_form>div{
     margin: 5px;
 }
+.delete_image_div{
+    background-color: red;
+    border-radius: 5px;
+}
+.this_image_list{
+    padding: 5px;
+    max-height: 70px;
+    overflow-y: scroll;
+}
+.image_list_title{
+    border-bottom: 1px solid black;
+}
+.image_item{
+    margin: 5px;
+}
+.image_name{
+    border: 1px solid black;
+    border-radius: 5px;
+}
