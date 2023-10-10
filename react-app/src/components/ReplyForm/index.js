@@ -35,9 +35,10 @@ export default function ReplyForm (props) {
         <div className='reply_form_main'>
             <h1>Reply Form</h1>
             <form onSubmit={handleSubmit} className='reply_form'>
-                <label>
+                <label id="reply_input_label">
                     Reply:
-                    <input
+                    <textarea
+                        id="reply_input"
                         type="text"
                         value={body}
                         onChange={(e)=>setBody(e.target.value)}

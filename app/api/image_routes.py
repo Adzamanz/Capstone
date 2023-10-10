@@ -87,7 +87,6 @@ def add_image():
         "name": f"{user_id}@{new_image.name}",
         "image": form.image.data
     }
-    print(request.files)
     db.session.add(new_image)
     db.session.commit()
     return jsonify(new_image.to_dict())

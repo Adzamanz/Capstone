@@ -71,9 +71,10 @@
     border-radius: 10px;
     margin: 5px;
     font-size: 12px;
-    /* overflow-wrap: break-word;
+    max-width: 10vw;
+    overflow-wrap: break-word;
     word-wrap: break-word;
-    word-break: break-word; */
+    word-break: break-word;
 }
 .feed_desc:hover{
  padding: 10px;

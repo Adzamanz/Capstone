@@ -13,6 +13,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 20vw;
 }
 .reply_form>div{
     margin:5px;
@@ -26,4 +27,11 @@
 .reply_form_button_box>div:hover{
     background-color: rgb(86, 86, 86);
     cursor: pointer;
+}
+#reply_input{
+    width:15vw;
+}
+#reply_input_label{
+    align-items: center;
+    display: flex;
 }

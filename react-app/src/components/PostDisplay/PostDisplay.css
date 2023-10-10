@@ -89,8 +89,10 @@ img{
     border: solid 1px white;
     border-radius: 5px;
     width: min-content;
-    padding: 2px;
+    padding: 5px;
     font-size: 11px;
+    transition: .5s;
+
 }
 .post_main{
     height: min-content;

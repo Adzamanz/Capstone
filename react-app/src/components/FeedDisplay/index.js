@@ -106,7 +106,6 @@ export default function FeedDisplay (props) {
                 <div className='feed_list_button_box'><OpenModalButton buttonText={<i class="ri-add-box-line new_feed_button">new feed</i>} modalComponent={<FeedForm/>}/></div>
                 <div className='feed_list_title'>Feed List</div>
                 <div className='feed_list_display'>
-
                     {officalFeedListMaker()}
                     {generalFeedList}
                 </div>

@@ -10,8 +10,13 @@
     /* overflow: scroll; */
     }
 .my_posts_list_title{
-    background-color: #8aac1a;
+    background-color: white;
+    color: #8aac1a;
+    border-bottom: 1px solid #8aac1a;
     padding: 5px;
+    display: block;
+    width: 10vw;
+
 }
 .post_sub_menu{
     /* box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.266);
@@ -28,7 +33,7 @@
     border-radius: 10px;
     margin: 5px;
     max-height: 80%; */
-    position: sticky;
+    position: relative;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -53,6 +58,7 @@
     margin: 10px;
     padding: 5px;
     font-size: 14px;
+    max-width: 10vw;
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;
@@ -65,17 +71,24 @@
 }
 .my_posts_display{
     margin-right: 5px;
+    margin-top: 15px;
+    justify-self: center;
 }
 .my_posts_main{
     margin-top: 10px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    position: relative;
+    position: static;
     z-index: 0;
 }
 .post_placeholder{
     margin: 5px;
     padding-right: 10px;
     width: 300px;
+    font-size: 18px;
+}
+.empty_post_list{
+    padding: 5px;
+    margin: 5px;
 }
