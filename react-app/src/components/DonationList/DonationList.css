@@ -13,7 +13,7 @@
     padding: 5px;
 }
 .donation_sub_menu{
-    position: fixed;
+    /* position: fixed;
     right:10%;
     top:120px;
     display: flex;
@@ -25,7 +25,23 @@
     border-radius: 10px;
     margin: 5px;
     max-height: 80%;
-    align-self: flex-start;
+    align-self: flex-start; */
+    position: sticky;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: auto;
+    max-height: 60vh;
+    min-width: 15vw;
+    background-color: rgb(255, 255, 255);
+    overflow: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    border-radius: 10px;
+    margin: 15px;
+    margin-top: 15px;
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.266);
+    overflow-y: auto;
 }
 .donation_list_categories{
     /* display: flex;
@@ -48,8 +64,9 @@
 }
 .index_title{
     width: 100%;
-    background-color: #8aac1a;
-    color: white;
+    color: #8aac1a;
+    border-bottom: 1px solid #8aac1a;
+    font-size: 20px;
 }
 .donation_list_categories > .clickable{
     background-color: white;

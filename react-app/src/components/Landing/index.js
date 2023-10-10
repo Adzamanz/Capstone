@@ -56,7 +56,7 @@ export default function Landing () {
             <img className="home_image" src="./photo.jpg" />
             <div className='landing_upcoming_title'> Upcoming Events! </div>
             <div className='landing_upcoming'>
-                {upcoming}
+                {upcoming || "no upcoming events"}
             </div>
         </div>
     )

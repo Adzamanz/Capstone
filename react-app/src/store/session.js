@@ -18,7 +18,7 @@ export const authenticate = () => async (dispatch) => {
 		headers: {
 			"Content-Type": "application/json",
 		},
-	});
+	});	
 	if (response.ok) {
 		const data = await response.json();
 		if (data.errors) {
