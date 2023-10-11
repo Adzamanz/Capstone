@@ -106,7 +106,7 @@ export default function PostDisplay(props){
                                 }
                             }}
                         >
-                            {e.description}
+                            {tagged && e.description == "Like" ? "Liked" : e.description}
                         </div>
                     )
                 })}

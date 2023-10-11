@@ -30,7 +30,7 @@
 .this_image_list{
     padding: 5px;
     max-height: 70px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .image_list_title{
     border-bottom: 1px solid black;

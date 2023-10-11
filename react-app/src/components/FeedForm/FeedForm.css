@@ -8,6 +8,9 @@
     justify-content: center;
     align-items: center;
 }
+.feed_input_label{
+    margin:0px 5px;
+}
 .feed_input_form{
     display: flex;
     flex-direction: column;
