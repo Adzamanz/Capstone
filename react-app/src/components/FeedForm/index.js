@@ -17,7 +17,7 @@ export default function FeedForm(){
         setFeed({description, public: isPublic})
     },[description, isPublic])
     const handleSubmit = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         setSubmitted(true)
         if(description?.length <= 50 && description?.length > 0){
             setErrors({})
