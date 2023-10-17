@@ -18,17 +18,19 @@ export default function FeedForm(){
     },[description, isPublic])
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setSubmitted(true)
-        if(description?.length <= 50 && description?.length > 0){
-            setErrors({})
-            const data = await dispatch(createFeedThunk(feed));
-            if(data){
-                closeModal()
+        if(!submitted){
+            setSubmitted(true)
+            if(description?.length <= 50 && description?.length > 0){
+                setErrors({})
+                const data = await dispatch(createFeedThunk(feed));
+                if(data){
+                    closeModal()
+                }
             }
-        }
-        else{
-            setErrors({descError: "Feed title must be between 1 and 50 characters"})
-            setSubmitted(false)
+            else{
+                setErrors({descError: "Feed title must be between 1 and 50 characters"})
+                setSubmitted(false)
+            }
         }
     }
     return (
@@ -61,7 +63,7 @@ export default function FeedForm(){
                     </div>
                 </div>
                 <div className="feed_form_button_box">
-                    <div onClick={() => {if(!submitted) handleSubmit()}}>Submit</div>
+                    <div onClick={handleSubmit}>Submit</div>
                 </div>
             </form>
         </div>

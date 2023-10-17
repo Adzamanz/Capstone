@@ -64,7 +64,7 @@ export default function PostForm(props){
         setImages(newImages);
     }
     const handleSubmit = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         // console.log(feedId, title, body, type, likes, attendance,)
 
         let newErrors = {}
