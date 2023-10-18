@@ -4,17 +4,12 @@ more posttag options
 better layout for display and content (post Dates)
 pipenv run flask db init
 
-3:54
-
 pipenv run flask db migrate -m "create tables"
-
-3:54
 
 pipenv run flask db upgrade
 
-3:55
-
 pipenv run flask seed all
+
 SECRET_KEY=lkasjdf09ajsdkfljalsiorj12n3490re9485309irefvn,u90818734902139489230
 DATABASE_URL=sqlite:///dev.db
 SCHEMA=community_schema

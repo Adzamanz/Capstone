@@ -42,7 +42,6 @@ export default function(){
                 ret.pay = acc.value
             }
         }
-        console.log(ret)
         return ret;
 
     }))

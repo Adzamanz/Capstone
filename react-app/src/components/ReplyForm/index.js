@@ -28,7 +28,6 @@ export default function ReplyForm (props) {
             replyId ? dispatch(updateReplyThunk(newReply, replyId)) : await dispatch(createReplyThunk({postId,body}));
             closeModal();
         }
-        console.log(errors)
 
     }
     return (

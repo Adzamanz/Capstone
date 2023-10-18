@@ -67,7 +67,6 @@ export const createImageThunk = (data) => async (dispatch) => {
       method: 'POST',
       body: formData,
     });
-    console.log(response)
     if (response.ok) {
       const details = await response.json();
       dispatch(addImage(details));

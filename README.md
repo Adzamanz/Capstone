@@ -1,148 +1,88 @@
-# Flask React Project
+# Synnagogue Forum
+## Summary
+This project is a forum for my local community designed to empower users to communicate, plan events, as well as raise funds for said events.
 
-This is the starter for the Flask React project.
+## Table of Contents
 
-## Getting started
-1. Clone this repository (only this branch)
+- [Installation](#installation)
+- [Usage](#usage)
 
-2. Install dependencies
+## Installation
 
-      ```bash
-      pipenv install -r requirements.txt
-      ```
+To get started, follow these steps:
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
+1. **Clone or fork the project.**
+2. **Run 'pipenv install' in the root directory to install server dependecies.**
+3. **Run 'npm install' to install frontend dependencies.**
+4. **Run 'pipenv run flask db migrate' and 'pipenv run flask seed all' to add the mock data.**
+5. **Run 'pipenv run flask run' in the root depsoitory.**
+6. **Run 'npm start' in the react-app folder.**
+7. Create environment variables for SECRET_KEY, DATABASE_URL, SCHEMA, ACCESS_KEY, SECRET_ACCESS_KEY, BUCKET_NAME,AWS_REGION
+BUCKET_URL. Note that this project makes use of an AWS bucket and this will need to be set up for full use of images. Explaining this step is outside the scope of these instructions.
+## Usage
+![home page](Planning_folder/Capstone_Snapshots/Capture_main.PNG)
+### Feeds
 
-4. Make sure the SQLite3 database connection URL is in the **.env** file
+![Feed Display](Planning_folder/Capstone_Snapshots/Capture_feeds.PNG)
 
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention**.
+![Feed Form](Planning_folder/Capstone_Snapshots/Capture_feed_form.PNG)
 
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
+1. **Logged in Users can create Feeds**
+2. **Logged in Users can view Feeds**
+3. **Logged in Users can delete Feeds they have created**
 
-   ```bash
-   pipenv shell
-   ```
+### Posts
 
-   ```bash
-   flask db upgrade
-   ```
+![Post Display](Planning_folder/Capstone_Snapshots/Capture_posts.PNG)
 
-   ```bash
-   flask seed all
-   ```
+![Post Form](Planning_folder/Capstone_Snapshots/Capture_post_form.PNG)
 
-   ```bash
-   flask run
-   ```
+1. **Logged in Users can create Posts**
+2. **Logged in Users can view Posts**
+3. **Logged in Users can edit Posts they have created**
+4. **Logged in Users can delete Posts they have created**
 
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+### PostImages
 
+![PostImages Form](Planning_folder/Capstone_Snapshots/Capture_images_form.PNG)
 
-## Deployment through Render.com
+1. **Logged in Users can create PostImages in the Post form**
+2. **Logged in Users can view PostImages in the Post display**
+3. **Logged in Users can delete PostImages in the Post form**
 
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
+### PostTags
 
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
+![PostTags Form](Planning_folder/Capstone_Snapshots/Capture_posttags_form.PNG)
 
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
+1. **Logged in Users can create PostTags in the Post form by clicking on the like or attendance checkbox**
+2. **Logged in Users can view PostTags in the Post display**
+3. **Logged in Users can delete PostTags in the Post form**
+- Note that at this time, PostTags are limited to Likes and Attendance
 
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
+### Tags
 
-### Part A: Configure the Start and Build Commands
+![Tags Form](Planning_folder/Capstone_Snapshots/Capture_tags.PNG)
 
-Start by giving your application a name.
+1. **Logged in Users can create Tags by clicking on the associated button on a Post with an associated PostTag**
+2. **Logged in Users can view if a Tag is associated with their account by viewing the associated Post**
+3. **Logged in Users can delete a Tag for a given Post by clicking on the associated button on a Post**
 
-Leave the root directory field blank. By default, Render will run commands from
-the root directory.
+### Replies
 
-Make sure the Environment field is set set to "Python 3", the Region is set to
-the location closest to you, and the Branch is set to "main".
+![Replies Display](Planning_folder/Capstone_Snapshots/Capture_replies.PNG)
 
-Next, add your Build command. This is a script that should include everything
-that needs to happen _before_ starting the server.
+![Replies Form](Planning_folder/Capstone_Snapshots/Capture_replies_form.PNG)
 
-For your Flask project, enter the following command into the Build field, all in
-one line:
+1. **Logged in Users can create Replies**
+2. **Logged in Users can view Replies**
+3. **Logged in Users can edit Replies they have created**
+4. **Logged in Users can delete Replies they have created**
 
-```shell
-# build command - enter all in one line
-npm install --prefix react-app &&
-npm run build --prefix react-app &&
-pip install -r requirements.txt &&
-pip install psycopg2 &&
-flask db upgrade &&
-flask seed all
-```
+### Donations
 
-This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
-application. Then, it will install the dependencies needed for the Python
-backend, and run the migration and seed files.
+![Donation Display](Planning_folder/Capstone_Snapshots/Capture_donations.PNG)
 
-Now, add your start command in the Start field:
+![Donation Display](Planning_folder/Capstone_Snapshots/Capture_donation_form.PNG)
 
-```shell
-# start script
-gunicorn app:app
-```
-
-_If you are using websockets, use the following start command instead for increased performance:_
-
-`gunicorn --worker-class eventlet -w 1 app:app`
-
-### Part B: Add the Environment Variables
-
-Click on the "Advanced" button at the bottom of the form to configure the
-environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
-file, which has been removed from source control. In this step, you will need to
-input the keys and values for the environment variables you need for production
-into the Render GUI.
-
-Click on "Add Environment Variable" to start adding all of the variables you
-need for the production environment.
-
-Add the following keys and values in the Render GUI form:
-
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
-  https://this-application-name.onrender.com)
-
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
-
-Add the following keys and values:
-
-- DATABASE_URL (copy value from Internal Database URL field)
-
-_Feed: Add any other keys and values that may be present in your local __.env__
-file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment._
-
-Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
-application every time you push to main.
-
-Now, you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your build and
-start commands being executed, and see any errors in the build process.
-
-When deployment is complete, open your deployed site and check to see if you
-successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page.
-
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+1. **Logged in Users can create Donations**
+2. **Logged in Users can view Donations they have created**

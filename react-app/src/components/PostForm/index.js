@@ -25,7 +25,6 @@ export default function PostForm(props){
     const allPostTags = useSelector(state => state.postTags)
     const postImages = useSelector(state => state.images)
     let thisPostImages = groupBy(Object.values(postImages), ['postId'])[postData]
-    console.log(thisPostImages)
     const thisPostTags = groupBy(Object.values(allPostTags), ['postId', 'type'])
 // post
     const [date, setDate] = useState(new Date(thisPost?.date).toJSON()?.split("T")[0])
@@ -47,7 +46,6 @@ export default function PostForm(props){
 
     useEffect(()=>{
         date ? setPost({feedId,title,body,type,date,reply}) : setPost({feedId,title,body,type,reply});
-        console.log(date)
     },[type,reply,body,title,date])
 
     useEffect(() => {
@@ -58,14 +56,12 @@ export default function PostForm(props){
 
     const removeFromImages = (name) => {
         let newImages = {...images};
-        console.log(newImages[name])
         dispatch(deleteImageThunk(newImages[name][0]))
         delete newImages[name];
         setImages(newImages);
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // console.log(feedId, title, body, type, likes, attendance,)
 
         let newErrors = {}
         if(!title || title?.length > 50 || title?.length < 1){
@@ -107,7 +103,6 @@ export default function PostForm(props){
                         postId: dataId,
                         image: images[e]
                     };
-                    console.log(currData)
                     if(!e.id)dispatch(createImageThunk(currData))
                 })
             }

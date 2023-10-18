@@ -11,7 +11,6 @@ export const getAllUsers = () => async (dispatch) => {
     const response = await fetch('/api/users/');
     if(response.ok){
         const details = await response.json();
-        console.log(details)
         await dispatch(getUsers(details));
         return details;
     }

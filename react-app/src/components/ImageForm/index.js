@@ -31,7 +31,7 @@ export default function ImageForm(props) {
   };
 
   return (
-    <div>
+    <div className="image_form_main">
       {/* <form onSubmit={handleSubmit}> */}
         <div>
           <input

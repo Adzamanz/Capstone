@@ -33,7 +33,7 @@ export default function DonationList (props) {
                         <div className='transaction_display'>
                             <div className='tran_half a'>
                                 <div>user: {users[view[e].userId]?.username}</div>
-                                <div>value: {view[e].value}</div>
+                                <div>ammount: {view[e].value}</div>
                                 <div>fee: {view[e].fee}</div>
                                 <div>postId: {view[e].postId || "N/A"}</div>
                             </div>
@@ -50,9 +50,9 @@ export default function DonationList (props) {
             <div className='donation_sub_menu'>
                 <div className='donation_list_categories'>
                     <div className='index_title'> Donations </div>
-                    <div className='pledge_div clickable' onClick={() => setViewTransactions(transactions)}> All </div>
+                    <div className='all_div clickable category' onClick={() => setViewTransactions(transactions)}> All </div>
 
-                        <div className='pledge_div clickable' onClick={() => setViewTransactions(groupBy(Object.values(transactions), ['type'])?.pledge)} >Pledges</div>
+                        <div className='pledge_div clickable category' onClick={() => setViewTransactions(groupBy(Object.values(transactions), ['type'])?.pledge)} >Pledges</div>
                         {Object.keys(myTransactions).map(e => {
                             if(myTransactions[e].pledge){
                                 return (
@@ -62,7 +62,7 @@ export default function DonationList (props) {
                             )}
                         })
                     }
-                        <div className='fulfilled_div clickable' onClick={() => setViewTransactions(groupBy(Object.values(transactions), ['type']).pay)} >Fulfilled</div>
+                        <div className='fulfilled_div clickable category' onClick={() => setViewTransactions(groupBy(Object.values(transactions), ['type']).pay)} >Fulfilled</div>
                         {Object.keys(myTransactions).map(e => {
                             if(myTransactions[e].pay){
                                 return (

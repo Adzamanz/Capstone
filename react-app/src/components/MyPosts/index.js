@@ -50,14 +50,12 @@ export default function MyPosts() {
 
             </div>
             <div className='post_sub_menu'>
-                <div className='post_list'>
                     <div className='my_posts_list_title'>My Posts</div>
                     {myPosts.length ? myPosts?.map(ele => {
                         return (
                             <div className='post_tab' onClick={() => history.push(`/my_posts/${ele.id}`)}>{ele.title}</div>
                         )
                     }) : <div className='empty_post_list'> No Posts Yet! </div>}
-                </div>
             </div>
         </div>
     )

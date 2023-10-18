@@ -18,18 +18,14 @@ export default function Landing () {
         let organizedPosts = groupBy(Object.values(posts),['type'])
         let eventAndDonate = organizedPosts["event/donate"]
         let allEvents = eventAndDonate ? eventAndDonate.concat(organizedPosts?.event) : organizedPosts?.event
-        console.log(allEvents)
         let objectEvents = groupBy(allEvents, ['date'])
         let dateList = Object.values(allEvents  || {}).sort((a,b) => new Date(a.date) - new Date(b.date)) || []
-        console.log(dateList)
         let upcomings = dateList?.filter(ele => {
             let now = Date.now()//.getTime()
             let then = new Date(ele.date)
-            console.log(then,now)
 
             return (then > now)
         })
-        console.log(upcomings)
         return upcomings
 
     }
@@ -37,7 +33,6 @@ export default function Landing () {
         dispatch(getAllPosts)
     },[])
     const [upcoming, setUpcoming] = useState(getUpcomingEvents()?.map( ele => {
-        console.log(ele)
         return(
             <PostDisplay postId={ele.id}/>
         )
@@ -50,7 +45,7 @@ export default function Landing () {
             )
         }))
     },[posts])
-    console.log(upcoming)
+    
     return (
         <div className='landing_main'>
             <img className="home_image" src="./photo.jpg" />

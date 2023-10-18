@@ -77,7 +77,6 @@ export default function FeedDisplay (props) {
             return new Date(b.createdAt) - new Date(a.createdAt)
         }).map(ele => <PostDisplay postId={ele.id}/>))
     },[postsOrg])
-    // console.log(postsOrg[id]?.map(ele => ele).sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt)))
     return (
         <div className='feed_main'>
             <div className='feed_box'>

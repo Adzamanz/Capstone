@@ -21,7 +21,7 @@
     cursor: pointer;
 }
 .post_form>div{
-    margin: 5px;
+    margin: 10px;
 }
 .delete_image_div{
     background-color: red;

@@ -8,12 +8,10 @@ export default function PictureView(props) {
     const increment = () => {
         if(images ? current < images?.length - 1 : current < 1) setCurrent(current + 1)
         else setCurrent(0)
-        console.log(current)
     }
     const decrement = () => {
         if(current > 0) setCurrent(current - 1)
         else setCurrent(images ? images?.length - 1 : 1)
-        console.log(current)
     }
 
     return (

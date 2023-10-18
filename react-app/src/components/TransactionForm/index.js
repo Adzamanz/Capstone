@@ -16,12 +16,11 @@ export default function TransactionForm(props) {
     const [type,setType] = useState('pledge')
     const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log(postId,value,fee,description,type)
+
         if(value && description && type){
             let transaction = {postId,value,fee,description,type}
             let data = dispatch(createTransactionThunk(transaction))
             if(data){
-                console.log(data)
                 closeModal()
             }
         }
@@ -33,7 +32,7 @@ export default function TransactionForm(props) {
                 <div className="transaction_form">
                     <div>
                        <div className="transaction_form_input_div trans_tpe_select">
-                            <div>Value</div>
+                            <div>Ammount:</div>
                             <input
                             type="number"
                             value={value}
@@ -44,7 +43,7 @@ export default function TransactionForm(props) {
                     </div>
                     <div>
                         <div className="transaction_form_input_div trans_tpe_select">
-                            <div>Fee</div>
+                            <div>Fee:</div>
                             <input
                             type="number"
                             value={fee}
@@ -56,7 +55,7 @@ export default function TransactionForm(props) {
 
                     <div>
                         <div className="transaction_form_input_div trans_tpe_select">
-                            <div>Description</div>
+                            <div>Description:</div>
                             <input
                             type="text"
                             value={description}
