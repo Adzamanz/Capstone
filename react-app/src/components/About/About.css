@@ -1,0 +1,9 @@
+.about_main{
+    border-top: 1px solid #8aac1a;
+    border-bottom: 1px solid #8aac1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}

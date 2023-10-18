@@ -22,6 +22,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom";
 import MyPosts from "./components/MyPosts";
 import Landing2 from "./components/Landing2";
 import { getAllImages } from "./store/images";
+import About from "./components/About";
 
 function App() {
   const dispatch = useDispatch();

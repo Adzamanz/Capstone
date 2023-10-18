@@ -10,6 +10,7 @@ import { getAllTransactions, getEveryTransaction } from '../../store/transaction
 import PostDisplay from '../PostDisplay';
 import { getAllPosts } from '../../store/posts';
 import PictureView from '../PictureView';
+import About from '../About';
 
 export default function Landing () {
     const dispatch = useDispatch();
@@ -45,7 +46,7 @@ export default function Landing () {
             )
         }))
     },[posts])
-    
+
     return (
         <div className='landing_main'>
             <img className="home_image" src="./photo.jpg" />
@@ -53,6 +54,10 @@ export default function Landing () {
             <div className='landing_upcoming'>
                 {upcoming || "no upcoming events"}
             </div>
+
+            <footer>
+                <About/>
+            </footer>
         </div>
     )
 }
