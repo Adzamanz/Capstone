@@ -5,13 +5,15 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import Menu from '../Menu';
+import webeke from "./wbk-logo.jpg"
+import { logout } from '../../store/session';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 	const history = useHistory();
 	return (
 		<nav className="navbar">
-			<div className='t_nav'> <img src='wbk-logo.jpg' className='logo_nav'/> </div>
+			<div className='t_nav'> <img src={webeke} className='logo_nav'/> </div>
 			<div className='b_nav'>
 				{sessionUser &&
 				<div className='main_menu'>
