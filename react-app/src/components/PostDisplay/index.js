@@ -73,7 +73,7 @@ export default function PostDisplay(props){
                         </div>}
                         <div className='title_div'>{currentPost?.title}</div>
                     </div>
-                <div className='post_date'>{currentPost?.date?.split(" 00")[0]}</div>
+                {(currentPost.type == "event" || currentPost.type == "event/donate") && <div className='post_date'>{currentPost?.date?.split(" 00")[0]}</div>}
 
                         {thisImages && <PictureView images={thisImages}/>}
 
