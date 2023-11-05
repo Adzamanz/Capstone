@@ -6,7 +6,6 @@ from sqlalchemy.sql import text
 def seed_users():
     home = User(
         username='Official', email='home@aa.io', password='password')
-
     demo1 = User(
         username='demo1', email='demo1@aa.io', password='password')
     demo2 = User(

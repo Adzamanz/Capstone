@@ -20,13 +20,72 @@ def seed_posts():
                      reply=True,
                 )
     general2 = Post(feedId=2, userId=1, type="donate", title="Raising funds for new chairs",
-                     body="""Our chairs have experienced some wear and tear. As such we are seeking to raise funds to purchase some new ones. Please, contribute if you can.""",
+                     body="""Our chairs have experienced some wear and tear. As such, we are seeking to raise funds to purchase some new ones. Please, contribute if you can.""",
                      reply=True,
                 )
     general3 = Post(feedId=2, userId=1, type="none", title="Lost and Found",
-                     body="""The jacket from two weeks ago is still in the Lost and FOund. its is brown and very cozy... if anyone knows who's missing this jacket, please let us know.""",
+                     body="""The jacket from two weeks ago is still in the Lost and Found. its is brown and very cozy... if anyone knows who's missing this jacket, please let us know.""",
                      reply=True,
                 )
+    shiur = Post(
+        feedId=1, userId=1, title="Weekly Shiurim",
+        body="""
+            Daily
+
+                The Sol Teichman Z"L Daf Yomi Shiur With Rabbi Yitzchak Etshalom 
+
+            Shiur meets at YICC (including Shabbat) immediately after the early Minyan.
+
+            Also via Zoom: Meeting ID: 284 825 0055 Password:258526
+
+            www.dafyomiyicc.org
+
+                Kollel Boker- in conjunction with the Jack & Gitta Nagel YU Community Kollell
+
+            Monday-Thursday: 6.15-7.00 am
+
+            For more information contact Rabbi Pere: ypere@yukollelLA.com
+            
+            Mondays
+
+                The Daf Goes Deep - With Rabbi Yitzchak Etshalom
+
+            5:45pm via Zoom
+
+            https://us06web.zoom.us/j/2098638940
+
+                Semichat Chaver Program with R' Seth Berkowitz
+
+            8.30pm - in person only
+            
+            Tuesdays
+
+            Rabbi Muskin's Talmud Shiur
+
+            8.30pm- Via Zoom
+
+            https://us02web.zoom.us/j/85470825135
+            
+            Wednesdays
+
+                Parasha Shiur for Women with Rabbi Muskin
+
+            9.30am-  in person & via Zoom
+
+            https://us02web.zoom.us/j/83982615436
+
+            CLICK BELOW FOR THE SHIUR VIDEOS:
+
+            https://www.yicc.org/rabbi-muskins-womens-shiur.html
+
+            
+
+                Exploring Lesser-Known Halakhot & Minhagim with Rabbi Mahler
+
+            8.15pm- in person
+            """,
+        reply=False,
+    )
     # general4 = Post(feedId=2, userId=1, type="none", title="filler",
     #                  body="""filler""",
     #                  reply=True,
@@ -36,6 +95,7 @@ def seed_posts():
     db.session.add(general1)
     db.session.add(general2)
     db.session.add(general3)
+    db.session.add(shiur)
     db.session.commit()
 
 def undo_posts():
