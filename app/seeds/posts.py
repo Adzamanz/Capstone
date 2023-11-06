@@ -27,65 +27,65 @@ def seed_posts():
                      body="""The jacket from two weeks ago is still in the Lost and Found. its is brown and very cozy... if anyone knows who's missing this jacket, please let us know.""",
                      reply=True,
                 )
-    shiur = Post(
-        feedId=1, userId=1, title="Weekly Shiurim",
-        body="""
-            Daily
+    # shiur = Post(
+    #     feedId=1, userId=1, title="Weekly Shiurim",
+    #     body="""
+    #         Daily
 
-                The Sol Teichman Z"L Daf Yomi Shiur With Rabbi Yitzchak Etshalom 
+    #             The Sol Teichman Z"L Daf Yomi Shiur With Rabbi Yitzchak Etshalom 
 
-            Shiur meets at YICC (including Shabbat) immediately after the early Minyan.
+    #         Shiur meets at YICC (including Shabbat) immediately after the early Minyan.
 
-            Also via Zoom: Meeting ID: 284 825 0055 Password:258526
+    #         Also via Zoom: Meeting ID: 284 825 0055 Password:258526
 
-            www.dafyomiyicc.org
+    #         www.dafyomiyicc.org
 
-                Kollel Boker- in conjunction with the Jack & Gitta Nagel YU Community Kollell
+    #             Kollel Boker- in conjunction with the Jack & Gitta Nagel YU Community Kollell
 
-            Monday-Thursday: 6.15-7.00 am
+    #         Monday-Thursday: 6.15-7.00 am
 
-            For more information contact Rabbi Pere: ypere@yukollelLA.com
+    #         For more information contact Rabbi Pere: ypere@yukollelLA.com
             
-            Mondays
+    #         Mondays
 
-                The Daf Goes Deep - With Rabbi Yitzchak Etshalom
+    #             The Daf Goes Deep - With Rabbi Yitzchak Etshalom
 
-            5:45pm via Zoom
+    #         5:45pm via Zoom
 
-            https://us06web.zoom.us/j/2098638940
+    #         https://us06web.zoom.us/j/2098638940
 
-                Semichat Chaver Program with R' Seth Berkowitz
+    #             Semichat Chaver Program with R' Seth Berkowitz
 
-            8.30pm - in person only
+    #         8.30pm - in person only
             
-            Tuesdays
+    #         Tuesdays
 
-            Rabbi Muskin's Talmud Shiur
+    #         Rabbi Muskin's Talmud Shiur
 
-            8.30pm- Via Zoom
+    #         8.30pm- Via Zoom
 
-            https://us02web.zoom.us/j/85470825135
+    #         https://us02web.zoom.us/j/85470825135
             
-            Wednesdays
+    #         Wednesdays
 
-                Parasha Shiur for Women with Rabbi Muskin
+    #             Parasha Shiur for Women with Rabbi Muskin
 
-            9.30am-  in person & via Zoom
+    #         9.30am-  in person & via Zoom
 
-            https://us02web.zoom.us/j/83982615436
+    #         https://us02web.zoom.us/j/83982615436
 
-            CLICK BELOW FOR THE SHIUR VIDEOS:
+    #         BELOW FOR THE SHIUR VIDEOS:
 
-            https://www.yicc.org/rabbi-muskins-womens-shiur.html
+    #         https://www.yicc.org/rabbi-muskins-womens-shiur.html
 
             
 
-                Exploring Lesser-Known Halakhot & Minhagim with Rabbi Mahler
+    #             Exploring Lesser-Known Halakhot & Minhagim with Rabbi Mahler
 
-            8.15pm- in person
-            """,
-        reply=False,
-    )
+    #         8.15pm- in person
+    #         """,
+    #     reply=False,
+    # )
     # general4 = Post(feedId=2, userId=1, type="none", title="filler",
     #                  body="""filler""",
     #                  reply=True,
