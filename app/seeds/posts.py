@@ -95,7 +95,7 @@ def seed_posts():
     db.session.add(general1)
     db.session.add(general2)
     db.session.add(general3)
-    db.session.add(shiur)
+    # db.session.add(shiur)
     db.session.commit()
 
 def undo_posts():
