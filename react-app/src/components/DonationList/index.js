@@ -13,6 +13,10 @@ export default function DonationList (props) {
     let posts = useSelector(state => state.posts)
     let myTransactions = groupBy(Object.values(transactions), ['postId','type'])
     const [viewTransactions, setViewTransactions] = useState(transactions)
+
+    const [menuDisplay, setMenuDisplay] = useState(false)
+    const [toggle, setToggle] = useState("hide")
+
     let view = viewTransactions;
     useEffect(()=>{
         setViewTransactions(transactions)
@@ -24,8 +28,40 @@ export default function DonationList (props) {
        userId == 1 ? dispatch(getEveryTransaction()) : dispatch(getAllTransactions())
        dispatch(getAllUsers())
     },[])
+    useEffect(()=>{
+        setToggle(menuDisplay ? "show" : "hide")
+    },[menuDisplay])
     return (
         <div className='transaction_main'>
+            <div className='donation_sub_menu'>
+                <div className='menu_button' onClick={() => setMenuDisplay(!menuDisplay)}><i className='ri-menu-line menu_icon'></i></div>
+                <div className={`menu_box ${toggle}`}>
+                    <div className='donation_list_categories'>
+                        <div className='index_title'> Donations </div>
+                        <div className='all_div clickable category' onClick={() => setViewTransactions(transactions)}> All </div>
+
+                            <div className='pledge_div clickable category' onClick={() => setViewTransactions(groupBy(Object.values(transactions), ['type'])?.pledge)} >Pledges</div>
+                            {Object.keys(myTransactions).map(e => {
+                                if(myTransactions[e].pledge){
+                                    return (
+                                        <div className="post_name clickable" onClick={() => setViewTransactions(myTransactions[e]?.pledge)}>
+                                        {posts[e]?.title || "N/A"}
+                                    </div>
+                                )}
+                            })
+                        }
+                            <div className='fulfilled_div clickable category' onClick={() => setViewTransactions(groupBy(Object.values(transactions), ['type']).pay)} >Fulfilled</div>
+                            {Object.keys(myTransactions).map(e => {
+                                if(myTransactions[e].pay){
+                                    return (
+                                        <div  className="post_name clickable" onClick={() => setViewTransactions(myTransactions[e]?.pay)}>
+                                            {posts[e]?.title || "N/A"}
+                                        </div>
+                                )}
+                            })}
+                    </div>
+                </div>
+            </div>
             <div className='transaction_box'>
                 <div className='title_bar'>Donation List</div>
                 {Object.values(myTransactions).length ? Object.keys(viewTransactions || {})?.map(e => {
@@ -47,32 +83,7 @@ export default function DonationList (props) {
                     )
                 }): <div className='empty_donation_list'>Nothing here.</div>}
             </div>
-            <div className='donation_sub_menu'>
-                <div className='donation_list_categories'>
-                    <div className='index_title'> Donations </div>
-                    <div className='all_div clickable category' onClick={() => setViewTransactions(transactions)}> All </div>
-
-                        <div className='pledge_div clickable category' onClick={() => setViewTransactions(groupBy(Object.values(transactions), ['type'])?.pledge)} >Pledges</div>
-                        {Object.keys(myTransactions).map(e => {
-                            if(myTransactions[e].pledge){
-                                return (
-                                    <div className="post_name clickable" onClick={() => setViewTransactions(myTransactions[e]?.pledge)}>
-                                    {posts[e]?.title || "N/A"}
-                                </div>
-                            )}
-                        })
-                    }
-                        <div className='fulfilled_div clickable category' onClick={() => setViewTransactions(groupBy(Object.values(transactions), ['type']).pay)} >Fulfilled</div>
-                        {Object.keys(myTransactions).map(e => {
-                            if(myTransactions[e].pay){
-                                return (
-                                    <div  className="post_name clickable" onClick={() => setViewTransactions(myTransactions[e]?.pay)}>
-                                        {posts[e]?.title || "N/A"}
-                                    </div>
-                            )}
-                        })}
-                    </div>
-            </div>
+            
         </div>
     )
 }

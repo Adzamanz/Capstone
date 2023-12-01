@@ -32,6 +32,10 @@ export default function FeedDisplay (props) {
     let feedsOrg = groupBy(Object.values(feeds), ['userId'])
     let general = {...feedsOrg};
     delete general[1];
+
+    const [menuDisplay, setMenuDisplay] = useState(false)
+    const [toggle, setToggle] = useState("hide")
+
     const [officialFeeds, setOfficialFeeds] = useState(feedsOrg[1])
     const [generalFeeds, setGeneralFeeds] = useState(general)
 
@@ -77,11 +81,30 @@ export default function FeedDisplay (props) {
             return new Date(b.createdAt) - new Date(a.createdAt)
         }).map(ele => <PostDisplay postId={ele.id}/>))
     },[postsOrg])
+
+
+    useEffect(()=>{
+        setToggle(menuDisplay ? "show" : "hide")
+    },[menuDisplay])
     return (
         <div className='feed_main'>
+            {user && !justFeed && <div className='feed_sub_menu sub_menu'>
+                <div className='menu_button' onClick={() => setMenuDisplay(!menuDisplay)}><i className='ri-menu-line menu_icon'></i></div>
+                <div className={`menu_box ${toggle}`}>
+                    <div className='feed_button_box'>
+                        <OpenModalButton buttonText={<i class="ri-add-box-line new_feed_button">new feed</i>} modalComponent={<FeedForm/>}/>
+                    </div>
+                    <div className='feed_list_title'>Feed List</div>
+                    <div className='feed_list_display'>
+                        {officalFeedListMaker()}
+                        {generalFeedList}
+                    </div> 
+                </div>
+                
+            </div>}
             <div className='feed_box'>
                 <div className='feed_title'>
-                    {feed?.description}
+                    {feed?.description} 
                 </div>
                 {(feed?.public || feed?.userId == user?.id)
                 &&
@@ -101,15 +124,7 @@ export default function FeedDisplay (props) {
                 </div>
             </div>
 
-            {user && !justFeed && <div className='feed_sub_menu'>
-                <div className='feed_list_button_box'><OpenModalButton buttonText={<i class="ri-add-box-line new_feed_button">new feed</i>} modalComponent={<FeedForm/>}/></div>
-                <div className='feed_list_title'>Feed List</div>
-                <div className='feed_list_display'>
-                    {officalFeedListMaker()}
-                    {generalFeedList}
-                </div>
-            </div>
-            }
+            
         </div>
     )
 }

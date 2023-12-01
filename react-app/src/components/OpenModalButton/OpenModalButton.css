@@ -9,6 +9,7 @@
     margin: 2px;
     transition: 1s;
     text-align: center;
+    z-index: 0;
 }
 .button>i{
     text-align: center;
