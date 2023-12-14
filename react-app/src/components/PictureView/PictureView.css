@@ -34,3 +34,6 @@
 .preview_next{
     grid-column: 3;
 }
+.post_image{
+    max-width: 20vw;
+}

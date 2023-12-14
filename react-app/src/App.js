@@ -23,6 +23,7 @@ import MyPosts from "./components/MyPosts";
 import Landing2 from "./components/Landing2";
 import { getAllImages } from "./store/images";
 import About from "./components/About";
+import Image from "./components/Image";
 
 function App() {
   const dispatch = useDispatch();
@@ -71,6 +72,9 @@ function App() {
             </Route>
             <Route path="/signup">
               <SignupFormPage />
+            </Route>
+            <Route path="/api/images/img/:id">
+              <Image />
             </Route>
             <Route path="">
             <Landing />

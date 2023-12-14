@@ -22,7 +22,7 @@ class Image(db.Model):
 
     def img(self):
         response = requests.get(f"{url}/{self.userId}@{self.name}")
-        return response.content
+        return response.content 
 
     def to_dict(self):
         return {

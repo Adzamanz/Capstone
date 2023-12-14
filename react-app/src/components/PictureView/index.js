@@ -21,7 +21,7 @@ export default function PictureView(props) {
                 </div>
                 <div className='preview_image_display'>
                     {/* <i class="ri-arrow-left-s-line"/> */}
-                    {images ? <img src={`/api/images/img/${images[current]?.id}`}/> : <img src={pic[current]}/>}
+                    {images ? <img src={`/api/images/img/${images[current]?.id}`} className='post_image'/> : <img src={pic[current]} className='post_image'/>}
                     {/* <i class="ri-arrow-right-s-line"/> */}
                 </div>
                 <div className='preview_next prev_arrow' onClick={increment}>
