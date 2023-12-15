@@ -1,10 +1,11 @@
-.posts_list{
+.post_list{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     width: auto;
+    padding: 5px;
     }
 .my_posts_list_title{
     background-color: white;
@@ -32,11 +33,10 @@
     overflow-y: auto;
 }
 .post_tab{
-    transition: 1s;
+    transition: .5s;
     background-color: white;
     overflow: hidden;
     border-radius: 10px;
-    margin: 10px;
     padding: 5px;
     font-size: 14px;
     /* max-width: 10vw;
@@ -45,8 +45,7 @@
     word-break: break-word; */
 }
 .post_tab:hover{
-    transition: 1s;
-    padding: 10px;
+    transition: .5s;
     cursor: pointer;
     color: #8aac1a;
 }
@@ -73,11 +72,6 @@
 .empty_post_list{
     padding: 5px;
     margin: 5px;
-}
-.post_list{
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 .hide{    
     overflow-y: auto;
