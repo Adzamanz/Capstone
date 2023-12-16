@@ -34,7 +34,7 @@ export default function FeedDisplay (props) {
     delete general[1];
 
     const [menuDisplay, setMenuDisplay] = useState(false)
-    const [toggle, setToggle] = useState("hide")
+    const [toggle, setToggle] = useState("hides")
 
     const [officialFeeds, setOfficialFeeds] = useState(feedsOrg[1])
     const [generalFeeds, setGeneralFeeds] = useState(general)
@@ -84,7 +84,7 @@ export default function FeedDisplay (props) {
 
 
     useEffect(()=>{
-        setToggle(menuDisplay ? "show" : "hide")
+        setToggle(menuDisplay ? "shows" : "hides")
     },[menuDisplay])
     return (
         <div className='feed_main'>

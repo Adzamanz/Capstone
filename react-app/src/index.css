@@ -11,6 +11,7 @@
     z-index: -1;
 }
 .main_display{
+    font-family: Arial, Helvetica, sans-serif;
     position: static;
     border-radius: 10px;
     width: 80%;

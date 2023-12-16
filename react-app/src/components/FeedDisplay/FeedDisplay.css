@@ -15,6 +15,7 @@
     border-radius: 3px;
     /* margin-top: 80px; */
     min-width: 30vw;
+    width: 80vw;
 }
 .feed_title{
     /* background-color: #8aac1a; */
@@ -36,10 +37,11 @@
 }
 .feed_sub_menu{
     top:0px;
-    /* position: absolute; */
+    
+    position: fixed;
     display: flex;
-    align-items: center;
-    flex-direction: column;
+    /* align-items: center; */
+    flex-direction: row;
     width: auto;
     max-height: 60vh;
     min-width: 15vw;
@@ -51,8 +53,11 @@
     margin: 15px;
     box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.266);
     overflow-y: auto;
+    z-index: 2;
 }
-
+.feed_sub_menu > * {
+z-index: 100;
+}
 .feed_list_display{
     display: flex;
     flex-direction: column;
@@ -90,19 +95,75 @@
 .feed_body{
     padding: 10px;
 }
-.hide{    
-    overflow-y: auto;
-    height: 0px;
-    transition: 1s;
-}
-.show{
-    transition: 1s;
-    overflow-y: auto;
-    height:30vh;
-}
+
 .menu_icon{
     font-size: 20px;
     color: #8aac1a;
+}
+.menu_button{
+    margin-top: 20px;
+    margin-left: 10px;
+}
+.menu_box{
+    background-color: white;
+}
+.hides{
+    
+    height: 70px;
+    transition: 1s;
+    scrollbar-width: none;
+}
+.shows{
+    width:200px;
+    height:200px;
+    transition: 1s;
+}
+@media screen and (min-width: 451px) 
+/* and (max-width: 1400px)  */
+{
+    .hides{    
+        overflow-y: auto;
+        transition: 1s;
+    }
+    .shows{
+        transition: 1s;
+        margin-right: 30em;
+        overflow-y: auto;
+    }
+    .feed_sub_menu{
+        top: 6em;
+        right: -11.5em;
+    }
+}
+/* @media screen and (min-width:1401px){
+    .hides{    
+        overflow-y: auto;
+        transition: 1s;
+    }
+    .shows{
+        transition: 1s;
+        margin-right: 30em;
+        overflow-y: auto;
+    }
+    .feed_sub_menu{
+        top: 67em;
+        right: -22.5em;
+    }
+} */
+@media screen and (max-width: 450px){
+    .hides{    
+        overflow-y: auto;
+        transition: 1s;
+    }
+    .shows{
+        transition: 1s;
+        margin-right: 15em;
+        overflow-y: auto;
+    }
+    .feed_sub_menu{
+        top: 6em;
+        right: -11em;
+    }
 }
 
 
