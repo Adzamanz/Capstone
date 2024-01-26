@@ -142,7 +142,6 @@ z-index: 100;
     }
     .shows{
         transition: 1s;
-        overflow-y: auto;
     }
 }
 /* @media screen and (min-width:1401px){
