@@ -109,13 +109,11 @@
     padding: 5px;
 }
 .hide{    
-    overflow-y: auto;
     height: 0px;
     transition: 1s;
 }
 .show{
     transition: 1s;
-    overflow-y: auto;
     height:30vh;
 }
 .menu_icon{
@@ -124,4 +122,5 @@
 }
 .menu_box{
     scrollbar-width: none;
+    height: 100%;
 }
