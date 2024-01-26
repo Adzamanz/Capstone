@@ -43,7 +43,6 @@
     align-items: center;
     text-align: center;
     scrollbar-width: none;
-    overflow-y: auto;
     /* overflow-x: hidden; */
     margin: 5px;
 }
@@ -55,7 +54,6 @@
 }
 .donation_list_categories > .category{
     background-color: white;
-    overflow: hidden;
     margin: 5px;
     /* width: 90%; */
     border-bottom: 1px solid black;
@@ -123,4 +121,7 @@
 .menu_icon{
     font-size: 20px;
     color: #8aac1a;
+}
+.menu_box{
+    scrollbar-width: none;
 }
