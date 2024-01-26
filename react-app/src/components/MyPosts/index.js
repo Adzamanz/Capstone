@@ -30,7 +30,7 @@ export default function MyPosts() {
         history.push(`/my_posts/${myPosts[0].id}`)
     }
     const [menuDisplay, setMenuDisplay] = useState(false)
-    const [toggle, setToggle] = useState("hide")
+    const [toggle, setToggle] = useState("hides")
 
     useEffect(() => {
         dispatch(getAllPosts())
@@ -39,12 +39,12 @@ export default function MyPosts() {
         dispatch(getAllUsers())
     },[])
     useEffect(()=>{
-        setToggle(menuDisplay ? "show" : "hide")
+        setToggle(menuDisplay ? "shows" : "hides")
     },[menuDisplay])
 
     return (
         <div className='my_posts_main'>
-            <div className='post_sub_menu'>
+            <div className={`post_sub_menu sub_menu ${toggle}`}>
                 <div className='menu_button' onClick={() => setMenuDisplay(!menuDisplay)}><i className='ri-menu-line menu_icon'></i></div>
                 <div className={`menu_box ${toggle}`}>
                         <div className='my_posts_list_title'>My Posts</div>

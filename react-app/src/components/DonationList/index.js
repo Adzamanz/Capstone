@@ -29,11 +29,11 @@ export default function DonationList (props) {
        dispatch(getAllUsers())
     },[])
     useEffect(()=>{
-        setToggle(menuDisplay ? "show" : "hide")
+        setToggle(menuDisplay ? "shows" : "hides")
     },[menuDisplay])
     return (
         <div className='transaction_main'>
-            <div className='donation_sub_menu'>
+            <div className={`donation_sub_menu sub_menu ${toggle}`}>
                 <div className='menu_button' onClick={() => setMenuDisplay(!menuDisplay)}><i className='ri-menu-line menu_icon'></i></div>
                 <div className={`menu_box ${toggle}`}>
                     <div className='donation_list_categories'>

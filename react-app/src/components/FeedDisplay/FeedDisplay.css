@@ -36,21 +36,23 @@
     justify-content: space-between;
     font-size: 23px;
 }
-.feed_sub_menu{
+.sub_menu{
     z-index: 10;
     position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: rgb(255, 255, 255);
-    overflow: scroll;
-    overflow-x: hidden;
-    scrollbar-width: none;
     border-radius: 10px;
     margin: 15px;
     max-height: 60%;
     box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.266);
-    top: 0px
+    top: 0px;
+    overflow: hidden;
+}
+.sub_menu > .hides{
+    height: 0px;
+    width: 0px;
 }
 /* .feed_sub_menu{
     top:0px;
@@ -112,20 +114,19 @@ z-index: 100;
 .feed_body{
     padding: 10px;
 }
-.menu_button{
-    margin: 5px;
-}
 .menu_icon{
     margin: 5px;
     font-size: 20px;
     color: #8aac1a;
 }
+.menu_button{
+    margin-top: 3px;
+}
 .menu_box{
     background-color: white;
-    margin-top: 10px;
 }
 .hides{
-    width: 50px;
+    width: 60px;
     height: 30px;
     transition: 1s;
     scrollbar-width: none;
