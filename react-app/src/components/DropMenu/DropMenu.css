@@ -1,0 +1,9 @@
+
+.hides{
+    width: 60px;
+    height: 30px;
+    scrollbar-width: none;
+}
+.shows{
+    transition: 1s;
+}

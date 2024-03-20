@@ -82,27 +82,33 @@ export default function FeedDisplay (props) {
         }).map(ele => <PostDisplay postId={ele.id}/>))
     },[postsOrg])
 
-
-    useEffect(()=>{
-        setToggle(menuDisplay ? "shows" : "hides")
-    },[menuDisplay])
-    return (
-        <div className='feed_main'>
-            {user && !justFeed && <div className={`feed_sub_menu sub_menu ${toggle}`}>
+    let Menu = () =>{
+        return(
+            <div className={`feed_sub_menu sub_menu ${toggle}`}>
                 
-                <div className='menu_button' onClick={() => setMenuDisplay(!menuDisplay)}>
-                    <i className='ri-menu-line menu_icon'></i>
-                </div>
-                <div className={`menu_box ${toggle}`}>
+                {menuDisplay && <div className={`menu_box ${toggle}`}>
                     
                     <div className='feed_list_title'>Feed List</div>
                     <div className='feed_list_display'>
                         {officalFeedListMaker()}
                         {generalFeedList}
                     </div> 
+                </div>}
+                <div className='menu_button' onClick={() => setMenuDisplay(!menuDisplay)}>
+                    <i className='ri-menu-line menu_icon'></i>
                 </div>
-                
-            </div>}
+            </div>
+        )
+    }
+   
+
+
+    useEffect(()=>{
+        setToggle(menuDisplay ? "shows" : "hides")
+    },[menuDisplay])
+    return (
+        <div className='feed_main'>
+            {user && !justFeed && Menu()}
             <div className='feed_button_box'>
                     <OpenModalButton buttonText={<i class="ri-add-box-line new_feed_button">new feed</i>} modalComponent={<FeedForm/>}/>
             </div>
