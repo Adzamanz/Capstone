@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState , useRef} from 'react';
 import { useDispatch, useSelector, } from 'react-redux';
 import { groupBy } from '../Utility';
 import './FeedDisplay.css'
@@ -19,7 +19,7 @@ export default function FeedDisplay (props) {
     if(!id) id = 1;
     // const {id} = props;
     // let {id} = props.id ? props : useParams();
-
+    const alRef = useRef();
     const dispatch = useDispatch();
     const history = useHistory()
 
@@ -82,9 +82,23 @@ export default function FeedDisplay (props) {
         }).map(ele => <PostDisplay postId={ele.id}/>))
     },[postsOrg])
 
+    useEffect(() => {
+        if (!menuDisplay) return;
+    
+        const closeMenu = (e) => {
+          if (!alRef.current.contains(e.target)) {
+            setMenuDisplay(false);
+          }
+        };
+    
+        document.addEventListener("click", closeMenu);
+    
+        return () => document.removeEventListener("click", closeMenu);
+      }, [menuDisplay]);
+
     let Menu = () =>{
         return(
-            <div className={`feed_sub_menu sub_menu ${toggle}`}>
+            <div className={`feed_sub_menu sub_menu ${toggle}`} ref={alRef}>
                 
                 {menuDisplay && <div className={`menu_box ${toggle}`}>
                     
