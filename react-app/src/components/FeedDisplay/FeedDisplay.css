@@ -29,16 +29,16 @@
     font-size: 30px;
 }
 .feed_button_box{
-    margin-top: 40px;
     padding: 10px;
     position: relative;
     display: inline-flex;
     justify-content: space-between;
     font-size: 23px;
+    margin-top: 25px;
 }
 .sub_menu{
     z-index: 10;
-    position: relative;
+    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -56,6 +56,10 @@
 .sub_menu > .hides{
     height: 0px;
     width: 0px;
+    transition: 1s;
+}
+.sub_menu > .shows{
+    transition: .3s;
 }
 /* .feed_sub_menu{
     top:0px;
@@ -128,7 +132,8 @@ z-index: 100;
 .menu_box{
     background-color: white;
     border-radius: 5px;
-    padding: 5px
+    padding: 5px;
+    transition: 1s;
 }
 .hides{
     width: 60px;
@@ -145,7 +150,7 @@ z-index: 100;
         overflow-y: auto;
     }
     .shows{
-        /* transition: 1s; */
+        transition: 1s;
     }
 }
 /* @media screen and (min-width:1401px){
