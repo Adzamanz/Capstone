@@ -123,12 +123,9 @@ export default function FeedDisplay (props) {
     return (
         <div className='feed_main'>
             {user && !justFeed && Menu()}
-            <div className='feed_button_box'>
+            <div className='feed_button_box_main'> 
+                <div className='feed_button_box'>
                     <OpenModalButton buttonText={<i class="ri-add-box-line new_feed_button">new feed</i>} modalComponent={<FeedForm/>}/>
-            </div>
-            <div className='feed_box'>
-                <div className='feed_title'>
-                    {feed?.description} 
                 </div>
                 {(feed?.public || feed?.userId == user?.id)
                 &&
@@ -141,7 +138,15 @@ export default function FeedDisplay (props) {
                         buttonText={<i class="ri-chat-delete-line"></i>}
                         modalComponent={<DeleteItemModal action={deleteFeedThunk} target={feed} landing={'/'}/>}
                     />
-                </div>}
+            </div>}
+            </div>
+           
+            
+            <div className='feed_box'>
+                <div className='feed_title'>
+                    {feed?.description} 
+                </div>
+                
 
                 <div className='feed_body'>
                     {postFeed || <div className='empty_div'> Nothing here </div>}
