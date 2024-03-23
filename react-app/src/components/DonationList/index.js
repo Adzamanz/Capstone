@@ -1,4 +1,4 @@
-import React,{ useEffect, useState } from 'react';
+import React,{ useEffect, useState, useRef } from 'react';
 
 import { useDispatch, useSelector, } from 'react-redux';
 import { getAllTransactions, getEveryTransaction } from '../../store/transactions';
@@ -16,6 +16,7 @@ export default function DonationList (props) {
 
     const [menuDisplay, setMenuDisplay] = useState(false)
     const [toggle, setToggle] = useState("hide")
+    const alRef = useRef();
 
     let view = viewTransactions;
     useEffect(()=>{
@@ -31,9 +32,22 @@ export default function DonationList (props) {
     useEffect(()=>{
         setToggle(menuDisplay ? "shows" : "hides")
     },[menuDisplay])
+    useEffect(() => {
+        if (!menuDisplay) return;
+    
+        const closeMenu = (e) => {
+          if (!alRef.current.contains(e.target)) {
+            setMenuDisplay(false);
+          }
+        };
+    
+        document.addEventListener("click", closeMenu);
+    
+        return () => document.removeEventListener("click", closeMenu);
+      }, [menuDisplay]);
     return (
         <div className='transaction_main'>
-            <div className={`donation_sub_menu sub_menu ${toggle}`}>
+            <div className={`donation_sub_menu sub_menu ${toggle}`}ref={alRef}>
                 <div className='menu_button' onClick={() => setMenuDisplay(!menuDisplay)}><i className='ri-menu-line menu_icon'></i></div>
                 <div className={`menu_box ${toggle}`}>
                     <div className='donation_list_categories'>

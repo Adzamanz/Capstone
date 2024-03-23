@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState , useRef} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { groupBy } from '../Utility';
 import PostDisplay from '../PostDisplay';
@@ -26,6 +26,8 @@ export default function MyPosts() {
     let thisPostTags = groupBy(Object.values(postTags), ['postId','description'])[id]
     let thisTags = groupBy(Object.values(tags),['postid','description'])[id]
 
+    const alRef = useRef();
+
     if(!id && myPosts.length){
         history.push(`/my_posts/${myPosts[0].id}`)
     }
@@ -41,10 +43,23 @@ export default function MyPosts() {
     useEffect(()=>{
         setToggle(menuDisplay ? "shows" : "hides")
     },[menuDisplay])
+    useEffect(() => {
+        if (!menuDisplay) return;
+    
+        const closeMenu = (e) => {
+          if (!alRef.current.contains(e.target)) {
+            setMenuDisplay(false);
+          }
+        };
+    
+        document.addEventListener("click", closeMenu);
+    
+        return () => document.removeEventListener("click", closeMenu);
+      }, [menuDisplay]);
 
     return (
         <div className='my_posts_main'>
-            <div className={`post_sub_menu sub_menu ${toggle}`}>
+            <div className={`post_sub_menu sub_menu ${toggle}`}ref={alRef}>
                 <div className='menu_button' onClick={() => setMenuDisplay(!menuDisplay)}><i className='ri-menu-line menu_icon'></i></div>
                 <div className={`menu_box ${toggle}`}>
                         <div className='my_posts_list_title'>My Posts</div>

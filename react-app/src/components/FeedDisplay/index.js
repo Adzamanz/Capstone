@@ -99,7 +99,9 @@ export default function FeedDisplay (props) {
     let Menu = () =>{
         return(
             <div className={`feed_sub_menu sub_menu ${toggle}`} ref={alRef}>
-                
+                 <div className='menu_button' onClick={() => setMenuDisplay(!menuDisplay)}>
+                    <i className='ri-menu-line menu_icon'></i>
+                </div>
                 {menuDisplay && <div className={`menu_box ${toggle}`}>
                     
                     <div className='feed_list_title'>Feed List</div>
@@ -108,9 +110,7 @@ export default function FeedDisplay (props) {
                         {generalFeedList}
                     </div> 
                 </div>}
-                <div className='menu_button' onClick={() => setMenuDisplay(!menuDisplay)}>
-                    <i className='ri-menu-line menu_icon'></i>
-                </div>
+               
             </div>
         )
     }

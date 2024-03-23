@@ -50,13 +50,11 @@
     box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.266);
     top: 0px;
     padding: 3px;
-    transition: 1s;
 
 }
 .sub_menu > .hides{
     height: 0px;
     width: 0px;
-    transition: 1s;
 }
 .sub_menu > .shows{
     transition: .3s;
