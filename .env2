@@ -1,0 +1,8 @@
+SECRET_KEY=lkasjdf09ajsdkfljalsiorj12n3490re9485309irefvn,u90818734902139489230
+DATABASE_URL=postgres://my_psql_db_user:KgMHNCx46TjnWujbkpWtNwHLrKvxiTnV@dpg-ck99qnugtj9c73b8bdjg-a.oregon-postgres.render.com/my_psql_db
+SCHEMA=community_schema
+ACCESS_KEY=AKIARVBENMEVJU52QUVA
+SECRET_ACCESS_KEY=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
+BUCKET_NAME=wbkbucket
+AWS_REGION=us-east-2
+BUCKET_URL=https://ysw91yurh1.execute-api.us-east-2.amazonaws.com/dev/wbkbucket
