@@ -1,7 +1,7 @@
 
 .reply_form_main{
     padding: 5px;
-    border: solid 2px black;
+    border: solid 2px white;
     display: flex;
     flex-direction: column;
     align-items: center;
