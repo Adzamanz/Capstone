@@ -81,7 +81,8 @@
 } 
 */
 .feed_sub_menu > * {
-z-index: 100;
+    z-index: 100;
+    padding:5px 10px;
 }
 .feed_list_display{
     display: flex;
@@ -134,12 +135,13 @@ z-index: 100;
     transition: 1s;
 }
 .hides{
-    width: 80px;
-    height: 30px;
+    width: 0px;
+    height: 0px;
     scrollbar-width: none;
 }
 .shows{
-    transition: 1s;
+    width: auto;
+    height: auto;
 }
 @media screen and (min-width: 451px) 
 /* and (max-width: 1400px)  */

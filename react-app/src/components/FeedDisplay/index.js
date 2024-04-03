@@ -98,7 +98,7 @@ export default function FeedDisplay (props) {
 
     let Menu = () =>{
         return(
-            <div className={`feed_sub_menu sub_menu ${toggle}`} ref={alRef}>
+            <div className={`feed_sub_menu sub_menu`} ref={alRef}>
                  <div className='menu_button' onClick={() => setMenuDisplay(!menuDisplay)}>
                     <i className='ri-menu-line menu_icon'></i>
                 </div>
